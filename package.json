@@ -87,11 +87,9 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "cross-env NODE_PATH=src react-scripts build",
-    "build": "cross-env NODE_PATH=src react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall":"react-scripts build"
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js"
   },
   "devDependencies": {
     "bootstrap": "^4.1.3",
