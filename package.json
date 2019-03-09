@@ -87,7 +87,7 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env NODE_PATH=src react-scripts start",
     "build": "cross-env NODE_PATH=src react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -97,7 +97,6 @@
     "node-sass": "^4.9.3",
     "prettier": "^1.14.2"
     
-
   },
   "browserslist": {
     "development": [
