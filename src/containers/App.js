@@ -35,13 +35,13 @@ import {
   PINK
 } from '../constants/ThemeColors';
 
-import MainApp from 'app/index';
+import MainApp from '../app/index';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import forgotPassword from './forgotPassword';
 import {setInitUrl} from '../actions/Auth';
 import RTL from 'util/RTL';
-import asyncComponent from 'util/asyncComponent';
+import asyncComponent from '../util/asyncComponent';
 
 const RestrictedRoute = ({component: Component, authUser, ...rest}) =>
   <Route
