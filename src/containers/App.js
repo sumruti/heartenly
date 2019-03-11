@@ -40,7 +40,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import forgotPassword from './forgotPassword';
 import {setInitUrl} from '../actions/Auth';
-import RTL from 'util/RTL';
+import RTL from '../util/RTL';
 import asyncComponent from '../util/asyncComponent';
 
 const RestrictedRoute = ({component: Component, authUser, ...rest}) =>

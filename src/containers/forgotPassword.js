@@ -11,7 +11,7 @@ import {
   hideMessage,
   showAuthLoader,
   forgot_Password,
-} from 'actions/Auth';
+} from '../actions/Auth';
 
 class ForgotPassword extends React.Component {
 
