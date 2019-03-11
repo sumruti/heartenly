@@ -180,7 +180,7 @@ class App extends Component {
                   <Route path='/signup' component={SignUp}/>
                   <Route path='/forgot-password' component={forgotPassword}/>
                   <Route
-                    component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>
+                    component={asyncComponent(() => import('../app/routes/extraPages/routes/404'))}/>
                 </Switch>
               </div>
             </RTL>
