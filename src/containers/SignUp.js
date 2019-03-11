@@ -15,7 +15,7 @@ import {
   userGoogleSignIn,
   userSignUp,
   userTwitterSignIn
-} from 'actions/Auth';
+} from '../actions/Auth';
 
 class SignUp extends React.Component {
   constructor() {
