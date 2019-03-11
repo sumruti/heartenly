@@ -17,10 +17,14 @@ import {
   SIGNOUT_USER,
   SIGNOUT_USER_SUCCESS,
   SIGNUP_USER,
-  SIGNUP_USER_SUCCESS
+  SIGNUP_USER_SUCCESS,
+  FORGOT_PASSWORD,
+  FORGOT_PASSWORD_SUCCESS,
+  SHOW_SUCCESS_MESSAGE
 } from 'constants/ActionTypes';
 
 export const userSignUp = (user) => {
+
   return {
     type: SIGNUP_USER,
     payload: user
@@ -59,6 +63,13 @@ export const userSignOutSuccess = () => {
 export const showAuthMessage = (message) => {
   return {
     type: SHOW_MESSAGE,
+    payload: message
+  };
+};
+
+export const showSuccessMessage = (message) => {
+  return {
+    type: SHOW_SUCCESS_MESSAGE,
     payload: message
   };
 };
@@ -128,5 +139,22 @@ export const hideMessage = () => {
 export const hideAuthLoader = () => {
   return {
     type: ON_HIDE_LOADER,
+  };
+};
+
+
+export const forgot_Password = (useremail) => {
+
+  return {
+    type: FORGOT_PASSWORD,
+     payload: useremail
+  };
+};
+
+export const forgot_Password_success = (data) => {
+
+  return {
+    type: FORGOT_PASSWORD_SUCCESS,
+     payload: data
   };
 };

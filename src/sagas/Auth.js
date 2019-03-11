@@ -2,6 +2,7 @@ import {all, call, fork, put, takeEvery} from "redux-saga/effects";
 
 import {signupUser} from "../apis/Signup";
 import {loginUser} from "../apis/SignIn";
+import {forgot_password} from "../apis/ForgotPassword";
 import {
   auth,
   facebookAuthProvider,
@@ -16,9 +17,10 @@ import {
   SIGNIN_TWITTER_USER,
   SIGNIN_USER,
   SIGNOUT_USER,
-  SIGNUP_USER
+  SIGNUP_USER,
+  FORGOT_PASSWORD
 } from "constants/ActionTypes";
-import {showAuthMessage, userSignInSuccess, userSignOutSuccess, userSignUpSuccess} from "actions/Auth";
+import {showAuthMessage,showSuccessMessage, userSignInSuccess, userSignOutSuccess, userSignUpSuccess , forgot_Password_success} from "actions/Auth";
 import {
   userFacebookSignInSuccess,
   userGithubSignInSuccess,
@@ -30,6 +32,11 @@ const createUserWithEmailPasswordRequest = async (email, password) =>
   await  auth.createUserWithEmailAndPassword(email, password)
     .then(authUser => authUser)
     .catch(error => error);
+
+/*const createUserWithEmailPasswordRequest = async (email) =>
+  await  auth.createUserWithEmailAndPassword(email)
+    .then(authUser => authUser)
+    .catch(error => error); */   
 
 const signInUserWithEmailPasswordRequest = async (email, password) =>
   await  auth.signInWithEmailAndPassword(email, password)
@@ -62,6 +69,34 @@ const signInUserWithTwitterRequest = async () =>
     .then(authUser => authUser)
     .catch(error => error);
 
+
+function* forgotPassword({payload}) {
+   const {email} = payload;
+
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(!regex.test(email)){
+      yield put(showAuthMessage("The email address is badly formatted."));
+      return false
+    }
+
+  try {
+    const forgot_pass = yield call(forgot_password, email);
+
+     console.log(forgot_pass.data);
+   
+     
+    if (forgot_pass.data.status==false) {
+      yield put(showAuthMessage(forgot_pass.data.message));
+    } else {
+      yield put(showSuccessMessage(forgot_pass.data.message));
+      yield put(forgot_Password_success(forgot_pass.data.message));
+    }
+  } catch (error) {
+    yield put(showAuthMessage(error));
+  }
+
+}    
+
 function* createUserWithEmailPassword({payload}) {
   const {name,email, password} = payload;
 
@@ -82,7 +117,7 @@ function* createUserWithEmailPassword({payload}) {
   }
 
   try {
-    const signUpUser = yield call(signupUser, email, password);
+    const signUpUser = yield call(signupUser, name,email, password);
 
      console.log(signUpUser.data);
      
@@ -205,6 +240,10 @@ export function* createUserAccount() {
   yield takeEvery(SIGNUP_USER, createUserWithEmailPassword);
 }
 
+export function* forgotpassword() {
+  yield takeEvery(FORGOT_PASSWORD, forgotPassword);
+}
+
 export function* signInWithGoogle() {
   yield takeEvery(SIGNIN_GOOGLE_USER, signInUserWithGoogle);
 }
@@ -232,6 +271,7 @@ export function* signOutUser() {
 export default function* rootSaga() {
   yield all([fork(signInUser),
     fork(createUserAccount),
+    fork(forgotpassword),
     fork(signInWithGoogle),
     fork(signInWithFacebook),
     fork(signInWithTwitter),

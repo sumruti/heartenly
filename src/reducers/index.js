@@ -6,6 +6,7 @@ import Contact from './Contact';
 import Mail from './Mail';
 import ToDo from './ToDo';
 import Auth from './Auth';
+import Profile from './Profile';
 
 
 export default (history) => combineReducers({
@@ -16,4 +17,5 @@ export default (history) => combineReducers({
   mail: Mail,
   toDo: ToDo,
   auth: Auth,
+  Profile: Profile,
 });

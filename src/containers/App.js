@@ -38,6 +38,7 @@ import {
 import MainApp from 'app/index';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import forgotPassword from './forgotPassword';
 import {setInitUrl} from '../actions/Auth';
 import RTL from 'util/RTL';
 import asyncComponent from 'util/asyncComponent';
@@ -149,7 +150,7 @@ class App extends Component {
     if (location.pathname === '/') {
       if (authUser === null) {
         return (<Redirect to={'/signin'}/>);
-      } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
+      } else if (initURL === '' || initURL === '/' || initURL === '/signin' || location.pathname=="/forgot-password") {
         return (<Redirect to={'/app/dashboard/crypto'}/>);
       } else {
         return (<Redirect to={initURL}/>);
@@ -177,6 +178,7 @@ class App extends Component {
                                    component={MainApp}/>
                   <Route path='/signin' component={SignIn}/>
                   <Route path='/signup' component={SignUp}/>
+                  <Route path='/forgot-password' component={forgotPassword}/>
                   <Route
                     component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>
                 </Switch>

@@ -10,7 +10,9 @@ import {
   SIGNIN_TWITTER_USER_SUCCESS,
   SIGNIN_USER_SUCCESS,
   SIGNOUT_USER_SUCCESS,
-  SIGNUP_USER_SUCCESS
+  SIGNUP_USER_SUCCESS,
+  FORGOT_PASSWORD_SUCCESS,
+  SHOW_SUCCESS_MESSAGE
 } from "constants/ActionTypes";
 
 const INIT_STATE = {
@@ -19,6 +21,8 @@ const INIT_STATE = {
   showMessage: false,
   initURL: '',
   authUser: localStorage.getItem('user_id'),
+  forgot: '',
+  alertSuccessMessage:''
 };
 
 
@@ -40,6 +44,15 @@ export default (state = INIT_STATE, action) => {
          initURL: ''
       }
     }
+    case FORGOT_PASSWORD_SUCCESS: {
+      
+      return {
+        ...state,
+        loader: false,
+        forgot: action.payload,
+        initURL: ''
+      }
+    }
     case INIT_URL: {
       return {
         ...state,
@@ -56,6 +69,14 @@ export default (state = INIT_STATE, action) => {
     }
 
     case SHOW_MESSAGE: {
+      return {
+        ...state,
+        alertMessage: action.payload,
+        showMessage: true,
+        loader: false
+      }
+    }
+     case SHOW_SUCCESS_MESSAGE: {
       return {
         ...state,
         alertMessage: action.payload,

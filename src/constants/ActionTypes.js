@@ -22,6 +22,7 @@ export const BELOW_THE_HEADER = 'below_the_header';
 //Contact Module const
 
 export const SHOW_MESSAGE = 'show_message';
+export const SHOW_SUCCESS_MESSAGE = 'show_success_message';
 export const HIDE_MESSAGE = 'hide_message';
 
 export const FETCH_ALL_CONTACT = 'fetch_all_contact';
@@ -60,6 +61,11 @@ export const SIGNOUT_USER = 'signout_user';
 export const SIGNOUT_USER_SUCCESS = 'signout_user_success';
 export const INIT_URL = 'init_url';
 
+
+//Forgot Password
+
+ export const FORGOT_PASSWORD = 'forgot_password';
+ export const FORGOT_PASSWORD_SUCCESS = 'forgot_password_success';
 // Chat Module const
 
 export const FETCH_ALL_CHAT_USER = 'fetch_all_chat_user';
@@ -136,4 +142,12 @@ export const ON_TODO_SELECT = 'on_todo_select';
 export const SET_CURRENT_TODO_NULL = 'set_current_todo_null';
 export const REMOVE_LABEL = 'remove_label';
 export const UPDATE_SEARCH = 'update_search';
+
+
+
+
+//New Types
+
+export const GET_USER_PROFILE_BY_ID = 'get_user_profile_by_id';
+export const GET_USER_PROFILE_BY_ID_SUCCESS = 'get_user_profile_by_id_success';
 

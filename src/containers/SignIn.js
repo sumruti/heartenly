@@ -27,7 +27,6 @@ class SignIn extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.authUser,'-------------------------');
     if (this.props.showMessage) {
       setTimeout(() => {
         this.props.hideMessage();
@@ -93,6 +92,9 @@ class SignIn extends React.Component {
 
                     <Link to="/signup">
                       <IntlMessages id="signIn.signUp"/>
+                    </Link>
+                    <Link to="/forgot-password">
+                      Forgot password?
                     </Link>
                   </div>
 
