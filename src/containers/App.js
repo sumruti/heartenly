@@ -5,7 +5,7 @@ import {MuiPickersUtilsProvider} from 'material-ui-pickers';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {IntlProvider} from 'react-intl'
-import "assets/vendors/style"
+import "../assets/vendors/style"
 import indigoTheme from './themes/indigoTheme';
 import cyanTheme from './themes/cyanTheme';
 import orangeTheme from './themes/orangeTheme';
