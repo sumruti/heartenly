@@ -33,7 +33,7 @@ import {
   GREEN,
   INDIGO,
   PINK
-} from 'constants/ThemeColors';
+} from '../constants/ThemeColors';
 
 import MainApp from 'app/index';
 import SignIn from './SignIn';
