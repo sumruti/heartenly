@@ -12,7 +12,8 @@ const Dashboard = ({match}) => (
         <Route path={`${match.url}/eCommerce`} component={asyncComponent(() => import('./routes/ECommerce'))}/>
         <Route path={`${match.url}/news`} component={asyncComponent(() => import('./routes/News'))}/>
         <Route path={`${match.url}/intranet`} component={asyncComponent(() => import('./routes/Intranet'))}/>
-        <Route path={`${match.url}/misc`} component={asyncComponent(() => import('./routes/Misc'))}/>*/}
+        <Route path={`${match.url}/misc`} component={asyncComponent(() => import('./routes/Misc'))}/>
+         <Route path={`${match.url}/crypto`} component={asyncComponent(() => import('./routes/Crypto'))}/>*/}
       <Route component={asyncComponent(() => import('../extraPages/routes/404'))}/>
     </Switch>
   </div>

@@ -51,8 +51,9 @@ class SignIn extends React.Component {
         <div className="app-login-main-content">
 
           <div className="app-logo-content d-flex align-items-center justify-content-center">
-            <Link className="logo-lg" to="/" title="Jambo">
-              <img src={require("../assets/images/logo.png")} alt="jambo" title="jambo"/>
+            <Link className="logo-lg" to="/" title="Heartenly">
+              <img src={require("../assets/images/logo.png")} alt="Heartenly" title="Heartenly"/>
+              <h1 style={{color:"#fff"}}>Heartenly</h1>
             </Link>
           </div>
 

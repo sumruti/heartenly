@@ -168,27 +168,27 @@ class Header extends React.Component {
           <Menu/>}
 
           <ul className="header-notifications list-inline ml-auto">
-            <li className="list-inline-item">
-              <Dropdown
-                className="quick-menu app-notification"
-                isOpen={this.state.apps}
-                toggle={this.onAppsSelect.bind(this)}>
-
-                <DropdownToggle
-                  className="d-inline-block"
-                  tag="span"
-                  data-toggle="dropdown">
-                  <span className="app-notification-menu">
-                    <i className="zmdi zmdi-apps zmdi-hc-fw zmdi-hc-lg"/>
-                    <span>Apps</span>
-                  </span>
-                </DropdownToggle>
-
-                <DropdownMenu>
-                  {this.Apps()}
-                </DropdownMenu>
-              </Dropdown>
-            </li>
+            {/*<li className="list-inline-item">
+                          <Dropdown
+                            className="quick-menu app-notification"
+                            isOpen={this.state.apps}
+                            toggle={this.onAppsSelect.bind(this)}>
+            
+                            <DropdownToggle
+                              className="d-inline-block"
+                              tag="span"
+                              data-toggle="dropdown">
+                              <span className="app-notification-menu">
+                                <i className="zmdi zmdi-apps zmdi-hc-fw zmdi-hc-lg"/>
+                                <span>Apps</span>
+                              </span>
+                            </DropdownToggle>
+            
+                            <DropdownMenu>
+                              {this.Apps()}
+                            </DropdownMenu>
+                          </Dropdown>
+                        </li>*/}
             <li className="d-inline-block d-lg-none list-inline-item">
               <Dropdown
                 className="quick-menu nav-searchbox"

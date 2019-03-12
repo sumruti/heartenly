@@ -17,7 +17,7 @@ class ProfileView extends React.Component {
 
  
 
-  componentDidUpdate() {
+  componentDidMount() {
     var user_id = localStorage.getItem('user_id');
     this.props.getuserprofilebyid({ user_id})
   }
@@ -41,33 +41,11 @@ class ProfileView extends React.Component {
  const aboutList = [
   {
     id: 1,
-    title: 'Works at',
-    icon: 'city-alt',
+    title: 'Status',
+    icon: 'fa-heart-o',
     userList: '',
-    desc: ['G-axon Tech Pvt. Ltd.']
-  },
-  {
-    id: 2,
-    title: 'Birthday',
-    icon: 'cake',
-    userList: '',
-    desc: ['Oct 25, 1984']
-  },
-  {
-    id: 3,
-    title: 'Went to',
-    icon: 'graduation-cap',
-    userList: '',
-    desc: ['Oxford University']
-  },
-  {
-    id: 4,
-    title: 'Lives in London',
-    icon: 'home',
-    userList: '',
-    desc: ['From Switzerland']
-  },
-  
+    desc: [get_user_by_id!='' ? get_user_by_id[0].status :'']
+  }
 ];
 
 const AboutItem = ({data}) => {
@@ -76,7 +54,7 @@ const AboutItem = ({data}) => {
     <Auxiliary>
       <div className="media flex-nowrap mt-3 mt-lg-4 mb-2">
         <div className="mr-3">
-          <i className={`zmdi zmdi-${icon} jr-fs-xlxl text-orange`}/>
+          <i className={`zmdi zmdi-label-heart jr-fs-xlxl text-orange`}/>
         </div>
         <div className="media-body">
           <h6 className="mb-1 text-grey">{title}</h6>
@@ -94,14 +72,20 @@ const AboutItem = ({data}) => {
     title: 'Email',
     icon: 'email',
     desc: [<span className="jr-link" key={1}>{get_user_by_id!='' ? get_user_by_id[0].email :''}</span>]
-  }
+  }, {
+    id: 2,
+    title: 'Phone',
+    icon: 'phone',
+    desc: [<span className="jr-link" key={1}>{get_user_by_id!='' ? get_user_by_id[0].mobileNumber :''}</span>]
+  },
    
 ];
 
  
   return (
+  <div className="app-wrapper">
     <Auxiliary>
-      <div className="jr-profile-banner">
+      <div className="jr-profile-banner" style={{backgroundColor:"#3f51b5"}}>
         <div className="jr-profile-container">
           <div className="jr-profile-banner-top">
             <div className="jr-profile-banner-top-left">
@@ -109,7 +93,7 @@ const AboutItem = ({data}) => {
                 <Avatar className="size-90" alt="..." src={require('../../assets/images/userAvatar/chelsea-johns.jpg')}/>
               </div>
               <div className="jr-profile-banner-avatar-info">
-                <h2 className="mb-2 jr-mb-sm-3 jr-fs-xxl jr-font-weight-light">{get_user_by_id!='' ? get_user_by_id[0].name :''}</h2>
+                <h2 className="mb-2 jr-mb-sm-3 jr-fs-xxl jr-font-weight-light">{get_user_by_id!='' ? get_user_by_id[0].username :''}</h2>
                 {/*<p className="mb-0 jr-fs-lg">Florida, USA</p>*/}
               </div>
             </div>
@@ -190,6 +174,7 @@ const AboutItem = ({data}) => {
           </div>
         </div>
      </Auxiliary>
+     </div>
       
   );
  };

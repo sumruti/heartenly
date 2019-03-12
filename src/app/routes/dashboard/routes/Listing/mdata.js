@@ -53,7 +53,7 @@ export const recentActivity = [
         name: 'Mila Alba',
         title: [<span className="jr-link">Mila Alba</span>, ' left a 5 star review on ',
           <span className="jr-link">Albama’s House</span>],
-        avatar: require('assets/images/userAvatar/alex-dolgove.png'),
+        avatar: require('../../../../../assets/images/userAvatar/alex-dolgove.png'),
         imageList: [],
       },
       {
@@ -61,7 +61,7 @@ export const recentActivity = [
         name: 'Bob Builder',
         title: ['Callback request from ', <span className="jr-link">Bob Builder</span>, ' for the property ',
           <span className="jr-link">Dimitri House</span>],
-        avatar: require('assets/images/userAvatar/alex-dolgove.png'),
+        avatar: require('../../../../../assets/images/userAvatar/alex-dolgove.png'),
         imageList: [],
       },
       {
@@ -69,7 +69,7 @@ export const recentActivity = [
         name: 'Tom Moody',
         title: ['Congratulations to ', <span className="jr-link">Tom Moody</span>,
           ' for joining 10+ club '],
-        avatar: require('assets/images/userAvatar/alex-dolgove.png'),
+        avatar: require('../../../../../assets/images/userAvatar/alex-dolgove.png'),
         imageList: [],
       },
       {
@@ -92,13 +92,13 @@ export const recentActivity = [
           <span className="jr-link">Kily Johns</span>, ' has added 7 new photos to the property ',
           <span className="jr-link">Albama’s House</span>],
         avatar: '',
-        imageList: [require('assets/images/userAvatar/alex-dolgove.png'), require('assets/images/userAvatar/alex-dolgove.png'), require('assets/images/userAvatar/alex-dolgove.png')],
+        imageList: [require('../../../../../assets/images/userAvatar/alex-dolgove.png'), require('../../../../../assets/images/userAvatar/alex-dolgove.png'), require('../../../../../assets/images/userAvatar/alex-dolgove.png')],
       },
       {
         id: 6,
         name: 'Tom Moody',
         title: ['Welcome to a new agent ', <span className="jr-link">Tom Moody in the Company</span>],
-        avatar: require('assets/images/userAvatar/alex-dolgove.png'),
+        avatar: require('../../../../../assets/images/userAvatar/alex-dolgove.png'),
         imageList: [],
       },
       {
@@ -106,7 +106,7 @@ export const recentActivity = [
         name: 'Oliver Shorter',
         title: [<span className="jr-link">Oliver Shorter</span>, ' is looking for an office space in ',
           <span className="jr-link">Colorado, USA</span>],
-        avatar: require('assets/images/userAvatar/alex-dolgove.png'),
+        avatar: require('../../../../../assets/images/userAvatar/alex-dolgove.png'),
         imageList: [],
       }
     ]

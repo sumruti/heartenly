@@ -11,6 +11,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 
 
 import {
@@ -31,7 +33,9 @@ class SignUp extends React.Component {
       status:'',
       email: '',
       mobileNo:'',
-      password: ''
+      password: '',
+         age: '',
+         
     }
   }
 
@@ -46,6 +50,10 @@ class SignUp extends React.Component {
     }
   }
 
+   handleChange = name => event => {
+    this.setState({[name]: event.target.value});
+  };
+
   render() {
     const {
       username,
@@ -55,6 +63,9 @@ class SignUp extends React.Component {
       mobileNo
     } = this.state;
     const {showMessage, loader, alertMessage} = this.props;
+
+
+
     return (
       <div
         className="app-login-container d-flex justify-content-center align-items-center animated slideInUpTiny animation-duration-3">
@@ -62,6 +73,7 @@ class SignUp extends React.Component {
           <div className="app-logo-content d-flex align-items-center justify-content-center">
             <Link className="logo-lg" to="/" title="Jambo">
               <img src={require("../assets/images/logo.png")} alt="jambo" title="jambo"/>
+              <h1 style={{color:"#fff"}}>Heartenly</h1>
             </Link>
           </div>
 
@@ -74,6 +86,9 @@ class SignUp extends React.Component {
               <h2>Please create a profile on Heartenly now.Privacy is Maintained,Safe and comfortable.</h2>
             </div>
 
+             
+         
+
             <div className="app-login-form">
               <form method="post" action="/">
                 <TextField
@@ -85,24 +100,26 @@ class SignUp extends React.Component {
                   margin="normal"
                   className="mt-0 mb-2"
                 />
-                 <InputLabel htmlFor="age-simple">Your Status</InputLabel>
+          
+                   
+                 <FormControl className="w-100 mb-2">
+                   <InputLabel htmlFor="age-simple">Status</InputLabel>
+                   <Select
+                         value={this.state.status}
+                         onChange={(event) => this.setState({status: event.target.value})}
+                         
 
-                <Select
-                   value={this.state.status}
-                   onChange={(event) => this.setState({status: event.target.value})}
-                   className="mt-0 mb-2"
-
-                >
-                  <MenuItem value="">
-                    <em>Status</em>
-                  </MenuItem>
-                  <MenuItem value="Single">Single</MenuItem>
-                  <MenuItem value="In a relationship">In a relationship</MenuItem>
-                  <MenuItem value="Engaged">Engaged</MenuItem>
-                  <MenuItem value="Married">Married</MenuItem>
-                  <MenuItem value="Divorced">Divorced</MenuItem>
-                  <MenuItem value="Widowed">Widowed</MenuItem>
-                </Select>
+                      >
+                       
+                        <MenuItem value="Single">Single</MenuItem>
+                        <MenuItem value="In a relationship">In a relationship</MenuItem>
+                        <MenuItem value="Engaged">Engaged</MenuItem>
+                        <MenuItem value="Married">Married</MenuItem>
+                        <MenuItem value="Divorced">Divorced</MenuItem>
+                        <MenuItem value="Widowed">Widowed</MenuItem>
+                      </Select>
+              </FormControl>
+            
 
                 <TextField
                   type="email"

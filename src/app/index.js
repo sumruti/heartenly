@@ -5,7 +5,9 @@ import Header from '../components/Header/index';
 import Sidebar from '../containers/SideNav/index';
 import Footer from '../components/Footer';
 import ProfileView from '../containers/Profile/view';
-import Dashboard from './routes/dashboard';
+import Dashboard from '../containers/Dashboard';
+import landingpage from '../containers/LandingPage';
+//import Dashboard from './routes/dashboard';
 //import Widgets from './routes/widgets'
 //import Metrics from './routes/metrics'
 //import Components from './routes/components';
@@ -70,8 +72,9 @@ class App extends React.Component {
           <main className="app-main-content-wrapper">
             <div className="app-main-content">
               <Switch>
-                <Route path={`${match.url}/dashboard`} component={Dashboard}/>
+                <Route path={`${match.url}/Dashboard`} component={Dashboard}/>
                 <Route path={`${match.url}/Profile-View`} component={ProfileView}/>
+                <Route path='/' component={landingpage}/>
                {/* <Route path={`${match.url}/social-apps`} component={SocialApps}/>*/}
                {/* <Route path={`${match.url}/components`} component={Components}/>*/}
                 {/*<Route path={`${match.url}/icons`} component={Icons}/>

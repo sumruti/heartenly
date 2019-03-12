@@ -45,9 +45,10 @@ class ForgotPassword extends React.Component {
         className="app-login-container d-flex justify-content-center align-items-center animated slideInUpTiny animation-duration-3">
       <div className="login-content">
         <div className="login-header">
-          <Link className="app-logo" to="/" title="Jambo">
-            <img src={require("../assets/images/logo-color.png")} alt="jambo" title="jambo"/>
-          </Link>
+          <Link className="logo-lg" to="/" title="Heartenly">
+              <img src={require("../assets/images/logo.png")} alt="Heartenly" title="Heartenly" style={{height: "43px"}}/>
+              <h1 style={{color:"#fff"}}>Heartenly</h1>
+           </Link>
         </div>
 
         <div className="mb-2">

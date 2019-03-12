@@ -68,6 +68,8 @@
     animation-name: flash;
 }
 
+
+
 /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
 
 @keyframes pulse {
@@ -1576,4 +1578,12 @@
 
 .slideOutUp {
     animation-name: slideOutUp;
+}
+
+.Signup-whiteBox-11 {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    padding: 6px;
+    margin: 22px 18px!important;
+    width: 97%;
 }

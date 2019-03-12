@@ -39,6 +39,7 @@ import MainApp from '../app/index';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import forgotPassword from './forgotPassword';
+import landingpage from './LandingPage';
 import {setInitUrl} from '../actions/Auth';
 import RTL from '../util/RTL';
 import asyncComponent from '../util/asyncComponent';
@@ -149,9 +150,9 @@ class App extends Component {
     }
     if (location.pathname === '/') {
       if (authUser === null) {
-        return (<Redirect to={'/signin'}/>);
+        return (<Redirect to={'/landingpage'}/>);
       } else if (initURL === '' || initURL === '/' || initURL === '/signin' || location.pathname=="/forgot-password") {
-        return (<Redirect to={'/app/dashboard/crypto'}/>);
+        return (<Redirect to={'/app/dashboard'}/>);
       } else {
         return (<Redirect to={initURL}/>);
       }
@@ -179,6 +180,7 @@ class App extends Component {
                   <Route path='/signin' component={SignIn}/>
                   <Route path='/signup' component={SignUp}/>
                   <Route path='/forgot-password' component={forgotPassword}/>
+                  <Route path='/' component={landingpage}/>
                   <Route
                     component={asyncComponent(() => import('../app/routes/extraPages/routes/404'))}/>
                 </Switch>

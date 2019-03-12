@@ -14,9 +14,9 @@ const DownloadMobileApps = () => {
         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 text-sm-right">
 
           <div className="d-flex flex-column justify-content-center h-100">
-            <span className="mb-2 jr-app-thumb"><img src={require('assets/images/dashboard/google.png')} alt="..."/>
+            <span className="mb-2 jr-app-thumb"><img src={require('../../../../../assets/images/dashboard/google.png')} alt="..."/>
             </span>
-            <span className="jr-app-thumb"><img src={require('assets/images/dashboard/apple.png')} alt="..."/></span>
+            <span className="jr-app-thumb"><img src={require('../../../../../assets/images/dashboard/apple.png')} alt="..."/></span>
           </div>
         </div>
       </div>

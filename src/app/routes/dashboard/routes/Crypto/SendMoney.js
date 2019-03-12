@@ -8,28 +8,28 @@ const tableList = [
   {
     id: 1,
     name: 'Lucy Francis',
-    image: require('assets/images/userAvatar/guptil-3.jpg'),
+    image: require('../../../../../assets/images/userAvatar/guptil-3.jpg'),
     lastTransfer: '17 days ago',
     action: 'Pay'
   },
   {
     id: 2,
     name: 'Dean Holmes',
-    image: require('assets/images/userAvatar/jonathan.jpg'),
+    image: require('../../../../../assets/images/userAvatar/jonathan.jpg'),
     lastTransfer: '10 days ago',
     action: 'Pay'
   },
   {
     id: 3,
     name: 'Terry Bridges',
-    image: require('assets/images/userAvatar/avator5.jpg'),
+    image: require('../../../../../assets/images/userAvatar/avator5.jpg'),
     lastTransfer: '6 days ago',
     action: 'Pay'
   },
   {
     id: 4,
     name: 'Alice Collins',
-    image: require('assets/images/userAvatar/kadir-m.jpg'),
+    image: require('../../../../../assets/images/userAvatar/kadir-m.jpg'),
     lastTransfer: '2 hrs. ago',
     action: 'Pay'
   }
