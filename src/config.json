@@ -1,7 +1,0 @@
-{
-  "ApiUrl": "http://localhost:4000/",
-  "pubStaticUrl": "http://localhost:3000/static",
-  "profileApiUrl": "http://localhost:4000",
-  "geoApiUrl": "https://api.soluvas.com/geo/v1",
-  "mediaUrl": "https://media.heartenly.com/stg"
-}
