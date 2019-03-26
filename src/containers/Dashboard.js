@@ -117,19 +117,19 @@ class Dashboard extends React.Component {
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
-    if(!username.trim()){
+    if(!username){
        this.setState({alertMessage:"Username cannot be left blank", showMessage:'1'})
        return false
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
-    if(!fullName.trim()){
+    if(!fullName){
        this.setState({alertMessage:"Full Name cannot be left blank", showMessage:'1'})
        return false
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
-    if(!gender.trim()){
+    if(!gender){
        this.setState({alertMessage:"Gender cannot be left blank", showMessage:'1'})
        return false
     }else{
