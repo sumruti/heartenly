@@ -90,7 +90,7 @@ const AboutItem = ({data}) => {
           <div className="jr-profile-banner-top">
             <div className="jr-profile-banner-top-left">
               <div className="jr-profile-banner-avatar">
-                 { this.props.get_user_by_id.primaryimg != ''  ?
+                 { this.props.get_user_by_id.primaryimg != '' && this.props.get_user_by_id.primaryimg != undefined  ?
                       <Avatar className="size-90" alt="..." src={this.props.get_user_by_id.primaryimg} className="user-avatar "/> : <Avatar className="size-90" alt="..." src={require('../../assets/images/user_img.png')} className="user-avatar "/> 
                  }
 
