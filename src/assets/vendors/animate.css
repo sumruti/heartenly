@@ -1587,3 +1587,7 @@
     margin: 22px 18px!important;
     width: 97%;
 }
+.nopad {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

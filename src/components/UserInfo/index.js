@@ -28,16 +28,17 @@ class UserInfo extends React.Component {
 
   render() {
     const {get_user_by_id } = this.props;
-    console.log(get_user_by_id);
+    console.log(get_user_by_id,'---get_user_by_idget_user_by_id')
     return (
       <div className="user-profile d-flex flex-row align-items-center">
-        <Avatar
-          alt='...'
-          src={require('../../assets/images/userAvatar/domnic-harris.jpg')}
-          className="user-avatar "
-        />
+     
+
+          { this.props.get_user_by_id.primaryimg != ''  ?
+                      <Avatar className="size-90" alt="..." src={this.props.get_user_by_id.primaryimg} className="user-avatar "/> : <Avatar className="size-90" alt="..." src={require('../../assets/images/user_img.png')} className="user-avatar "/> 
+          }
+        
         <div className="user-detail">
-          <h4 className="user-name" onClick={this.handleClick}>{get_user_by_id!='' ? get_user_by_id[0].username :''}<i
+          <h4 className="user-name" onClick={this.handleClick}>{get_user_by_id!='' ? get_user_by_id.data[0].username :''}<i
             className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/>
           </h4>
         </div>

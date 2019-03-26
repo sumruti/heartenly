@@ -1,0 +1,180 @@
+.box_ {
+    background: #3f51b5;
+    color: #fff;
+    height: 325px;
+    padding: 20px;
+   /* width: 244px;*/
+}
+
+.box_ h6 {
+    color: #fff;
+    text-align: center;
+    margin-top: 19px;
+    font-weight: 600;
+    font-size: 15px;
+}
+.box_  h5	 {
+    color: #fff;
+    text-align: center;
+   
+    font-weight: 600;
+    font-size: 15px;
+}
+.bg-teal {
+    margin: 64px auto;
+    width: 100%;
+    /* height: 13%; */
+    padding: 37px;
+}.box{
+	 background-color: #3f51b5;
+    padding: 12px;
+    margin: 10px;
+    width: 357px;
+      color: #fff;
+}
+.box h1 {
+    font-size: 17px;
+    color: #fff;
+    float: left; 
+}
+.box h6 {
+    font-size: 17px;
+    color: #fff;
+    float: right;
+}
+.box p {
+    clear: both;
+}.react-phone-number-input__icon {
+    height: 1.93em!important;
+     border: none!important;
+}.react-phone-number-input__input{
+	    font-size: 19px!important;
+        padding: 25px 0px!important;
+}span.resend_otp {
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+}  
+
+.Verified{
+
+    float: right;
+    position: absolute;
+    top: 12px;
+    bottom: 0;
+    right: 0px;
+    background-color: #008000;
+    color: #fff;
+    height: 28px;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 16px;
+    }.unverified{
+
+    	float: right;
+    position: absolute;
+    top: 12px;
+    bottom: 0;
+    right: 0px;
+    background-color: #ff0000;
+    color: #fff;
+    height: 28px;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 16px;
+
+    }
+    .upload-btn-wrapper {
+  position: relative;
+ /* overflow: hidden;*/
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}.react-html5-camera-photo {
+    position: relative;
+    text-align: center;
+    width: 100%!important;
+}.react-html5-camera-photo>img, .react-html5-camera-photo>video {
+    width: 639px!important;
+}.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 9999!important;
+}.gallery_ {
+  list-style-type: none;
+}
+
+.gallery_ li {
+  display: inline-block;
+}
+
+.gallery_ input[type="radio"][id^="cb"] {
+  display: none;
+}
+
+.gallery_ label {
+  border: 1px solid #fff;
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.gallery_ label:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+.gallery_ label img {
+  height: 100px;
+  width: 100px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+  cursor: pointer;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+}

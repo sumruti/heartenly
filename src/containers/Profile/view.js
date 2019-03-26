@@ -44,7 +44,7 @@ class ProfileView extends React.Component {
     title: 'Status',
     icon: 'fa-heart-o',
     userList: '',
-    desc: [get_user_by_id!='' ? get_user_by_id[0].status :'']
+    desc: [get_user_by_id!='' ?  get_user_by_id.data[0].status :'']
   }
 ];
 
@@ -71,12 +71,12 @@ const AboutItem = ({data}) => {
     id: 1,
     title: 'Email',
     icon: 'email',
-    desc: [<span className="jr-link" key={1}>{get_user_by_id!='' ? get_user_by_id[0].email :''}</span>]
+    desc: [<span className="jr-link" key={1}>{get_user_by_id!='' ?  get_user_by_id.data[0].email :''}</span>]
   }, {
     id: 2,
     title: 'Phone',
     icon: 'phone',
-    desc: [<span className="jr-link" key={1}>{get_user_by_id!='' ? get_user_by_id[0].mobileNumber :''}</span>]
+    desc: [<span className="jr-link" key={1}>{get_user_by_id!='' ?  get_user_by_id.data[0].mobileNumber :''}</span>]
   },
    
 ];
@@ -90,10 +90,14 @@ const AboutItem = ({data}) => {
           <div className="jr-profile-banner-top">
             <div className="jr-profile-banner-top-left">
               <div className="jr-profile-banner-avatar">
-                <Avatar className="size-90" alt="..." src={require('../../assets/images/userAvatar/chelsea-johns.jpg')}/>
+                 { this.props.get_user_by_id.primaryimg != ''  ?
+                      <Avatar className="size-90" alt="..." src={this.props.get_user_by_id.primaryimg} className="user-avatar "/> : <Avatar className="size-90" alt="..." src={require('../../assets/images/user_img.png')} className="user-avatar "/> 
+                 }
+
+                  
               </div>
               <div className="jr-profile-banner-avatar-info">
-                <h2 className="mb-2 jr-mb-sm-3 jr-fs-xxl jr-font-weight-light">{get_user_by_id!='' ? get_user_by_id[0].username :''}</h2>
+                <h2 className="mb-2 jr-mb-sm-3 jr-fs-xxl jr-font-weight-light">{get_user_by_id!='' ?  get_user_by_id.data[0].username :''}</h2>
                 {/*<p className="mb-0 jr-fs-lg">Florida, USA</p>*/}
               </div>
             </div>

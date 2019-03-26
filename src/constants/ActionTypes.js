@@ -151,3 +151,14 @@ export const UPDATE_SEARCH = 'update_search';
 export const GET_USER_PROFILE_BY_ID = 'get_user_profile_by_id';
 export const GET_USER_PROFILE_BY_ID_SUCCESS = 'get_user_profile_by_id_success';
 
+export const EDIT_USER_PROFILE = 'edit_user_profile';
+export const EDIT_USER_PROFILE_SUCCESS= 'edit_user_profile_success';
+
+export const VERIFY_MOBILE_NO = 'verify_mobile_no';
+export const VERIFY_MOBILE_NO_SUCCESS= 'verify_mobile_no_succes';
+
+export const VERIFY_OTP = 'verify_otp';
+export const VERIFY_OTP_SUCCESS= 'verify_otp_succes';
+
+
+

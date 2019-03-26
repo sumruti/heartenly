@@ -12,6 +12,8 @@ import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 
 
@@ -131,15 +133,15 @@ class SignUp extends React.Component {
                   className="mt-0 mb-2"
                 />
                  
-                 <TextField
-                  type="number"
-                  onChange={(event) => this.setState({mobileNo: event.target.value})}
-                  label="Your Mobile No"
-                  fullWidth
-                  defaultValue={mobileNo}
+               
+                <PhoneInput
+                  placeholder="Your Mobile No"
+                  value={ mobileNo}
                   margin="normal"
-                  className="mt-0 mb-2"
-                /> 
+                  fullWidth
+                  country="US"
+                    onChange={ mobileNo => this.setState({ mobileNo }) } /> 
+
                 <TextField
                   type="password"
                   onChange={(event) => this.setState({password: event.target.value})}

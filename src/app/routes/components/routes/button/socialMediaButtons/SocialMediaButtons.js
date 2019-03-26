@@ -7,7 +7,8 @@ const SocialMediaButtons = () => {
     <div>
       <div className="jr-btn-group">
         <Fab className="jr-fab-btn bg-light-blue accent-2 text-white">
-          <i className="zmdi zmdi-twitter zmdi-hc-lg"/>
+          <i className="zmdi zmdi-camera zmdi-hc-lg"/>
+          
         </Fab>
         <Fab className="jr-fab-btn bg-indigo lighten-1 text-white">
           <i className="zmdi zmdi-facebook zmdi-hc-lg"/>

@@ -114,12 +114,10 @@ function* createUserWithEmailPassword({payload}) {
     return false
   }
 
-  if (/^\d{10}$/.test(mobileNo.trim())) {
-    // value is ok, use it
-  } else {
-        yield put(showAuthMessage("Invalid number must be ten digits"));
-        return false
-  }
+  if (!mobileNo.trim()) {
+      yield put(showAuthMessage("Please enter phone number"));
+      return false
+  } 
   if(!password.trim()){
       yield put(showAuthMessage("Please enter password "));
       return false
