@@ -627,7 +627,7 @@ Photos(){
                       <div className="jr-card ">
                             <div className="jr-card-body d-flex justify-content-center ">
                                   <div className="perview_img">
-                                    { this.props.get_user_by_id.primaryimg != '' ?
+                                    { this.props.get_user_by_id.primaryimg != '' && this.props.get_user_by_id.primaryimg != undefined?
                                          
                                             <div className="primary_img">
                                                <img src={this.props.get_user_by_id.primaryimg} style={{height: "127px"}}/>: 

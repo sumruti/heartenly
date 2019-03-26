@@ -33,7 +33,7 @@ class UserInfo extends React.Component {
       <div className="user-profile d-flex flex-row align-items-center">
      
 
-          { this.props.get_user_by_id.primaryimg != ''  ?
+          { this.props.get_user_by_id.primaryimg != '' && this.props.get_user_by_id.primaryimg != undefined  ?
                       <Avatar className="size-90" alt="..." src={this.props.get_user_by_id.primaryimg} className="user-avatar "/> : <Avatar className="size-90" alt="..." src={require('../../assets/images/user_img.png')} className="user-avatar "/> 
           }
         
