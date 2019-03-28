@@ -6,6 +6,7 @@ import Sidebar from '../containers/SideNav/index';
 import Footer from '../components/Footer';
 import ProfileView from '../containers/Profile/view';
 import Dashboard from '../containers/Dashboard';
+import Home from '../containers/Home/Home';
 import landingpage from '../containers/LandingPage';
 //import Dashboard from './routes/dashboard';
 //import Widgets from './routes/widgets'
@@ -74,6 +75,7 @@ class App extends React.Component {
               <Switch>
                 <Route path={`${match.url}/Dashboard`} component={Dashboard}/>
                 <Route path={`${match.url}/Profile-View`} component={ProfileView}/>
+                <Route path={`${match.url}/Home`} component={Home}/>
                 <Route path='/' component={landingpage}/>
                {/* <Route path={`${match.url}/social-apps`} component={SocialApps}/>*/}
                {/* <Route path={`${match.url}/components`} component={Components}/>*/}

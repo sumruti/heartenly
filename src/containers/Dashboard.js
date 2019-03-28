@@ -55,7 +55,14 @@ edit_user_profile,
 verify_mobile_no,
 verify_otp_no
 } from '../actions/Profile';
-
+const client = {
+            sandbox:    'ATA2wLy0lWaVAtUOy8CewhsR_foLHtbTPAfxYxSTMll3pCy2Zh4qmf1-RjDUJxQ10My9MW6oZJBXsnB0',
+            production: 'ECeGB8nDV3nf1xNjA-nTYU2XDnFb3yCJ2Wl03my9a2C0bU8CgYcgv9SDiQ_WDv0VxiKK9OdWOtMvi7Aj',
+        }
+        let env = 'sandbox'; // you can set here to 'production' for production
+        let currency = 'USD'; // or you can set this value from your props or state
+        let total = 1; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
+        // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
 
 function getSteps() {
   return ['Personal Data', 'Relationship', 'Photos','Verify Mobile No','Membership Activation','choose Pyaments'];
@@ -93,7 +100,9 @@ class Dashboard extends React.Component {
       flag:'',
       ProfilePreviewUrl:'',
       open: false,
-      img_id:''
+      img_id:'',
+      PlanPrice:'',
+      planName:''
     };
          this.onDrop = this.onDrop.bind(this);
   }
@@ -103,6 +112,13 @@ class Dashboard extends React.Component {
       this.props.getuserprofilebyid({user_id});
 
    }
+    componentDidUpdate() {
+      setTimeout(() => {
+        this.setState({showMessage:''})
+      }, 3000);
+       
+  }
+
   handleRequestClose = () => {
     this.setState({open: false});
   };
@@ -117,19 +133,19 @@ class Dashboard extends React.Component {
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
-    if(!username){
+    if(!username.trim()){
        this.setState({alertMessage:"Username cannot be left blank", showMessage:'1'})
        return false
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
-    if(!fullName){
+    if(!fullName.trim()){
        this.setState({alertMessage:"Full Name cannot be left blank", showMessage:'1'})
        return false
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
-    if(!gender){
+    if(!gender.trim()){
        this.setState({alertMessage:"Gender cannot be left blank", showMessage:'1'})
        return false
     }else{
@@ -386,6 +402,47 @@ SetAsPrimary(e){
 
 }
 
+SelectPlanGoPlus(price){
+   const {activeStep} = this.state;
+ this.setState({PlanPrice:price,activeStep: activeStep + 1,planName:"Plus"})
+
+}
+
+SelectPlanGoSilver(price){
+   const {activeStep} = this.state;
+   this.setState({PlanPrice:price,activeStep: activeStep + 1,planName:"Silver"})
+}
+onSuccess(payment){
+  console.log(this.state,'----')
+   var user_id = localStorage.getItem('user_id');
+       // Congratulation, it came here means everything's fine!
+        console.log("The payment was succeeded!", payment);
+         axios.post(`${config.ApiUrl}users/payments`, {
+            payment: payment,
+            plan:this.state.planName,
+            user_id:user_id,
+          })
+          .then(res => {
+            console.log(res)
+            if(res.data.status==true){
+                 swal("Payment Successful", {
+                  icon: "success",
+                });
+                 this.props.history.replace('/app/home');
+
+            }
+          });
+}
+onCancel(data){
+  console.log('The payment was cancelled!', data);
+}
+onError(err){
+            // The main Paypal's script cannot be loaded or somethings block the loading of that script!
+            console.log("Error!", err);
+            // Because the Paypal's main script is loaded asynchronously from "https://www.paypalobjects.com/api/checkout.js"
+            // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear
+}
+
 getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
@@ -627,7 +684,7 @@ Photos(){
                       <div className="jr-card ">
                             <div className="jr-card-body d-flex justify-content-center ">
                                   <div className="perview_img">
-                                    { this.props.get_user_by_id.primaryimg != '' && this.props.get_user_by_id.primaryimg != undefined?
+                                    { this.props.get_user_by_id.primaryimg != '' ?
                                          
                                             <div className="primary_img">
                                                <img src={this.props.get_user_by_id.primaryimg} style={{height: "127px"}}/>: 
@@ -777,7 +834,6 @@ MobileNo(){
                   <div className="col-md-4"></div>
               </div>
             </div>              
-                 
 }
 
 Membership(){
@@ -789,10 +845,9 @@ Membership(){
                       </div>
                   <div className="col-md-2">
                       <FormControl className="w-100 mb-2">
-                   <InputLabel htmlFor="age-simple">SGD</InputLabel>
                    <Select
-                         value={this.state.religion}
-                         onChange={(event) => this.setState({religion: event.target.value})}
+                         value={this.state.paymentMethod}
+                          onChange={(event) => this.setState({paymentMethod: event.target.value})}
                       >
                         <MenuItem value="SGD">SGD</MenuItem>
                         <MenuItem value="IDR">IDR</MenuItem>
@@ -809,8 +864,8 @@ Membership(){
                                 <div className="box_">
                                     <h5>Plus</h5>
                                     <p> Unlinted chat and messaging.Search other members.Lifetime membership</p>
-                                    <h6 style={{ marginTop: "77px"}}>IDR 349K</h6>
-                                    <Button variant="contained" color="primary" className="jr-btn jr-btn-label bg-teal right" style={{ marginTop: "34px"}}>
+                                    <h6 style={{ marginTop: "77px"}}>{this.state.paymentMethod}  30K</h6>
+                                    <Button variant="contained" color="primary" onClick={(e)=>this.SelectPlanGoPlus("30")}className="jr-btn jr-btn-label bg-teal right" style={{ marginTop: "34px"}}>
                                         <span>Go Plus</span>
                                       </Button>
 
@@ -821,8 +876,8 @@ Membership(){
                                    <h5>Silver</h5>
                                    <p> Everything you get with Plus lifetime membership with:</p>
                                    <p>One-on-one consultation with our relationship coach for 6 month worth SGS 120 (SAVE $20)</p>
-                                   <h6>IDR 1399K</h6>
-                                    <Button variant="contained" color="primary" className="jr-btn jr-btn-label  bg-teal right" style={{ marginTop: "34px"}}>
+                                   <h6>{this.state.paymentMethod} 40K</h6>
+                                    <Button variant="contained" color="primary" onClick={(e)=>this.SelectPlanGoSilver("40")} className="jr-btn jr-btn-label  bg-teal right" style={{ marginTop: "34px"}}>
                                         <span>Go Silver</span>
                                       </Button>
 
@@ -845,8 +900,8 @@ Membership(){
                   <div className="col-md-3"></div>
               </div>
             </div> 
-
 }
+
 choosePyaments(){
   return <div>
              <div className="row">
@@ -876,6 +931,7 @@ choosePyaments(){
                                <h1 >Bank Transfer/Virtual Account</h1>
                                <h6>IDR 399K</h6>
                                <p>Support BCA, BNI, Mandiri, BRI and all Indonesian banks with ATM Bersama</p>
+                               
 
                             </div>  
                             <div className="box" >
@@ -890,7 +946,7 @@ choosePyaments(){
                               <p style={{color: "#ff5858"}}>* always IDR no mattor chosen currency</p>
                             </div>  
                             <div className="box" >
-                              <h1  >Alfamart</h1>
+                              <h1>Alfamart</h1>
                               <h6>IDR 399K</h6>
                               <p>Pay on any Alfamart outlet near you</p>
                             </div>  
@@ -908,11 +964,12 @@ choosePyaments(){
                                <h6>SGD 30K</h6>
                                <p>We accept international payments from all major credit cards</p>
                                <p style={{color: "#ff5858"}}>*only support IDR, SGD, USD, HKD, AUD, CAD, EUR, GBP, NZD, PHP, THB, JPY other selection will use USD</p>
+                                            <PaypalExpressBtn env={env} client={client} currency={'SGD'} total={this.state.PlanPrice} onError={this.onError} onSuccess={(e)=>this.onSuccess(e)} onCancel={this.onCancel} />
 
                             </div>  
                             <div className="box" >
                               <h1>Wire Transfer</h1>
-                              <h6>IDR 399K</h6>
+                              <h6>SGD 40K</h6>
                               <p>International wire transfer to indonesia bank BCA, BNI, or Mandiri</p>
                             </div>  
                               
@@ -938,6 +995,7 @@ sendOTP(e){
   
 
 }
+ 
 
 
 
@@ -949,34 +1007,11 @@ sendOTP(e){
     const {activeStep,DOB,showMessage,alertMessage} = this.state;
     const {profile_update,verify_mobile , OTP} = this.props;
 
-       const onSuccess = (payment) => {
-            // Congratulation, it came here means everything's fine!
-                console.log("The payment was succeeded!", payment);
-                // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
-        }
+      
  
-        const onCancel = (data) => {
-            // User pressed "cancel" or close Paypal's popup!
-            console.log('The payment was cancelled!', data);
-            // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
-        }
+        
  
-        const onError = (err) => {
-            // The main Paypal's script cannot be loaded or somethings block the loading of that script!
-            console.log("Error!", err);
-            // Because the Paypal's main script is loaded asynchronously from "https://www.paypalobjects.com/api/checkout.js"
-            // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear
-        }
- 
-        let env = 'sandbox'; // you can set here to 'production' for production
-        let currency = 'USD'; // or you can set this value from your props or state
-        let total = 1; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
-        // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
- 
-        const client = {
-            sandbox:    'YOUR-SANDBOX-APP-ID',
-            production: 'YOUR-PRODUCTION-APP-ID',
-        }
+        
 
  
   return (
@@ -992,7 +1027,7 @@ sendOTP(e){
 
                <div className="jr-card ">
                <div className="jr-card-body d-flex justify-content-center ">
-              {/* <PaypalExpressBtn client={client} currency={'USD'} total={1.00} />*/}
+             
 
                   <div className="w-100">
                       <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
@@ -1023,10 +1058,12 @@ sendOTP(e){
                               >
                                 Back
                               </Button>
-                              
+                              {activeStep === 4  || activeStep === 5 ?  '' :
                               <Button variant="contained" color="primary" onClick={this.handleNext}>
-                                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                {activeStep === steps.length - 1 ? '' : 'Next'}
                               </Button>
+                            }
+
                                <Button
                                 disabled={activeStep === 0}
                                 onClick={this.handleNext}
@@ -1034,7 +1071,7 @@ sendOTP(e){
                                 style={{float:"right"}}
 
                               >
-                                Skip
+                                {activeStep === 5 ? '' : 'Skip'}
                               </Button>
                             </div>
                           </div>
