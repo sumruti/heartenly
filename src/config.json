@@ -1,5 +1,5 @@
 {
-  "ApiUrl": "http://localhost:4000/",
+  "ApiUrl": "https://heartenlyapiapp.herokuapp.com/",
   "pubStaticUrl": "http://localhost:3000/static",
   "profileApiUrl": "http://localhost:4000",
   "geoApiUrl": "https://api.soluvas.com/geo/v1",
