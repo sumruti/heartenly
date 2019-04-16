@@ -3,7 +3,7 @@ import firebase from 'firebase'
 // Initialize Firebase
 const config = {
   apiKey: 'AIzaSyCYaTKjfam_qMXDnGfcdnBxScEq89VQtLk',
-  authDomain: 'curious-sandbox-196209.firebaseapp.com',
+  authDomain: 'heartenlyapp.herokuapp.com',
   databaseURL: 'https://curious-sandbox-196209.firebaseio.com',
   projectId: 'curious-sandbox-196209',
   storageBucket: '',
