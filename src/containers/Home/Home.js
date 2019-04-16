@@ -121,9 +121,9 @@ class home extends React.Component {
                                       <div className="jr-profileon">
                                         <div className="jr-profileon-thumb" style={{maxHeight: "199px"}}><img alt="..." src={user.user.image}/></div>
                                         <div className="jr-profileon-content">
-                                          <h5 className="mb-0 text-truncate">{user.user_id ? user.user.user_id.username : ''}</h5>
+                                          <h5 className="mb-0 text-truncate">{ user.user.user_id.username}</h5>
                                           <p className="mb-0 jr-fs-sm text-truncate"><i className={`zmdi zmdi-star text-orange`}/> {user.rating}
-                                            <span>|</span> {user.user_id ? user.user.user_id.status :''}
+                                            <span>|</span> {user.user.user_id.status}
                                           </p>
                                         </div>
                                       </div>
