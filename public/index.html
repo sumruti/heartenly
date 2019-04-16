@@ -1,33 +1,169 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="keywords"
-content="Responsive, HTML5, admin theme, business, professional, React, web design, CSS3, sass">
-<title>Heartenly</title>
-<link rel="stylesheet" href="loader.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.4/jquery-jvectormap.css" type="text/css" media="screen"/><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords"
+          content="Responsive, HTML5, admin theme, business, professional, React, web design, CSS3, sass">
+    <title>Heartenly</title>
+    <link rel="stylesheet" href="loader.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link crossorigin  el="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css" type="text/css" media="screen"/>
+    <style type="text/css">
+        
+        .react-phone-number-input__icon {
+            width: 2.24em!important;
+            height: -0.07em!important;
+            /* border: 1px solid rgba(0, 0, 0, 0.5); */
+            box-sizing: content-box;
+        }.react-phone-number-input__input {
+            height: calc(0.3rem * 6);
+            outline: none;
+            border-radius: 0;
+            padding: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            border-bottom: 1px solid #C5D2E0;
+            transition: border 0.1s;
+            font-size: 30px!important;
+            padding: 20px 0px!important;
+
+        }input__row {
+            display: flex;
+            align-items: center;
+            margin: 10px 0px!important;
+}
+
+.nopad {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+/*image gallery*/
+.image-checkbox {
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 4px solid transparent;
+    margin-bottom: 0;
+    outline: 0;
+}
+.image-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.image-checkbox-checked {
+    border-color: #4783B0;
+}
+.image-checkbox .fa {
+  position: absolute;
+  color: #4A79A3;
+  background-color: #fff;
+  padding: 10px;
+  top: 0;
+  right: 0;
+}
+.image-checkbox-checked .fa {
+  display: block !important;
+}
+.autocomplete-dropdown-container {
+    z-index: 9999;
+    position: absolute;
+}
+ .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }.jr-profileon-thumb > img {
+          width: 100%;
+          height: 175px;
+          object-fit: cover;
+      }
+
+      .footer_con{
+background: #3f51b5!important;
+color: #fff;
+}
+
+
+ul.social-buttons li a {
+    color: #fff;
+    text-decoration: none;
+
+}
+ul.social-buttons li a:hover {
+    color: #fff;
+    text-decoration: none;
+    
+}
+.slick-slider img {
+    width: 100%;
+    margin: auto!important;
+}.slick-slider p {
+        width: 84%;
+}
+
+
+
+    </style>
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script crossorigin  src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+
 
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDmSnXbnJFnRU1dXys-yuOInebRr4bvc&libraries=geometry,places,visualization"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places,geometry,drawing&key=AIzaSyBgqAomc9Vukt12AV3tJLasBnNehSNKuOY"></script>
+ 
+
+   <script>
+     var swiper = new Swiper('.swiper-container', {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+        });
+      </script>
 
     <script>
       if (window.self !== window.top) {
         parent.location = 'http://jumbo-react.g-axon.com';
       }
     </script>
+  
 </head>
 
 <body id="body">

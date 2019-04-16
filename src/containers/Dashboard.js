@@ -85,7 +85,7 @@ class Dashboard extends React.Component {
       useremail:'',
       fullName:'',
       gender:'',
-      DOB:moment().format("YYYY-MM-DD"),
+      DOB:"",
       address:'',
       religion:'',
       wanna_find:'',
@@ -154,7 +154,7 @@ class Dashboard extends React.Component {
   handleNext = () => {
     const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg,pictures} = this.state;
    
-    
+     console.log(this.state)
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if(!regex.test(useremail)){
        this.setState({alertMessage:"The email address is badly formatted", showMessage:'1'})
@@ -168,7 +168,6 @@ class Dashboard extends React.Component {
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
-    console.log(username.length,'username.length')
     if(username.length >=  4 ){
        this.setState({alertMessage:"", showMessage:''})
     }else{
@@ -184,7 +183,7 @@ class Dashboard extends React.Component {
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
-    if(!gender.trim()){
+    if(!gender){
        this.setState({alertMessage:"Gender cannot be left blank", showMessage:'1'})
        return false
     }else{
@@ -305,23 +304,24 @@ class Dashboard extends React.Component {
     const {get_user_by_id } = nextProps;
     console.log(get_user_by_id,'--get_user_by_id')
     if(get_user_by_id){
-
+     console.log(get_user_by_id)
     
     this.setState({
-        address:get_user_by_id.data[0].address,
-        child:get_user_by_id.data[0].child,
-        useremail:get_user_by_id.data[0].email,
-        DOB:moment(get_user_by_id.data[0].DOB).format("YYYY-MM-DD"),
-        fullName:get_user_by_id.data[0].fullName,
-        gender:get_user_by_id.data[0].gender,
-        religion:get_user_by_id.data[0].religion,
-        status:get_user_by_id.data[0].status,
-        username:get_user_by_id.data[0].username,
-        wanna_find:get_user_by_id.data[0].wanna_find,
-        status:get_user_by_id.data[0].status,
-        child:get_user_by_id.data[0].child,
-        VerifyMobile:get_user_by_id.data[0].mobileNumber,
-        MobileverifyStatus:get_user_by_id.data[0].mobile_verified_status,
+        address:get_user_by_id.data[0].address ? get_user_by_id.data[0].address : '',
+        child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
+        useremail:get_user_by_id.data[0].email ? get_user_by_id.data[0].email :'',
+        DOB:get_user_by_id.data[0].DOB ? moment(get_user_by_id.data[0].DOB).format("YYYY-MM-DD") :'',
+        fullName:get_user_by_id.data[0].fullName ? get_user_by_id.data[0].fullName :'',
+        gender:get_user_by_id.data[0].gender ? get_user_by_id.data[0].gender : '',
+        religion:get_user_by_id.data[0].religion ? get_user_by_id.data[0].religion : '',
+        status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
+        username:get_user_by_id.data[0].username? get_user_by_id.data[0].username :'',
+        wanna_find:get_user_by_id.data[0].wanna_find ? get_user_by_id.data[0].wanna_find :'',
+        status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
+        child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
+        VerifyMobile:get_user_by_id.data[0].mobileNumber ? get_user_by_id.data[0].mobileNumber :'',
+        MobileverifyStatus:get_user_by_id.data[0].mobile_verified_status ? get_user_by_id.data[0].mobile_verified_status :'',
+
 
     })
   }
@@ -672,7 +672,7 @@ getPersonaldata() {
       <div className="row">
         <div className="col-md-4">
            <FormControl className="w-100 mb-2">
-                   <InputLabel htmlFor="age-simple"><IntlMessages id="sidebar.address"/></InputLabel>
+                   <InputLabel htmlFor="age-simple"><IntlMessages id="sidebar.Religion"/></InputLabel>
                    <Select
                          value={this.state.religion}
                          onChange={(event) => this.setState({religion: event.target.value})}
