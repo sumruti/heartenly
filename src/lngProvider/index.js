@@ -13,7 +13,7 @@ const AppLocale = {
   it: itLang,
   es: esLang,
   fr: frLang
-};
+};	
 addLocaleData(AppLocale.en.data);
 addLocaleData(AppLocale.zh.data);
 addLocaleData(AppLocale.ar.data);

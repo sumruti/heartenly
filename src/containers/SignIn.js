@@ -113,15 +113,7 @@ class SignIn extends React.Component {
                         </IconButton>
                       </li>
 
-                      <li>
-                        <IconButton className="icon"
-                                    onClick={() => {
-                                      this.props.showAuthLoader();
-                                      this.props.userTwitterSignIn();
-                                    }}>
-                          <i className="zmdi zmdi-twitter"/>
-                        </IconButton>
-                      </li>
+                     
 
                       <li>
                         <IconButton className="icon"
@@ -134,15 +126,6 @@ class SignIn extends React.Component {
                         </IconButton>
                       </li>
 
-                      <li>
-                        <IconButton className="icon"
-                                    onClick={() => {
-                                      this.props.showAuthLoader();
-                                      this.props.userGithubSignIn();
-                                    }}>
-                          <i className="zmdi zmdi-github"/>
-                        </IconButton>
-                      </li>
                     </ul>
                   </div>
 

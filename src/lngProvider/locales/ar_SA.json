@@ -1,6 +1,12 @@
 {
   "sidebar.main": "الأساسية",
   "sidebar.dashboard": "لوحة القيادة",
+  "sidebar.Onboarding": "التأهيل ل,",
+  "sidebar.App": "التطبيق",
+  "sidebar.PersonalData": "ابيانات شخصية",
+  "sidebar.Relationship": "اصلة",
+  "sidebar.Photos": "الصور",
+  "sidebar.choosePyaments": "الصور",
   "sidebar.dashboard.misc": "افتراضي",
   "sidebar.dashboard.ecommerce": "التجارة الإلكترونية",
   "sidebar.dashboard.news": "أخبار",

@@ -10,7 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import IntlMessages from '../util/IntlMessages';
-
+import { Link } from "react-router-dom";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
@@ -46,7 +46,10 @@ import swal from 'sweetalert';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 
 
-
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 
 
 import {
@@ -65,7 +68,7 @@ const client = {
         // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
 
 function getSteps() {
-  return ['Personal Data', 'Relationship', 'Photos','Verify Mobile No','Membership Activation','choose Pyaments'];
+  return [<IntlMessages id="sidebar.PersonalData"/>, <IntlMessages id="sidebar.Relationship"/>, <IntlMessages id="sidebar.Photos"/>,<IntlMessages id="sidebar.VerifyMobileNo"/>,<IntlMessages id="sidebar.MembershipActivation"/>,<IntlMessages id="sidebar.choosePyaments"/>];
 }
 
 
@@ -110,6 +113,21 @@ class Dashboard extends React.Component {
    componentDidMount() {
       var user_id = localStorage.getItem('user_id');
       this.props.getuserprofilebyid({user_id});
+       navigator.geolocation.getCurrentPosition(function(position) {
+
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var altitude = position.coords.altitude;
+        var accuracy = position.coords.accuracy;
+        var altitudeAccuracy = position.coords.altitudeAccuracy;
+        var heading = position.coords.height;
+        var speed = position.coords.speed;
+        var timestamp = position.timestamp;
+        console.log(position)
+
+        // work with this information however you'd like!
+    });
+  
 
    }
     componentDidUpdate() {
@@ -118,6 +136,17 @@ class Dashboard extends React.Component {
       }, 3000);
        
   }
+  handleChange = address => {
+
+    this.setState({ address });
+  };
+ 
+  handleSelect = address => {
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error));
+  };
 
   handleRequestClose = () => {
     this.setState({open: false});
@@ -139,6 +168,16 @@ class Dashboard extends React.Component {
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
+    console.log(username.length,'username.length')
+    if(username.length >=  4 ){
+       this.setState({alertMessage:"", showMessage:''})
+    }else{
+       
+       this.setState({alertMessage:"Username must be minimum 4 characters ", showMessage:'1'})
+       return false
+    } 
+   
+    
     if(!fullName.trim()){
        this.setState({alertMessage:"Full Name cannot be left blank", showMessage:'1'})
        return false
@@ -151,12 +190,25 @@ class Dashboard extends React.Component {
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
+    
+
     if(!DOB){
        this.setState({alertMessage:"D/O/B cannot be left blank", showMessage:'1'})
        return false
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
+    
+    var years = moment().diff(DOB, 'years',false);
+    console.log(years,'DOBDOBDOBDOB')
+    if(years > 16){
+      this.setState({alertMessage:"", showMessage:''})
+    }else{
+       
+        this.setState({alertMessage:"D/O/B must be minimum 16 years", showMessage:'1'})
+       return false
+    }
+
     if(!address){
        this.setState({alertMessage:"Address cannot be left blank", showMessage:'1'})
        return false
@@ -176,7 +228,7 @@ class Dashboard extends React.Component {
       });
     }
 
-    /*if(!status){
+    if(!status){
        this.setState({alertMessage:"Are you single cannot be left blank", showMessage:'1'})
        return false
     }else{
@@ -195,13 +247,33 @@ class Dashboard extends React.Component {
        return false
     }else{
        this.setState({alertMessage:"", showMessage:''})
-    }*/
-   //if(activeStep < 2){
+    }
+   if(activeStep < 2){
       this.setState({
          activeStep: activeStep + 1,
       });
-    //}
-    
+    }
+     console.log(this.props,'picturespicturespicturespicturespicturespicturespicturespicturespicturespicturespicturespictures')
+    if(this.props.get_user_by_id.user_img.length == 0){
+      this.setState({alertMessage:"Please upload image", showMessage:'1'})
+      return false
+    }else{
+       this.setState({alertMessage:"", showMessage:''})
+    }
+    if(activeStep < 3){
+      this.setState({
+         activeStep: activeStep + 1,
+      });
+    }
+    if(!this.state.VerifyMobile){
+      this.setState({alertMessage:"Please Enter mobile", showMessage:'1'})
+      return false
+    }else{
+       this.setState({alertMessage:"", showMessage:''})
+    }
+     this.setState({
+         activeStep: activeStep + 1,
+      });
     var user_id = localStorage.getItem('user_id');
     this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
     this.props.getuserprofilebyid({user_id});
@@ -471,7 +543,7 @@ getPersonaldata() {
         <div className="form-group">
           <TextField
             id="userName"
-            label="Your Email"
+            label={<IntlMessages id="sidebar.YourEmail"/>}
             margin="normal"
             value={this.state.useremail}
             onChange={(event) => this.setState({useremail: event.target.value})}
@@ -484,7 +556,7 @@ getPersonaldata() {
         <div className="form-group">
           <TextField
             id="userName"
-            label="UserName"
+            label={<IntlMessages id="sidebar.Username"/>}
             value={this.state.username}
             margin="normal"
             onChange={(event) => this.setState({username: event.target.value})}
@@ -498,7 +570,7 @@ getPersonaldata() {
           <TextField
             id="fullName"
             value={this.state.fullName}
-            label="Full name according to identity card"
+            label={<IntlMessages id="sidebar.Fullname"/>}
             onChange={(event) => this.setState({fullName: event.target.value})}
             margin="normal"
             fullWidth
@@ -511,7 +583,7 @@ getPersonaldata() {
       <div className="col-md-4">
             <div className="form-group">
               <FormControl component="fieldset" required>
-                <FormLabel component="legend">Gender</FormLabel>
+                <FormLabel component="legend"><IntlMessages id="sidebar.gender"/></FormLabel>
                 <RadioGroup
                   aria-label="gender"
                   name="gender"
@@ -520,8 +592,8 @@ getPersonaldata() {
                   className="d-flex flex-row"
                   onChange={(event) => this.setState({gender: event.target.value})}
                 >
-                  <FormControlLabel value="1" control={<Radio color="primary"/>} label="Male"/>
-                  <FormControlLabel value="2" control={<Radio color="primary"/>} label="Female"/>
+                  <FormControlLabel value="1" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.male"/>/>
+                  <FormControlLabel value="2" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.female"/>/>
                   {/*<FormControlLabel value="disabled" disabled control={<Radio />} label="Disabled" />*/}
                 </RadioGroup>
               </FormControl>
@@ -531,7 +603,7 @@ getPersonaldata() {
             <div className="form-group">
               <TextField
                   id="date"
-                  label="Date of birth"
+                  label={<IntlMessages id="sidebar.dob"/>}
                   type="date"
                   margin="normal"
                   onChange={this.DOB}
@@ -546,14 +618,53 @@ getPersonaldata() {
         </div> 
         <div className="col-md-4">
           <div className="form-group">
-            <TextField
-              id="userName"
-              label="Country , Province , city"
-              value={this.state.address}
-              margin="normal"
-              onChange={(event) => this.setState({address: event.target.value})}
-              fullWidth
-            />
+            {/*<TextField
+                          id="userName"
+                          label="Country , Province , city"
+                          value={this.state.address}
+                          margin="normal"
+                          onChange={(event) => this.setState({address: event.target.value})}
+                          fullWidth
+                        />*/}
+            <PlacesAutocomplete
+                  value={this.state.address}
+                  onChange={this.handleChange}
+                  
+                >
+                  {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div>
+                      <TextField
+                              {...getInputProps({
+                                placeholder: "Country , Province , city ...",
+                                className: 'location-search-input',
+                              }) }
+                            fullWidth
+                            margin="normal"/>
+                            <div className="autocomplete-dropdown-container">
+                              {loading && <div>Loading...</div>}
+                              {suggestions.map(suggestion => {
+                                const className = suggestion.active
+                                  ? 'suggestion-item--active'
+                                  : 'suggestion-item';
+                                // inline style for demonstration purpose
+                                const style = suggestion.active
+                                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                return (
+                                  <div
+                                    {...getSuggestionItemProps(suggestion, {
+                                      className,
+                                      style,
+                                    })}
+                                  >
+                                    <span>{suggestion.description}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+                      </PlacesAutocomplete>
           </div>
         </div>
         
@@ -561,7 +672,7 @@ getPersonaldata() {
       <div className="row">
         <div className="col-md-4">
            <FormControl className="w-100 mb-2">
-                   <InputLabel htmlFor="age-simple">Religion</InputLabel>
+                   <InputLabel htmlFor="age-simple"><IntlMessages id="sidebar.address"/></InputLabel>
                    <Select
                          value={this.state.religion}
                          onChange={(event) => this.setState({religion: event.target.value})}
@@ -605,7 +716,7 @@ relationShip(){
                 <div className="col-md-4">
                   <div className="form-group">
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend">What do you wanna find?</FormLabel>
+                        <FormLabel component="legend"><IntlMessages id="sidebar.wannFind"/></FormLabel>
                         <RadioGroup
                           aria-label="wanna_find"
                           name="wanna_find"
@@ -614,8 +725,8 @@ relationShip(){
                           className="d-flex flex-row"
                           onChange={(event) => this.setState({wanna_find: event.target.value})}
                         >
-                          <FormControlLabel value="Love partners" control={<Radio color="primary"/>} label="Love partners"/>
-                          <FormControlLabel value="Friends" control={<Radio color="primary"/>} label="Friends"/>
+                          <FormControlLabel value="Love partners" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Lovepartners"/>/>
+                          <FormControlLabel value="Friends" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Friends"/>/>
                           {/*<FormControlLabel value="disabled" disabled control={<Radio />} label="Disabled" />*/}
                         </RadioGroup>
                       </FormControl>
@@ -625,7 +736,7 @@ relationShip(){
                 <div className="col-md-4">
                   <div className="form-group">
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend">Are you single?</FormLabel>
+                        <FormLabel component="legend"><IntlMessages id="sidebar.Single"/></FormLabel>
                         <RadioGroup
                           aria-label="status"
                           name="status"
@@ -634,12 +745,12 @@ relationShip(){
                           className="d-flex flex-row"
                           onChange={(event) => this.setState({status: event.target.value})}
                         >
-                          <FormControlLabel value="Single" control={<Radio color="primary"/>} label="Single"/>
-                          <FormControlLabel value="In Relationship" control={<Radio color="primary"/>} label="In Relationship"/>
-                          <FormControlLabel value="Engaged" control={<Radio color="primary"/>} label="Engaged"/>
-                          <FormControlLabel value="Married" control={<Radio color="primary"/>} label="Married"/>
-                          <FormControlLabel value="Divorced" control={<Radio color="primary"/>} label="Divorced"/>
-                          <FormControlLabel value="Widowed" control={<Radio color="primary"/>} label="Widowed"/>
+                          <FormControlLabel value="Single" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Relationship"/>/>
+                          <FormControlLabel value="In Relationship" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Relationship"/>/>
+                          <FormControlLabel value="Engaged" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Engaged"/>/>
+                          <FormControlLabel value="Married" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Married"/>/>
+                          <FormControlLabel value="Divorced" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Divorced"/>/>
+                          <FormControlLabel value="Widowed" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Widowed"/>/>
                           {/*<FormControlLabel value="disabled" disabled control={<Radio />} label="Disabled" />*/}
                         </RadioGroup>
                       </FormControl>
@@ -650,7 +761,7 @@ relationShip(){
                 <div className="col-md-4">
                   <div className="form-group">
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend">Do you have child?</FormLabel>
+                        <FormLabel component="legend"><IntlMessages id="sidebar.child"/></FormLabel>
                         <RadioGroup
                           aria-label="child"
                           name="child"
@@ -659,10 +770,10 @@ relationShip(){
                           className="d-flex flex-row"
                           onChange={(event) => this.setState({child: event.target.value})}
                         >
-                          <FormControlLabel value="0" control={<Radio color="primary"/>} label="No I don't"/>
-                          <FormControlLabel value="1" control={<Radio color="primary"/>} label="Yes, I have 1 child"/>
-                          <FormControlLabel value="2" control={<Radio color="primary"/>} label="Yes, I have 2 child"/>
-                          <FormControlLabel value="3" control={<Radio color="primary"/>} label="Yes, I have 3 or more child"/>
+                          <FormControlLabel value="0" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.nochild"/>/>
+                          <FormControlLabel value="1" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.1child"/>/>
+                          <FormControlLabel value="2" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.2child"/>/>
+                          <FormControlLabel value="3" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.3child"/>/>
                           
                           {/*<FormControlLabel value="disabled" disabled control={<Radio />} label="Disabled" />*/}
                         </RadioGroup>
@@ -707,19 +818,19 @@ Photos(){
                  <div className="upload-btn-wrapper">
                       <Button variant="contained" color="primary"  className="btn jr-btn jr-btn-label right">
                        <i className="zmdi zmdi-image-o zmdi-hc-fw "/>
-                      <span>Gallery</span></Button>
+                      <span><IntlMessages id="sidebar.Gallery"/></span></Button>
                       <input type="file" name="myfile" onChange={(e)=>this.onDrop(e)}/>
                     </div>
                 <Button variant="contained" color="primary" className="jr-btn jr-btn-label right" data-toggle="modal" data-target="#myModal" onClick={(e)=>this.showCamra(e)}>
                   <i className="zmdi zmdi-camera zmdi-hc-fw "/>
-                  <span>Camera</span>
+                  <span><IntlMessages id="sidebar.Camera"/></span>
                 </Button>
                 <Button variant="contained" color="primary" className="jr-btn jr-btn-label right" onClick={(e)=>this.DeleteImg(e)}>
                   <i className="zmdi zmdi-delete zmdi-hc-fw "/>
-                  <span>Delete</span>
+                  <span><IntlMessages id="sidebar.Delete"/></span>
                 </Button>
                <Button variant="contained" color="primary" className="jr-btn jr-btn-label right" onClick={(e)=>this.SetAsPrimary(e)}>
-                  <span>Set as Primary</span>
+                  <span> <IntlMessages id="sidebar.Primary"/></span>
                 </Button>
                 
 
@@ -774,8 +885,8 @@ Photos(){
                                   }
                                   </div>
                                   {/*<div className="modal-footer">
-                                                                      <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                                                                    </div>*/}
+                                    <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>*/}
                                 </div>
                               </div>
                             </div>
@@ -862,8 +973,8 @@ Membership(){
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="box_">
-                                    <h5>Plus</h5>
-                                    <p> Unlinted chat and messaging.Search other members.Lifetime membership</p>
+                                    <h5><IntlMessages id="sidebar.Plus"/></h5>
+                                    <p> <IntlMessages id="sidebar.Unlinted"/></p>
                                     <h6 style={{ marginTop: "77px"}}>{this.state.paymentMethod}  30K</h6>
                                     <Button variant="contained" color="primary" onClick={(e)=>this.SelectPlanGoPlus("30")}className="jr-btn jr-btn-label bg-teal right" style={{ marginTop: "34px"}}>
                                         <span>Go Plus</span>
@@ -873,9 +984,9 @@ Membership(){
                             </div>  
                             <div className="col-md-6">
                                 <div className="box_" >
-                                   <h5>Silver</h5>
-                                   <p> Everything you get with Plus lifetime membership with:</p>
-                                   <p>One-on-one consultation with our relationship coach for 6 month worth SGS 120 (SAVE $20)</p>
+                                   <h5><IntlMessages id="sidebar.Silver"/></h5>
+                                   <p> <IntlMessages id="sidebar.One-on-one"/></p>
+                                   <p><IntlMessages id="sidebar.One-on-one"/></p>
                                    <h6>{this.state.paymentMethod} 40K</h6>
                                     <Button variant="contained" color="primary" onClick={(e)=>this.SelectPlanGoSilver("40")} className="jr-btn jr-btn-label  bg-teal right" style={{ marginTop: "34px"}}>
                                         <span>Go Silver</span>
@@ -937,7 +1048,7 @@ choosePyaments(){
                             <div className="box" >
                               <h1  >Debit/Credit Card</h1>
                               <h6>IDR 399K</h6>
-                              <p>We accept international payments from all major credit cards</p>
+                              <p><IntlMessages id="sidebar.international"/></p>
                             </div>  
                             <div className="box" >
                               <h1  >Go-Pay</h1>
@@ -1018,10 +1129,10 @@ sendOTP(e){
        <div className="app-wrapper">
             <div className="dashboard animated slideInUpTiny animation-duration-3">
                <div className="page-heading d-sm-flex justify-content-sm-between align-items-sm-center">
-                <h2 className="title mb-3 mb-sm-0">Dashboard</h2>
+                <h2 className="title mb-3 mb-sm-0"><IntlMessages id="sidebar.dashboard"/></h2>
                 <Breadcrumb className="mb-0" tag="nav">
-                  <BreadcrumbItem  href={null}>App</BreadcrumbItem>
-                  <BreadcrumbItem  href={null}>Dashboard</BreadcrumbItem>
+                  <BreadcrumbItem  href={null}><IntlMessages id="sidebar.App"/></BreadcrumbItem>
+                  <BreadcrumbItem  href={null}><IntlMessages id="sidebar.dashboard"/></BreadcrumbItem>
                 </Breadcrumb>
               </div>
 
@@ -1056,23 +1167,20 @@ sendOTP(e){
                                 onClick={this.handleBack}
                                 className="mr-2"
                               >
-                                Back
+                                <IntlMessages id="sidebar.back"/>
                               </Button>
                               {activeStep === 4  || activeStep === 5 ?  '' :
                               <Button variant="contained" color="primary" onClick={this.handleNext}>
-                                {activeStep === steps.length - 1 ? '' : 'Next'}
+                                {activeStep === steps.length - 1 ? '' : <IntlMessages id="sidebar.next"/>}
                               </Button>
                             }
 
-                               <Button
-                                disabled={activeStep === 0}
-                                onClick={this.handleNext}
-                                className="mr-2"
-                                style={{float:"right"}}
+                               <Link to="/app/home" style={{float: "right",clear:"both"}}>
+                                
 
-                              >
-                                {activeStep === 5 ? '' : 'Skip'}
-                              </Button>
+                              
+                                {activeStep === 4 || activeStep === 5 ? <IntlMessages id="sidebar.Skip"/> : ''}
+                              </Link>
                             </div>
                           </div>
                         )}

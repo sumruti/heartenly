@@ -104,7 +104,7 @@ class SidenavContent extends Component {
             <ul className="sub-menu">
               <li>
                 <NavLink className="prepend-icon" to="/app/dashboard" style={{backgroundColor:"inherit"}}>
-                 <span className="nav-text">Onboarding</span>
+                <IntlMessages id="sidebar.Onboarding"/>
                 </NavLink>
               </li>
              </ul>

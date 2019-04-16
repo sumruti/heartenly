@@ -14,21 +14,16 @@ const languageData = [
   {
     languageId: 'spanish',
     locale: 'es',
-    name: 'Spanish',
+    name: 'Malaysia',
     icon: 'es'
   },
   {
     languageId: 'french',
     locale: 'fr',
-    name: 'French',
+    name: 'Indonesia',
     icon: 'fr'
   },
-  {
-    languageId: 'italian',
-    locale: 'it',
-    name: 'Italian',
-    icon: 'it'
-  },
+  
   {
     languageId: 'saudi-arabia',
     locale: 'ar',

@@ -9,7 +9,8 @@ import Button from "@material-ui/core/Button";
 // import {Dropdown, DropdownMenu, DropdownToggle} from 'reactstrap';
 import { Language } from "@material-ui/icons";
 import { IconButton, AppBar, Menu, MenuItem } from "@material-ui/core";
-
+//import Swiper from 'react-id-swiper';
+import Slider from "react-slick";
 class landingpage extends React.Component {
 
  
@@ -22,9 +23,17 @@ class landingpage extends React.Component {
 
 
   render() {
-  
+     
  
-
+const options = {
+  dots: true,
+  infinite: true,
+  arrows: false,
+  speed: 500,
+  slidesToShow: 3,
+  marginRight: 10,
+  slidesToScroll: 3,
+};
  
   return (
            <div className="app-header" style={{overflow:'auto', width: '100%'}}>
@@ -73,27 +82,163 @@ class landingpage extends React.Component {
                   </ol>
                 </div>
               </div>
-               <div className="Signup-whiteBox-11 row mb-4">
-                  <div className="col-12">
-                    <h2 className="text-primary mt-4 mb-4 text-center">Success Stories</h2>
-                  </div>
-                  <div className="col-12 col-md-4 d-flex flex-column align-items-center">
-                   <img className="img-fluid mb-3" src={require("../assets/images/heartenly-success-story-gyen-rio-1.jpg")} style={{maxWidth: '20em'}} />
+               <div className="Signup-whiteBox-11">
+                                    <h2 className="text-primary mt-4 mb-4 text-center">Success Stories</h2>
 
-                    <h3 className="text-secondary h2">Gyen ❤ Rio</h3>
-                    <p className="text-center text-muted px-2">Thanks for Heartenly. Pleasantly surprised to meet someone in my area. Instantly click then deal meeting 🤣👌</p>
+               <Slider {...options}>
+                   
+                  <div className="testimonial text-center">
+                       <img  src={require("../assets/images/heartenly-success-story-afifah-arip.jpg")} style={{maxWidth: '20em'}} />
+                    <span className="testimonial__quote">Afifah ❤ Arip</span>
+                    <p >Alhamdulillah. We met in Heartenly last May 2018. Now we are officially husband and wife November 18 yesterday.</p>
                   </div>
-                  <div className="col-12 col-md-4 d-flex flex-column align-items-center">
-                    <img className="img-fluid mb-3" src={require("../assets/images/heartenly-success-story-gyen-rio-2.jpg")} style={{maxWidth: '20em'}} />
-                    <h3 className="text-secondary h2">Gyen ❤ Rio</h3>
-                    <p className="text-center text-muted px-2">You're the man I just met a few months from Heartenly, and you come to my parents and seriously want to propose to me.</p>
+                  <div className="testimonial text-center">
+                       <img  src={require("../assets/images/heartenly-success-story-gyen-rio-2.jpg")} style={{maxWidth: '20em'}} />
+                    <span className="testimonial__quote">Gyen ❤ Rio</span>
+                    <p >You're the man I just met a few months from Heartenly, and you come to my parents and seriously want to propose to me.</p>
+                 </div>
+                  <div className="testimonial text-center">
+                    <img  src={require("../assets/images/heartenly-success-story-gyen-rio-1.jpg")} style={{maxWidth: '20em'}} />
+                    <span className="testimonial__quote">Gyen ❤ Rio</span>
+                    <p >Thanks for Heartenly. Pleasantly surprised to meet someone in my area. Instantly click then deal meeting 🤣👌</p>
                   </div>
-                  <div className="col-12 col-md-4 d-flex flex-column align-items-center">
-                    <img className="img-fluid mb-3" src={require("../assets/images/heartenly-success-story-afifah-arip.jpg")} style={{maxWidth: '20em'}} />
-                    <h3 className="text-secondary h2">Afifah ❤ Arip</h3>
-                    <p className="text-center text-muted px-2">Alhamdulillah. We met in Heartenly last May 2018. Now we are officially husband and wife November 18 yesterday.</p>
+                  <div className="testimonial text-center">
+                       <img  src={require("../assets/images/heartenly-success-story-afifah-arip.jpg")} style={{maxWidth: '20em'}} />
+                    <span className="testimonial__quote">Afifah ❤ Arip</span>
+                    <p >Alhamdulillah. We met in Heartenly last May 2018. Now we are officially husband and wife November 18 yesterday.</p>
                   </div>
+                  <div className="testimonial text-center">
+                       <img  src={require("../assets/images/heartenly-success-story-gyen-rio-2.jpg")} style={{maxWidth: '20em'}} />
+                    <span className="testimonial__quote">Gyen ❤ Rio</span>
+                    <p >You're the man I just met a few months from Heartenly, and you come to my parents and seriously want to propose to me.</p>
+                 </div>
+                  <div className="testimonial text-center">
+                    <img  src={require("../assets/images/heartenly-success-story-gyen-rio-1.jpg")} style={{maxWidth: '20em'}} />
+                    <span className="testimonial__quote">Gyen ❤ Rio</span>
+                    <p >Thanks for Heartenly. Pleasantly surprised to meet someone in my area. Instantly click then deal meeting 🤣👌</p>
+                  </div>
+            </Slider>
+            </div>
+
+               
+
+
+
+
+
+  
+ 
+
+
+
+
+
+
+
+
+                <section id="contact" className="footer_con">
+        <div className="container">
+          <footer className="page-footer font-small blue pt-4">
+            {/* Footer Links */}
+            <div className="container-fluid text-center text-md-left">
+              {/* Grid row */}
+              <div className="row">
+                {/* Grid column */}
+                <div className="col-md-4 mt-md-0 mt-4">
+                  {/* Content */}
+                  <h5 className="text-uppercase">Footer Content</h5>
+                  <ul className="list-inline social-buttons">
+                    <li className="list-inline-item">
+                      <a href="https://www.facebook.com/HeartenlyID/" target="_blank">
+                        <i className="fab fa-facebook-square" style={{fontSize: '24px'}} />
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="https://www.facebook.com/HeartenlyID/" target="_blank">
+                        <i className="fab fa-twitter-square" style={{fontSize: '24px'}} />
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="https://line.me/R/ti/p/%40lse2417c" target="_blank">
+                        <i className="fab fa-line" style={{fontSize:'24px'}}></i>
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="https://www.pinterest.com/heartenly/" target="_blank">
+                        <i className="fab fa-pinterest" style={{fontSize:'24px'}}/>
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="https://www.instagram.com/heartenlyid/" target="_blank">
+                        <i className="fab fa-instagram" style={{fontSize: '24px'}} />
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="https://www.youtube.com/channel/UC0tYyuodAmxZ6bInsezNbLg/" target="_blank">
+                        <i className="fab fa-youtube" style={{fontSize:'24px'}}/>
+                      </a>
+                    </li>
+                    <li className="list-inline-item">
+                      <a href="https://hot.satukancinta.com/" target="_blank">
+                        <i className="fas fa-blog" style={{fontSize:'24px'}}/>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
+                {/* Grid column */}
+                {/* Grid column */}
+                
+                {/* Grid column */}
+                {/* Grid column */}
+                <div className="col-md-4 mb-md-0 mb-4">
+                  {/* Links */}
+                  <h5 className="text-uppercase">Policies</h5>
+                  <ul className="list-unstyled social-buttons">
+                    <li>
+                      <a href={null}>Terms and conditions</a>
+                    </li>
+                    <li>
+                      <a href={null}>Privacy policy</a>
+                    </li>
+                    <li>
+                      <a href={null}>About Us</a>
+                    </li>
+                    <li>    
+                      <a href={null}>Newsletter </a>
+                    </li>
+                   
+                  
+                  </ul>
+                </div>
+                <div className="col-md-4 mb-md-0 mb-4">
+                  {/* Links */}
+                  <h5 className="text-uppercase">Address</h5>
+                  <ul className="list-unstyled social-buttons">
+                    <li>
+                      <a href="#!"><i className="fa fa-map-marker" aria-hidden="true" style={{marginRight: "10px"}}/>
+                        USA office:Droneoptix Repair Unit 2116 Ridge Rd Norwalk Ohio 44857 USA</a>
+                    </li>
+                    <li>
+                      <a href={null}><i className="fa fa-map-marker" aria-hidden="true" style={{marginRight: "10px"}}/>
+                        UK office:Droneoptix Repair Unit 2116 Ridge Rd Norwalk Ohio 44857 USA</a>
+                    </li>
+                    <li>
+                      <a href={null}><i className="fa fa-map-marker" aria-hidden="true" style={{marginRight: "10px"}}/>
+                        Italy office:Droneoptix Repair Unit 2116 Ridge Rd Norwalk Ohio 44857 USA</a>
+                    </li>
+                  </ul>
+                </div>
+                {/* Grid column */}
+              </div>
+              {/* Grid row */}
+            </div>
+            {/* Copyright */}
+            {/* Copyright */}
+          </footer>
+        </div>
+        <div className="footer-copyright text-center py-3">© 2019 Copyright:All right reserved
+        </div>
+      </section>
 
 
       

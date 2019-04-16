@@ -142,11 +142,14 @@ function* createUserWithEmailPassword({payload}) {
 function* signInUserWithGoogle() {
   try {
     const signUpUser = yield call(signInUserWithGoogleRequest);
+    console.log(signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName)
+    const signInUser = yield call(loginUser, signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName,'GOOGLE');
+
     if (signUpUser.message) {
       yield put(showAuthMessage(signUpUser.message));
     } else {
-      localStorage.setItem('user_id', signUpUser.user.uid);
-      yield put(userGoogleSignInSuccess(signUpUser.user.uid));
+      localStorage.setItem('user_id', signInUser.data.user_id);
+      yield put(userGoogleSignInSuccess(signInUser.data.user_id));
     }
   } catch (error) {
     yield put(showAuthMessage(error));
@@ -157,10 +160,13 @@ function* signInUserWithGoogle() {
 function* signInUserWithFacebook() {
   try {
     const signUpUser = yield call(signInUserWithFacebookRequest);
+        const signInUser = yield call(loginUser, signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName,'FACEBOOK');
+
+    console.log(signUpUser)
     if (signUpUser.message) {
       yield put(showAuthMessage(signUpUser.message));
     } else {
-      localStorage.setItem('user_id', signUpUser.user.uid);
+      localStorage.setItem('user_id', signInUser.data.user_id);
       yield put(userFacebookSignInSuccess(signUpUser.user.uid));
     }
   } catch (error) {
@@ -215,7 +221,7 @@ function* signInUserWithEmailPassword({payload}) {
     }  
     
   try {
-    const signInUser = yield call(loginUser, UserEmailMobile, password);
+    const signInUser = yield call(loginUser, UserEmailMobile, password , '','','EMAIL');
 
     if (signInUser.data.status==false) {
       yield put(showAuthMessage(signInUser.data.message));

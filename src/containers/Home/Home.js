@@ -8,6 +8,8 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Avatar from '@material-ui/core/Avatar';
 import {Card, CardTitle} from "reactstrap";
+import config from "../../config.json";
+import axios from "axios";
 import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {
 getuserprofilebyid
@@ -17,7 +19,7 @@ class home extends React.Component {
  constructor() {
     super();
      this.state = {
-      serachValue: '',
+      users: '',
      
     };
   }
@@ -26,6 +28,12 @@ class home extends React.Component {
   componentDidMount() {
     var user_id = localStorage.getItem('user_id');
     //this.props.getuserprofilebyid({ user_id})
+     axios.get(`${config.ApiUrl}users/GetallUser`)
+          .then(res => {
+            this.setState({users:res.data.data})
+
+            
+          });
   }
 
 
@@ -33,6 +41,8 @@ class home extends React.Component {
   render() {
   
     const {get_user_by_id } = this.props;
+    const {users } = this.state;
+    console.log(users,'users')
     const userImageList = [
           {
             id: 1,
@@ -106,14 +116,14 @@ class home extends React.Component {
                         <div className="row">
                            <div className="col-md-12">
                               <ul className="jr-agents-list">
-                                  {userImageList.map((user, index) =>
+                                  {users  && users.length > 1 && users.map((user, index) =>
                                     <li key={index}>
                                       <div className="jr-profileon">
-                                        <div className="jr-profileon-thumb" style={{maxHeight: "199px"}}><img alt="..." src={user.image}/></div>
+                                        <div className="jr-profileon-thumb" style={{maxHeight: "199px"}}><img alt="..." src={user.user.image}/></div>
                                         <div className="jr-profileon-content">
-                                          <h5 className="mb-0 text-truncate">{user.name}</h5>
+                                          <h5 className="mb-0 text-truncate">{user.user_id ? user.user.user_id.username : ''}</h5>
                                           <p className="mb-0 jr-fs-sm text-truncate"><i className={`zmdi zmdi-star text-orange`}/> {user.rating}
-                                            <span>|</span> {user.deals}
+                                            <span>|</span> {user.user_id ? user.user.user_id.status :''}
                                           </p>
                                         </div>
                                       </div>
