@@ -142,7 +142,8 @@ function* createUserWithEmailPassword({payload}) {
 function* signInUserWithGoogle() {
   try {
     const signUpUser = yield call(signInUserWithGoogleRequest);
-    console.log(signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName)
+    console.log(signUpUser)
+    return false
     const signInUser = yield call(loginUser, signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName,'GOOGLE');
 
     if (signUpUser.message) {
