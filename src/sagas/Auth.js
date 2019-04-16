@@ -160,6 +160,8 @@ function* signInUserWithGoogle() {
 function* signInUserWithFacebook() {
   try {
     const signUpUser = yield call(signInUserWithFacebookRequest);
+    console.log(signUpUser,'signUpUsersignUpUser');
+    return false
         const signInUser = yield call(loginUser, signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName,'FACEBOOK');
 
     console.log(signUpUser)
