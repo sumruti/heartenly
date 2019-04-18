@@ -377,7 +377,10 @@ class Dashboard extends React.Component {
       var user_id = localStorage.getItem('user_id');
        const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
        this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
-      this.props.getuserprofilebyid({user_id});
+      setTimeout(() => {
+        this.props.getuserprofilebyid({user_id});
+      }, 3000);
+      
        /*var images = [];
       for (let i = 0; i < picture.length; i++) {
           images.push(picture[i]);
