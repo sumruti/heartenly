@@ -85,7 +85,7 @@ class Dashboard extends React.Component {
       useremail:'',
       fullName:'',
       gender:'',
-      DOB:"",
+      DOB:moment().format("YYYY-MM-DD"),
       address:'',
       religion:'',
       wanna_find:'',
@@ -113,7 +113,7 @@ class Dashboard extends React.Component {
    componentDidMount() {
       var user_id = localStorage.getItem('user_id');
       this.props.getuserprofilebyid({user_id});
-       navigator.geolocation.getCurrentPosition(function(position) {
+       /*navigator.geolocation.getCurrentPosition(function(position) {
 
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
@@ -126,7 +126,7 @@ class Dashboard extends React.Component {
         console.log(position)
 
         // work with this information however you'd like!
-    });
+    });*/
   
 
    }
@@ -199,7 +199,6 @@ class Dashboard extends React.Component {
     }
     
     var years = moment().diff(DOB, 'years',false);
-    console.log(years,'DOBDOBDOBDOB')
     if(years > 16){
       this.setState({alertMessage:"", showMessage:''})
     }else{
@@ -252,7 +251,6 @@ class Dashboard extends React.Component {
          activeStep: activeStep + 1,
       });
     }
-     console.log(this.props,'picturespicturespicturespicturespicturespicturespicturespicturespicturespicturespicturespictures')
     if(this.props.get_user_by_id.user_img.length == 0){
       this.setState({alertMessage:"Please upload image", showMessage:'1'})
       return false
@@ -736,7 +734,7 @@ relationShip(){
                 <div className="col-md-4">
                   <div className="form-group">
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"><IntlMessages id="sidebar.Single"/></FormLabel>
+                        <FormLabel component="legend"><IntlMessages id="sidebar.status"/></FormLabel>
                         <RadioGroup
                           aria-label="status"
                           name="status"
@@ -745,7 +743,7 @@ relationShip(){
                           className="d-flex flex-row"
                           onChange={(event) => this.setState({status: event.target.value})}
                         >
-                          <FormControlLabel value="Single" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Relationship"/>/>
+                          <FormControlLabel value="Single" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Single"/>/>
                           <FormControlLabel value="In Relationship" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Relationship"/>/>
                           <FormControlLabel value="Engaged" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Engaged"/>/>
                           <FormControlLabel value="Married" control={<Radio color="primary"/>} label=<IntlMessages id="sidebar.Married"/>/>
@@ -1039,27 +1037,27 @@ choosePyaments(){
                       <div className="col-md-4">
                         <div className="form-group">
                             <div className="box">
-                               <h1 >Bank Transfer/Virtual Account</h1>
+                               <h1 ><IntlMessages id="sidebar.international"/></h1>
                                <h6>IDR 399K</h6>
-                               <p>Support BCA, BNI, Mandiri, BRI and all Indonesian banks with ATM Bersama</p>
+                               <p><IntlMessages id="sidebar.SupportBCA"/></p>
                                
 
                             </div>  
                             <div className="box" >
-                              <h1  >Debit/Credit Card</h1>
+                              <h1  ><IntlMessages id="sidebar.DebitCredit"/></h1>
                               <h6>IDR 399K</h6>
                               <p><IntlMessages id="sidebar.international"/></p>
                             </div>  
                             <div className="box" >
-                              <h1  >Go-Pay</h1>
+                              <h1  ><IntlMessages id="sidebar.gopay"/></h1>
                               <h6>IDR 399K</h6>
-                              <p>Pay easily and quickly with Go-Pay</p>
-                              <p style={{color: "#ff5858"}}>* always IDR no mattor chosen currency</p>
+                              <p><IntlMessages id="sidebar.Payeasily"/></p>
+                              <p style={{color: "#ff5858"}}><IntlMessages id="sidebar.alwaysIDR"/></p>
                             </div>  
                             <div className="box" >
                               <h1>Alfamart</h1>
                               <h6>IDR 399K</h6>
-                              <p>Pay on any Alfamart outlet near you</p>
+                              <p><IntlMessages id="sidebar.Alfamart"/></p>
                             </div>  
                         </div>   
                       </div>
@@ -1073,15 +1071,15 @@ choosePyaments(){
                             <div className="box">
                                <h1 >Dabit / Credit / PyaPal</h1>
                                <h6>SGD 30K</h6>
-                               <p>We accept international payments from all major credit cards</p>
+                               <p><IntlMessages id="sidebar.international"/></p>
                                <p style={{color: "#ff5858"}}>*only support IDR, SGD, USD, HKD, AUD, CAD, EUR, GBP, NZD, PHP, THB, JPY other selection will use USD</p>
                                             <PaypalExpressBtn env={env} client={client} currency={'SGD'} total={this.state.PlanPrice} onError={this.onError} onSuccess={(e)=>this.onSuccess(e)} onCancel={this.onCancel} />
 
                             </div>  
                             <div className="box" >
-                              <h1>Wire Transfer</h1>
+                              <h1><IntlMessages id="sidebar.Wire"/></h1>
                               <h6>SGD 40K</h6>
-                              <p>International wire transfer to indonesia bank BCA, BNI, or Mandiri</p>
+                              <p><IntlMessages id="sidebar.InternationalWire"/></p>
                             </div>  
                               
                         </div>   
