@@ -83,6 +83,9 @@ class SidenavContent extends Component {
 
     return null;
   }
+  removeLocalS(e){
+    localStorage.removeItem("redirect_");
+  }
 
   render() {
     return (
@@ -102,9 +105,9 @@ class SidenavContent extends Component {
             </Button>
 
             <ul className="sub-menu">
-              <li>
-                <NavLink className="prepend-icon" to="/app/dashboard" style={{backgroundColor:"inherit"}}>
-                <IntlMessages id="sidebar.Onboarding"/>
+              <li onClick={(e)=>this.removeLocalS(e)}>
+                <NavLink className="prepend-icon" to="/app/dashboard" style={{backgroundColor:"inherit"}} >
+                <IntlMessages id="sidebar.Onboarding" />
                 </NavLink>
               </li>
              </ul>

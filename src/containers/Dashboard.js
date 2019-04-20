@@ -271,6 +271,7 @@ class Dashboard extends React.Component {
      this.setState({
          activeStep: activeStep + 1,
       });
+     localStorage.removeItem("redirect_");
     var user_id = localStorage.getItem('user_id');
     this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
     this.props.getuserprofilebyid({user_id});
@@ -279,17 +280,21 @@ class Dashboard extends React.Component {
 
   handleBack = () => {
     const {activeStep} = this.state;
+    localStorage.removeItem("redirect_");
     this.setState({
       activeStep: activeStep - 1,
     });
   };
 
   handleReset = () => {
+    localStorage.removeItem("redirect_");
     this.setState({
       activeStep: 0,
     });
   };
-   
+   removeLocalS(e){
+    localStorage.removeItem("redirect_");
+  }
    DOB = (date) => {
           this.setState({DOB: moment(date.target.value).format("MM-DD-YYYY")});
   };
@@ -298,13 +303,15 @@ class Dashboard extends React.Component {
 
    componentWillReceiveProps(nextProps) {
     var user_id = localStorage.getItem('user_id');
+    var editPro = localStorage.getItem('redirect_');
+     if(editPro){
+       this.setState({activeStep :  parseInt(editPro)});
+     }
     //this.props.getuserprofilebyid({ user_id})
     const {get_user_by_id } = nextProps;
-    console.log(get_user_by_id,'--get_user_by_id')
+
     if(get_user_by_id){
-     console.log(get_user_by_id)
-    
-    this.setState({
+     this.setState({
         address:get_user_by_id.data[0].address ? get_user_by_id.data[0].address : '',
         child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
         useremail:get_user_by_id.data[0].email ? get_user_by_id.data[0].email :'',
@@ -517,6 +524,7 @@ onError(err){
 }
 
 getStepContent(stepIndex) {
+  console.log(stepIndex,'stepIndex')
     switch (stepIndex) {
       case 0:
         return this.getPersonaldata();
@@ -989,7 +997,7 @@ Membership(){
                                    <p> <IntlMessages id="sidebar.One-on-one"/></p>
                                    <p><IntlMessages id="sidebar.One-on-one"/></p>
                                    <h6>{this.state.paymentMethod} 40K</h6>
-                                    <Button variant="contained" color="primary" onClick={(e)=>this.SelectPlanGoSilver("40")} className="jr-btn jr-btn-label  bg-teal right" style={{ marginTop: "34px"}}>
+                                    <Button variant="contained" color="primary" onClick={(e)=>this.SelectPlanGoSilver("40")} className="jr-btn jr-btn-label  bg-teal right" style={{ marginTop: "0px"}}>
                                         <span>Go Silver</span>
                                       </Button>
 
@@ -1118,8 +1126,8 @@ sendOTP(e){
     const steps = getSteps();
     const {activeStep,DOB,showMessage,alertMessage} = this.state;
     const {profile_update,verify_mobile , OTP} = this.props;
-
-      
+     var editPro = localStorage.getItem('redirect_');
+      console.log(activeStep,'activeStepactiveStep')
  
         
  
@@ -1130,10 +1138,10 @@ sendOTP(e){
        <div className="app-wrapper">
             <div className="dashboard animated slideInUpTiny animation-duration-3">
                <div className="page-heading d-sm-flex justify-content-sm-between align-items-sm-center">
-                <h2 className="title mb-3 mb-sm-0"><IntlMessages id="sidebar.dashboard"/></h2>
+                <h2 className="title mb-3 mb-sm-0">{editPro ? <IntlMessages id="sidebar.editProfile" /> : <IntlMessages id="sidebar.dashboard"/>}</h2>
                 <Breadcrumb className="mb-0" tag="nav">
                   <BreadcrumbItem  href={null}><IntlMessages id="sidebar.App"/></BreadcrumbItem>
-                  <BreadcrumbItem  href={null}><IntlMessages id="sidebar.dashboard"/></BreadcrumbItem>
+                  <BreadcrumbItem  href={null}>{editPro ? <Link to="/app/Profile" onClick={(e)=>this.removeLocalS(e)}><IntlMessages id="sidebar.Profile"/> </Link> :<IntlMessages id="sidebar.dashboard"/> }</BreadcrumbItem>
                 </Breadcrumb>
               </div>
 
