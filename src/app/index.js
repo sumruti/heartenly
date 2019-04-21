@@ -74,7 +74,7 @@ class App extends React.Component {
             <div className="app-main-content">
               <Switch>
                 <Route path={`${match.url}/Dashboard`} component={Dashboard}/>
-                <Route path={`${match.url}/Profile-View`} component={ProfileView}/>
+                <Route path={`${match.url}/Profile`} component={ProfileView}/>
                 <Route path={`${match.url}/Home`} component={Home}/>
                 <Route path='/' component={landingpage}/>
                {/* <Route path={`${match.url}/social-apps`} component={SocialApps}/>*/}
