@@ -57,7 +57,7 @@ class UserInfo extends React.Component {
         >
           <MenuItem onClick={this.handleRequestClose}>
             <i className="zmdi zmdi-account zmdi-hc-fw mr-2"/>
-            <Link to="/app/dashboard">
+            <Link to="/app/Profile">
             <IntlMessages id="popup.profile"/></Link>
           </MenuItem>
           
