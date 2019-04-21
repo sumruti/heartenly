@@ -154,7 +154,6 @@ class Dashboard extends React.Component {
   handleNext = () => {
     const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg,pictures} = this.state;
    
-     console.log(this.state)
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if(!regex.test(useremail)){
        this.setState({alertMessage:"The email address is badly formatted", showMessage:'1'})
@@ -493,7 +492,6 @@ SelectPlanGoSilver(price){
    this.setState({PlanPrice:price,activeStep: activeStep + 1,planName:"Silver"})
 }
 onSuccess(payment){
-  console.log(this.state,'----')
    var user_id = localStorage.getItem('user_id');
        // Congratulation, it came here means everything's fine!
         console.log("The payment was succeeded!", payment);
@@ -524,7 +522,6 @@ onError(err){
 }
 
 getStepContent(stepIndex) {
-  console.log(stepIndex,'stepIndex')
     switch (stepIndex) {
       case 0:
         return this.getPersonaldata();
@@ -1127,7 +1124,6 @@ sendOTP(e){
     const {activeStep,DOB,showMessage,alertMessage} = this.state;
     const {profile_update,verify_mobile , OTP} = this.props;
      var editPro = localStorage.getItem('redirect_');
-      console.log(activeStep,'activeStepactiveStep')
  
         
  

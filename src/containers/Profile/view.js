@@ -48,14 +48,15 @@ componentDidMount() {
      var timeDifference = "";
      if(get_user_by_id){
          if(get_user_by_id.userPost){
+
+
             //get_user_by_id.userPost.forEach(function(element) {
                  timeDifference = this.timeDifference(moment(),moment(get_user_by_id.userPost.length >= 1 ? get_user_by_id.userPost[0].date :''));
             //});
           }
-
        
            setTimeout(() => {
-              this.setState({time:timeDifference})
+              this.setState({time:timeDifference ? timeDifference :''})
           }, 3000);
         
      }
@@ -64,8 +65,16 @@ componentDidMount() {
 handleClickOpen = (flag) => {
      const {get_user_by_id } = this.props;
      this.setState({open: true})
-     if(get_user_by_id){
-         this.setState({open: true,flag:flag,aboutMe:get_user_by_id.userPost[0].about,addStatus:get_user_by_id.userPost[0].status});
+     if(get_user_by_id.userPost){
+        if(get_user_by_id.userPost.length != 0){
+          console.log(get_user_by_id.userPost,'-')
+         this.setState({flag:flag,aboutMe:get_user_by_id.userPost[0].about,addStatus:get_user_by_id.userPost[0].status});
+        }else{
+           this.setState({flag:flag,aboutMe:'',addStatus:''});
+        }
+     }else{
+           this.setState({flag:flag,aboutMe:'',addStatus:''});
+
      }
    
 };
@@ -167,7 +176,13 @@ timeDifference(current, previous) {
     }
 
     else {
-        return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+       
+       if(isNaN(Math.round(elapsed/msPerYear))){
+         return '';
+       }else{
+                 return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+
+       }
     }
 }
   render() {
@@ -233,7 +248,7 @@ timeDifference(current, previous) {
                              <span className="jr-fs-sm">{get_user_by_id!='' ?  get_user_by_id.data[0].religion :''}</span></li>
                            <li>
                              <span className="jr-follower-title jr-fs-lg jr-font-weight-medium">Age</span>
-                             <span className="jr-fs-sm">{get_user_by_id!='' ? moment().diff(get_user_by_id.data[0].DOB  , 'years',false)   :'Not set'} years</span>
+                             <span className="jr-fs-sm">{get_user_by_id!='' ? isNaN(moment().diff(get_user_by_id.data[0].DOB  , 'years',false)) ? 'Not set' : moment().diff(get_user_by_id.data[0].DOB  , 'years',false)   :'Not set'} years</span>
                            </li>
                          </ul>
                        </div>*
@@ -337,10 +352,14 @@ timeDifference(current, previous) {
                        <div className="jr-profile-banner-avatar-info" style={{width:"100%"}}>
                          {get_user_by_id.userPost &&  get_user_by_id.userPost.map((status, index) => (
                               <p style={{margin: "31px 0px 0px"}}>
-                                {status.status}  <img src="https://img.icons8.com/metro/26/000000/pencil.png" variant="contained"  onClick={(e)=>this.handleClickOpen("about")}  style={{cursor:'pointer'}}/>
+                                {status.status ? status.status :"Write something here"}    <img src="https://img.icons8.com/metro/26/000000/pencil.png" variant="contained"  onClick={(e)=>this.handleClickOpen("status")}  style={{cursor:'pointer'}}/>
                               </p>
                               ))
                               }
+                            {get_user_by_id.userPost.length == 0  ? 
+
+                             <p> Write something here  <img src="https://img.icons8.com/metro/26/000000/pencil.png" variant="contained"  onClick={(e)=>this.handleClickOpen("status")}  style={{cursor:'pointer'}}/> </p>
+                             :''}
                       </div>
                   </div>
                   </div>
@@ -376,10 +395,15 @@ timeDifference(current, previous) {
                        {get_user_by_id.userPost &&  get_user_by_id.userPost.map((about, index) => (
 
                               <p style={{margin: "31px 0px 0px"}}>
-                                {about.about}  <img src="https://img.icons8.com/metro/26/000000/pencil.png" variant="contained"  onClick={(e)=>this.handleClickOpen("about")}  style={{cursor:'pointer'}}/>
+                                {about.about ? about.about :"Write something here"}  <img src="https://img.icons8.com/metro/26/000000/pencil.png" variant="contained"  onClick={(e)=>this.handleClickOpen("about")}  style={{cursor:'pointer'}}/>
                               </p>
                               ))
-                              }
+                              } 
+
+                              {get_user_by_id.userPost.length == 0  ? 
+
+                             <p> Write something here <img src="https://img.icons8.com/metro/26/000000/pencil.png" variant="contained"  onClick={(e)=>this.handleClickOpen("about")}  style={{cursor:'pointer'}}/> </p>
+                             :''}
                       </div>
                   </div>
                   </div>
