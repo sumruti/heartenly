@@ -322,12 +322,29 @@ class Dashboard extends React.Component {
         username:get_user_by_id.data[0].username? get_user_by_id.data[0].username :'',
         wanna_find:get_user_by_id.data[0].wanna_find ? get_user_by_id.data[0].wanna_find :'',
         status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
-        child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
         VerifyMobile:get_user_by_id.data[0].mobileNumber ? get_user_by_id.data[0].mobileNumber :'',
         MobileverifyStatus:get_user_by_id.data[0].mobile_verified_status ? get_user_by_id.data[0].mobile_verified_status :'',
 
 
-    })
+    });
+
+    if(this.state.address != '' && this.state.child != '' && 
+      this.state.useremail != '' && this.state.DOB != '' &&
+      this.state.fullName != '' && this.state.gender != '' &&
+      this.state.religion != '' && this.state.status != '' &&
+      this.state.username != '' && this.state.wanna_find != '' 
+     
+      ){
+
+        this.setState({activeStep:4})
+
+    }
+
+     /* if(  this.state.MobileverifyStatus == '' ){
+             this.setState({activeStep:3})
+    }*/
+
+
   }
 
     if(nextProps.verify_mobile==true){
