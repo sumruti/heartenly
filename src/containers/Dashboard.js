@@ -31,7 +31,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import {showAuthMessage} from "../actions/Auth";
-import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
+//import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 
 import 'react-html5-camera-photo/build/css/index.css';
 import Fab from '@material-ui/core/Fab';
@@ -45,6 +45,7 @@ import axios from "axios";
 import swal from 'sweetalert';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 
+import Camera from 'react-camera';
 
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -73,7 +74,30 @@ function getSteps() {
 
 
 
-
+const style = {
+  preview: {
+    position: 'relative',
+  },
+  captureContainer: {
+    display: 'flex',
+    position: 'absolute',
+    justifyContent: 'center',
+    zIndex: 1,
+    bottom: 0,
+    width: '100%'
+  },
+  captureButton: {
+    backgroundColor: '#fff',
+    borderRadius: '50%',
+    height: 56,
+    width: 56,
+    color: '#000',
+    margin: 20
+  },
+  captureImage: {
+    width: '100%',
+  }
+};
 
 
 class Dashboard extends React.Component {
@@ -107,9 +131,10 @@ class Dashboard extends React.Component {
       PlanPrice:'',
       planName:''
     };
-         this.onDrop = this.onDrop.bind(this);
+         this.takePicture = this.takePicture.bind(this);
   }
 
+ 
    componentDidMount() {
       var user_id = localStorage.getItem('user_id');
       this.props.getuserprofilebyid({user_id});
@@ -291,16 +316,18 @@ class Dashboard extends React.Component {
       activeStep: 0,
     });
   };
-   removeLocalS(e){
+
+  removeLocalS(e){
     localStorage.removeItem("redirect_");
   }
-   DOB = (date) => {
+
+  DOB = (date) => {
           this.setState({DOB: moment(date.target.value).format("MM-DD-YYYY")});
   };
 
   
 
-   componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     var user_id = localStorage.getItem('user_id');
     var editPro = localStorage.getItem('redirect_');
      if(editPro){
@@ -322,29 +349,12 @@ class Dashboard extends React.Component {
         username:get_user_by_id.data[0].username? get_user_by_id.data[0].username :'',
         wanna_find:get_user_by_id.data[0].wanna_find ? get_user_by_id.data[0].wanna_find :'',
         status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
+        child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
         VerifyMobile:get_user_by_id.data[0].mobileNumber ? get_user_by_id.data[0].mobileNumber :'',
         MobileverifyStatus:get_user_by_id.data[0].mobile_verified_status ? get_user_by_id.data[0].mobile_verified_status :'',
 
 
-    });
-
-    if(this.state.address != '' && this.state.child != '' && 
-      this.state.useremail != '' && this.state.DOB != '' &&
-      this.state.fullName != '' && this.state.gender != '' &&
-      this.state.religion != '' && this.state.status != '' &&
-      this.state.username != '' && this.state.wanna_find != '' 
-     
-      ){
-
-        this.setState({activeStep:4})
-
-    }
-
-     /* if(  this.state.MobileverifyStatus == '' ){
-             this.setState({activeStep:3})
-    }*/
-
-
+    })
   }
 
     if(nextProps.verify_mobile==true){
@@ -384,35 +394,62 @@ class Dashboard extends React.Component {
   onCameraStop () {
     console.log('onCameraStop');
   }
+
   onDrop(e) {
-      e.preventDefault();
-      let reader = new FileReader();
-      let pictures = e.target.files[0];
-      //this.setState({pictures:e.target.files[0]})
+          e.preventDefault();
+          let reader = new FileReader();
+          let pictures = e.target.files[0];
+          //this.setState({pictures:e.target.files[0]})
 
-      reader.onloadend = () => {
-      this.setState({
-      ProfilePreviewUrl: reader.result
-      });
-      }
+          reader.onloadend = () => {
+            this.setState({
+            ProfilePreviewUrl: reader.result
+            });
+          }
 
-      reader.readAsDataURL(pictures,'')
-      var user_id = localStorage.getItem('user_id');
-       const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
-       this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
-      setTimeout(() => {
+          reader.readAsDataURL(pictures,'')
+          var user_id = localStorage.getItem('user_id');
+           const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
+           this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
+          setTimeout(() => {
+            this.props.getuserprofilebyid({user_id});
+          }, 3000);
+          
+           /*var images = [];
+          for (let i = 0; i < picture.length; i++) {
+              images.push(picture[i]);
+          }
+          
+            this.setState({
+                pictures: images,
+            });*/
+  }
+
+ takePicture() {
+    this.camera.capture()
+    .then(blob => {
+          var reader = new FileReader();
+          reader.readAsDataURL(blob); 
+            reader.onloadend = () => {
+              console.log(reader.result)
+              const {ProfilePreviewUrl,username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
+
+              var pictures = this.dataURLtoFile(reader.result,"CameraImg.png")
+              this.setState({ProfilePreviewUrl:pictures})  
+              var user_id = localStorage.getItem('user_id');
+              this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
+                
+           }
+         
+
+           
+
+       })
+    setTimeout(() => {
         this.props.getuserprofilebyid({user_id});
       }, 3000);
-      
-       /*var images = [];
-      for (let i = 0; i < picture.length; i++) {
-          images.push(picture[i]);
-      }
-      
-        this.setState({
-            pictures: images,
-        });*/
-      }
+  
+  }
 
 showCamra(e){
           this.setState({showCamra:true,open:true})  
@@ -500,14 +537,14 @@ SetAsPrimary(e){
 
 SelectPlanGoPlus(price){
    const {activeStep} = this.state;
- this.setState({PlanPrice:price,activeStep: activeStep + 1,planName:"Plus"})
-
+   this.setState({PlanPrice:price,activeStep: activeStep + 1,planName:"Plus"})
 }
 
 SelectPlanGoSilver(price){
    const {activeStep} = this.state;
    this.setState({PlanPrice:price,activeStep: activeStep + 1,planName:"Silver"})
 }
+
 onSuccess(payment){
    var user_id = localStorage.getItem('user_id');
        // Congratulation, it came here means everything's fine!
@@ -528,9 +565,11 @@ onSuccess(payment){
             }
           });
 }
+
 onCancel(data){
   console.log('The payment was cancelled!', data);
 }
+
 onError(err){
             // The main Paypal's script cannot be loaded or somethings block the loading of that script!
             console.log("Error!", err);
@@ -759,7 +798,7 @@ relationShip(){
                 <div className="col-md-4">
                   <div className="form-group">
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"><IntlMessages id="sidebar.status"/></FormLabel>
+                        <FormLabel component="legend"><IntlMessages id="sidebar.Status"/></FormLabel>
                         <RadioGroup
                           aria-label="status"
                           name="status"
@@ -890,22 +929,19 @@ Photos(){
                                                                         <h4 className="modal-title">Modal Header</h4>*/}
                                   </div>
                                   <div className="modal-body">
-                                    {this.state.showCamra==true ?
-                                         <Camera
-                                          onTakePhoto = { (dataUri) => { this.onTakePhoto(dataUri); } }
-                                          onCameraError = { (error) => { this.onCameraError(error); } }
-                                          idealFacingMode = {FACING_MODES.ENVIRONMENT}
-                                          idealResolution = {{width: 640, height: 480}}
-                                          imageType = {IMAGE_TYPES.JPG}
-                                          imageCompression = {0.97}
-                                          isMaxResolution = {false}
-                                          isImageMirror = {false}
-                                          isDisplayStartCameraError = {true}
-                                          sizeFactor = {1}
-                                          onCameraStart = { (stream) => { this.onCameraStart(stream); } }
-                                          onCameraStop = { () => { this.onCameraStop(); } }
-                                        /> : ''
-                                  }
+                                    <div style={style.container}>
+                                            <Camera
+                                              style={style.preview}
+                                              ref={(cam) => {
+                                                this.camera = cam;
+                                              }}
+                                            >
+                                              <div style={style.captureContainer} onClick={this.takePicture}>
+                                                <div style={style.captureButton} />
+                                              </div>
+                                            </Camera>
+                                            
+                                          </div>
                                   </div>
                                   {/*<div className="modal-footer">
                                     <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

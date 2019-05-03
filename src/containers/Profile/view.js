@@ -227,7 +227,7 @@ timeDifference(current, previous) {
                  
              
             </div>
-            <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0" style={{position:"absolute",right:"0",top:"0"}}><Button variant="contained" color="primary" onClick={(e)=>this.RedirectToImgGallery("4")}>Upgrade Now! </Button></span>
+            <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0" style={{position:"absolute",right:"0",top:"0"}}><Button variant="contained" color="primary" onClick={(e)=>this.RedirectToImgGallery("4")}><IntlMessages id="sidebar.upgradenow"/></Button></span>
 
             <div className="jr-profile-banner-avatar-info" style={{width:"100%"}}>
                 {get_user_by_id.userPost &&  get_user_by_id.userPost.map((about, index) => (
@@ -241,13 +241,13 @@ timeDifference(current, previous) {
             <div className="jr-profile-banner-top-right">
                          <ul className="jr-follower-list">
                            <li>
-                             <span className="jr-follower-title jr-fs-lg jr-font-weight-medium">Status</span>
+                             <span className="jr-follower-title jr-fs-lg jr-font-weight-medium"><IntlMessages id="sidebar.Status"/></span>
                              <span className="jr-fs-sm">{get_user_by_id!='' ?  get_user_by_id.data[0].status :''}</span></li>
                            <li>
-                             <span className="jr-follower-title jr-fs-lg jr-font-weight-medium">Religion</span>
+                             <span className="jr-follower-title jr-fs-lg jr-font-weight-medium"><IntlMessages id="sidebar.Religion"/></span>
                              <span className="jr-fs-sm">{get_user_by_id!='' ?  get_user_by_id.data[0].religion :''}</span></li>
                            <li>
-                             <span className="jr-follower-title jr-fs-lg jr-font-weight-medium">Age</span>
+                             <span className="jr-follower-title jr-fs-lg jr-font-weight-medium"><IntlMessages id="sidebar.Age"/></span>
                              <span className="jr-fs-sm">{get_user_by_id!='' ? isNaN(moment().diff(get_user_by_id.data[0].DOB  , 'years',false)) ? 'Not set' : moment().diff(get_user_by_id.data[0].DOB  , 'years',false)   :'Not set'} years</span>
                            </li>
                          </ul>
@@ -257,13 +257,14 @@ timeDifference(current, previous) {
                       <div className="jr-tab-list">
                         <ul className="jr-navbar-nav">
                           <li>
-                            <span className="jr-link" onClick={(e)=>this.Gallery(e)}>Gallery</span>
+                            <span className="jr-link" onClick={(e)=>this.Gallery(e)}><IntlMessages id="sidebar.Gallery"/></span>
                           </li>
                           <li>
-                            <span className="jr-link" onClick={(e)=>this.Status(e)}>Status</span>
+                            <span className="jr-link" onClick={(e)=>this.Status(e)}><IntlMessages id="sidebar.Status"/></span>
+
                           </li>
                           <li>
-                            <span className="jr-link" onClick={(e)=>this.AboutMe(e)}>About Me</span>
+                            <span className="jr-link" onClick={(e)=>this.AboutMe(e)}><IntlMessages id="sidebar.AboutMe"/></span>
                           </li>
                         {/*  <li>
                                                     <span className="jr-link">Friends <span className="jr-fs-xs">287</span></span>
@@ -275,7 +276,7 @@ timeDifference(current, previous) {
                       </div>
                       <span className="jr-link jr-profile-setting">
                         <i className="zmdi zmdi-settings mr-2"/>
-                        <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0" onClick={(e)=>this.RedirectToImgGallery("0")}><Link to="/app/dashboard" style={{color:"#fff"}}>Edit Profile</Link></span>
+                        <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0" onClick={(e)=>this.RedirectToImgGallery("0")}><Link to="/app/dashboard" style={{color:"#fff"}}><IntlMessages id="sidebar.EditProfile"/></Link></span>
 
                       </span>
                     </div>
@@ -287,9 +288,10 @@ timeDifference(current, previous) {
             <div className="col-xl-12 col-lg-12 col-md-12 col-12">
                <Widget styleName="jr-card-full jr-card-tabs-right jr-card-profile">
                 <div className="card-header">
-                  <h4 className="card-title mb-0 ">Gallery</h4>
-                   <h4 className="card-title mb-0  pull-right" style={{float:"right",cursor:"pointer"}} onClick={(e)=>this.RedirectToImgGallery("2")}>Add more photos</h4>
-                </div>
+                  <h4 className="card-title mb-0 "><IntlMessages id="sidebar.Gallery"/></h4>
+                   <h4 className="card-title mb-0  pull-right" style={{float:"right",cursor:"pointer"}} onClick={(e)=>this.RedirectToImgGallery("2")}><IntlMessages id="sidebar.Addmorephotos"/></h4>
+               
+              </div>
                 <div className="jr-tabs-content jr-task-list">
                   <div className="row">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -330,7 +332,7 @@ timeDifference(current, previous) {
             <div className="col-xl-12 col-lg-12 col-md-12 col-12">
                <Widget styleName="jr-card-full jr-card-tabs-right jr-card-profile">
                 <div className="card-header">
-                  <h4 className="card-title mb-0">Status</h4>
+                  <h4 className="card-title mb-0"><IntlMessages id="sidebar.Status"/></h4>
                 </div>
                 <div className="jr-tabs-content jr-task-list">
                   <div className="row">
@@ -373,7 +375,7 @@ timeDifference(current, previous) {
             <div className="col-xl-12 col-lg-12 col-md-12 col-12">
                <Widget styleName="jr-card-full jr-card-tabs-right jr-card-profile">
                 <div className="card-header">
-                  <h4 className="card-title mb-0">About Me</h4>
+                  <h4 className="card-title mb-0"><IntlMessages id="sidebar.AboutMe"/></h4>
                 </div>
                 <div className="jr-tabs-content jr-task-list">
                   <div className="row">

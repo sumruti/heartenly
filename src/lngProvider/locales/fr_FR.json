@@ -1,9 +1,15 @@
 {
+ "sidebar.Addmorephotos": "Tambahkan foto",
+ "sidebar.upgradenow": "Upgrade Sekarang!",
+"sidebar.Fullnameaccordingtoidentitycard": "Nama lengkap sesuai kartu identitas",
+  "sidebar.Country":"Negara",
+"sidebar.Age": "Umur",
+  "sidebar.AboutMe": "Tentang Saya",
   "sidebar.main": "Utama",
   "sidebar.dashboard": "Dasbor",
   "sidebar.Onboarding": "Onboarding",
   "sidebar.App": "Aplikasi",
-  "sidebar.PersonalData": "Data pribadi",
+  "sidebar.PersonalData": "Data Pribadi",
   "sidebar.Relationship": "Hubungan",
   "sidebar.choosePyaments": "Pembayaran yang Dipilih",
   "sidebar.MembershipActivation": "Aktivasi Keanggotaan",
@@ -25,7 +31,7 @@
   "sidebar.child": "Apakah kamu mempunyai anak?",
   "sidebar.Lovepartners": "Pasangan cinta",
   "sidebar.Lovepartners": "Pasangan cinta",
-   "sidebar.status": "Status",
+   "sidebar.Status": "Status",
   "sidebar.Friends": "Teman",
   "sidebar.Single": "Tunggal",
   "sidebar.Relationship": "Dalam hubungan",
@@ -58,7 +64,7 @@
    "sidebar.Alfamart": "Bayar mana-mana kedai Alfamart berhampiran anda",
    "sidebar.Wire": "Pemindahan wayar",
    "sidebar.InternationalWire": "Pemindahan kawat antarabangsa ke bank indonesia BCA, BNI, atau Mandiri",
-   "sidebar.editProfile": "Edit Profil",
+   "sidebar.EditProfile": "Edit Profil",
   "sidebar.Profile": "Profil",
 
   "sidebar.dashboard.misc": "Lain-lain",
@@ -632,5 +638,30 @@
   "dashboard.traffic": "Traffic",
   "dashboard.browser": "Browser",
   "dashboard.application": "Application",
-  "dashboard.weekly": "Weekly"
+  "dashboard.weekly": "Weekly",
+
+
+
+  "sidebar.WhyJoinHeartenly":"Kenapa Bergabung dengan Heartenly?",
+    "sidebar.Findingalifepartneriscertainly":"Mencari pasangan hidup pastinya bukan perkara mudah. Keluarga yang bahagia ditentukan sejak mencari pasangan hidup yang betul. Banyak perkara yang perlu disediakan dan banyak perkara juga menjadi pertimbangan bagi seseorang dalam menentukan pasangan hidup mereka. Kedua-dua perkara ini adalah asas untuk mencari pasangan hidup yang kelihatan mudah tetapi sukar untuk sesetengah orang mencari pasangan hidup yang memenuhi ini. Mungkin anda adalah salah seorang daripada mereka.",
+"sidebar.BenefitsforHeartenlyMembers":"Keuntungan untuk Ahli Heartenly",
+
+"sidebar.AsperyourcriteriaDetermine":" Tentukan diri anda kriteria untuk seorang lelaki atau wanita yang anda suka, yang menyenangkan dan ikhlas setia mencintai anda untuk siapa anda.",
+"sidebar.Asperyourcriteriatitle":"Mengikut kriteria anda",
+
+"sidebar.SuccessStories":"Kisah Sukses",
+  "sidebar.Termsandconditions":"Terma dan Syarat",
+    "sidebar.Privacypolicy":"Dasar Privasi",
+  "sidebar.AboutUs":"Tentang Kami",
+  "sidebar.Newsletter":"Surat Berita",
+ "sidebar.ADDRESS":"Alamat",
+
+"sidebar.Heartenlycanbeasolution":"Heartenly dapat menjadi solusi untuk anda mencari pasangan hidup. Kami adalah medium untuk anda yang bersedia untuk memiliki keluarga. Kami boleh membantu anda mencari pasangan hidup yang sesuai dengan anda. Ramai orang telah menyertai dan mencari rakan hidup mereka. Anda boleh jadi orang yang dicari oleh pasangan hidup anda.",
+"sidebar.Heartenlyisconnectedwiththousands":"Berhati-hati dihubungkan dengan ribuan pengguna dari beberapa negara termasuk Indonesia, Malaysia, Singapura dan Brunei. Kami boleh membantu anda mencari pasangan hidup anda bila-bila masa, di mana sahaja dan mengikut kehendak anda. Datang menyertai Heartenly dan mulakan mencari pasangan hidup anda di sini!" ,
+"sidebar.Relaxing":"Secara hati-hati selalu mencari pasangan yang tepat untuk anda, walaupun anda santai dan tidak membuka Heartenly.",
+"sidebar.Relaxingtitle":"Santai",
+"sidebar.Privacyismaintained":" Data peribadi seperti nama sebenar atau nombor telefon tersembunyi, sebelum anda mengenali calon anda.",
+
+"sidebar.Privacyismaintainedtitle":"Privasi dikekalkan"
+
 }

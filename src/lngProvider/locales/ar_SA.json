@@ -1,9 +1,60 @@
 {
-  "sidebar.main": "الأساسية",
-  "sidebar.dashboard": "لوحة القيادة",
+ "sidebar.Addmorephotos": "إضافة المزيد من الصور",
+ "sidebar.upgradenow": "تحديث الآن!!",
+"sidebar.EditProfile": "تعديل الملف الشخصي",
+"sidebar.main": "الأساسية",
+"sidebar.dashboard": "لوحة القيادة",
+"sidebar.AboutMe": "عني",
+"sidebar.YourEmail": "بريدك الالكتروني",
+"sidebar.Username": "باسم المستخدم,",
+"sidebar.Fullname": "الاسم الكامل وفقا لبطاقة الهوية",
+"sidebar.gender": "ما هو جنسك", 
+"sidebar.male": "رجل",
+"sidebar.female": "امرأة",
+"sidebar.Friends":"اصحاب",
+"sidebar.MembershipActivation":"تفعيل الأعضاء",
+"sidebar.VerifyMobileNo": "تحقق من رقم الجوال",
+"sidebar.child": "هل لديك طفل؟",
+"sidebar.1child": "نعم ، لدي طفل واحد",
+"sidebar.nochild": "لا أنا لا أفعل",
+"sidebar.Country":"بلد",
+"sidebar.3child": "نعم ، لديّ ثلاثة أطفال أو أكثر",
+"sidebar.2child": "نعم ، لدي طفلان",
+"sidebar.city":"المدينة ",
+"sidebar.Widowed": "الأرامل",
+"sidebar.Single": "وحيد",
+"sidebar.Delete": "حذف",
+"sidebar.Status": "الحالة",
+"sidebar.Primary":"مجموعة أساسية",
+"sidebar.Camera": "الة تصوير",
+"sidebar.Gallery": "صالة عرض",
+"sidebar.next":"التالى",
+ "sidebar.back": "الى الخلف",
+ "sidebar.back": "الى الخلف",
+ "sidebar.Age": "عمر",
+
+"sidebar.Skip": "تخطى",
+"sidebar.Religion":"دين",
+"sidebar.wannFind":"ماذا تريد أن تجد؟",
+"sidebar.Lovepartners":"شركاء الحب",
+"sidebar.single":"وحيد",
+"sidebar.Engaged":"مخطوب ",
+"sidebar.Married":"زوجت",
+"sidebar.Divorced":"مطلقة",
+"sidebar.Widows":"الأرامل",
+"sidebar.Doyouhavechild":"هل لديك طفل؟",
+"sidebar.NoIdonot":"لا أنا لا أفعل",
+"sidebar.Silver": "فضة",
+"sidebar.One-on-one": "كل ما تحصل عليه من عضوية Plus ، مع إضافة:استشارة وجهاً لوجه مع مدربنا لمدة 6 أشهر بقيمة 120 دولارًا سنغافوريًا (وفر 20 دولارًا أمريكيًا!)",
+ "sidebar.Plus": "زائد",
+"sidebar.Unlinted": "غير محدود الدردشة والرسائلبحث الأعضاء الآخرينعضوية مدى الحياة",
+"sidebar.address": "بلد , المحافظة , مدينة ...",
+
+
+
   "sidebar.Onboarding": "التأهيل ل,",
   "sidebar.App": "التطبيق",
-  "sidebar.PersonalData": "ابيانات شخصية",
+  "sidebar.PersonalData": "البيانات الشخصية",
   "sidebar.Relationship": "اصلة",
   "sidebar.Photos": "الصور",
   "sidebar.choosePyaments": "الصور",
@@ -566,5 +617,32 @@
   "sidebar.dashboard.crypto": "التشفير",
   "sidebar.dashboard.listing": "قوائم",
   "sidebar.classic": "كلاسيكي",
-  "sidebar.modern": "حديث"
+  "sidebar.modern": "حديث",
+
+
+
+
+  "sidebar.WhyJoinHeartenly":"لماذا الانضمام إلى Heartenly؟",
+  "sidebar.Findingalifepartneriscertainly":"من المؤكد أن العثور على شريك الحياة ليس بالأمر السهل. يتم تحديد العائلات السعيدة بدءا من العثور على شريك الحياة المناسب. هناك الكثير من الأشياء التي يجب إعدادها ، كما أن العديد من الأشياء تصبح اعتبارات بالنسبة لشخص ما في تحديد شريك حياته. هذان الشيءان أساسيان في العثور على شريك الحياة الذي يبدو سهلا ولكن من الصعب على بعض الناس العثور على شريك الحياة الذي يحقق هذا. ربما كنت واحدا منهم.",
+  "sidebar.BenefitsforHeartenlyMembers":"فوائد للأعضاء في Heartenly",
+  "sidebar.AsperyourcriteriaDetermine":"فقا للمعايير الخاصة بك.** حدد لنفسك معايير لرجل أو امرأة تحبه ، وهو شخص لطيف ومخلص يحبك بأمانة من أنت. ",
+  "sidebar.Asperyourcriteriatitle":"وفقا للمعايير الخاصة بك.",
+  "sidebar.SuccessStories":"قصص النجاح",
+
+  "sidebar.Termsandconditions":"الشروط والأحكام",
+  "sidebar.Privacypolicy":"سياسة خاصة",
+  "sidebar.AboutUs":"معلومات عنا",
+  "sidebar.Newsletter":"الرسائل الإخبارية",
+  "sidebar.ADDRESS":"عنوان",
+  "sidebar.Heartenlycanbeasolution":"ويرتبط اسمها بالآلاف من المستخدمين في عدد من البلدان ، من بينها إندونيسيا وماليزيا وسنغافورة وبروناي. يمكننا مساعدتك في العثور على شريك حياتك في أي وقت وفي أي مكان ووفقًا لرغباتك. تعال وانضم إلى Heartenly وابدأ في البحث عن شريك حياتك هنا!",
+  "sidebar.Heartenlyisconnectedwiththousands":"ويرتبط اسمها بالآلاف من المستخدمين في عدد من البلدان ، من بينها إندونيسيا وماليزيا وسنغافورة وبروناي. يمكننا مساعدتك في العثور على شريك حياتك في أي وقت وفي أي مكان ووفقًا لرغباتك. تعال وانضم إلى Heartenly وابدأ في البحث عن شريك حياتك هنا!" ,
+  "sidebar.Relaxing":" دائمًا ما تجد الشريك المناسب لك دائمًا ، حتى إذا كنت مرتاحًا ولا تفتح أبوابها كثيرًا.",
+  "sidebar.Relaxingtitle":"الاسترخاء",
+  "sidebar.Privacyismaintained":"تم إخفاء البيانات الشخصية مثل الأسماء الحقيقية أو أرقام الهواتف ، قبل أن تعرف مرشحك..",
+  "sidebar.Privacyismaintainedtitle":" لحفاظ على الخصوصية.",
+
+
+  "sidebar.dob": "تاريخ الميلاد"
+
+
 }
