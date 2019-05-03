@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
    "engines": { 
-      "node": "8.9.4" 
+      "node": "10.3.0" 
    },
   "dependencies": {
     "@amcharts/amcharts4": "^4.0.3",
