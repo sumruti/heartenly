@@ -104,23 +104,23 @@ class SignUp extends React.Component {
                 />
           
                    
-                 <FormControl className="w-100 mb-2">
-                   <InputLabel htmlFor="age-simple">Status</InputLabel>
-                   <Select
-                         value={this.state.status}
-                         onChange={(event) => this.setState({status: event.target.value})}
-                         
-
-                      >
-                       
-                        <MenuItem value="Single">Single</MenuItem>
-                        <MenuItem value="In a relationship">In a relationship</MenuItem>
-                        <MenuItem value="Engaged">Engaged</MenuItem>
-                        <MenuItem value="Married">Married</MenuItem>
-                        <MenuItem value="Divorced">Divorced</MenuItem>
-                        <MenuItem value="Widowed">Widowed</MenuItem>
-                      </Select>
-              </FormControl>
+                {/* <FormControl className="w-100 mb-2">
+                                   <InputLabel htmlFor="age-simple">Status</InputLabel>
+                                   <Select
+                                         value={this.state.status}
+                                         onChange={(event) => this.setState({status: event.target.value})}
+                                         
+                
+                                      >
+                                       
+                                        <MenuItem value="Single">Single</MenuItem>
+                                        <MenuItem value="In a relationship">In a relationship</MenuItem>
+                                        <MenuItem value="Engaged">Engaged</MenuItem>
+                                        <MenuItem value="Married">Married</MenuItem>
+                                        <MenuItem value="Divorced">Divorced</MenuItem>
+                                        <MenuItem value="Widowed">Widowed</MenuItem>
+                                      </Select>
+                              </FormControl>*/}
             
 
                 <TextField

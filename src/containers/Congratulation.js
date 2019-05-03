@@ -182,9 +182,11 @@ Gettoknow(){
                     Skip
                   </Button>
                 )}
+                 {activeStep === steps.length - 1 ? '' :
                 <Button variant="contained" color="primary" onClick={this.handleNext} className="jr-btn">
-                  {activeStep === steps.length - 1 ? '' : 'Next'}
+                  Next
                 </Button>
+                }
               </div>
             </div>
           )}
