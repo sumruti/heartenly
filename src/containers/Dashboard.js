@@ -29,8 +29,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Camera from 'react-camera';
 
 import {showAuthMessage} from "../actions/Auth";
+import Congratulation from "./Congratulation";
 //import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 
 import 'react-html5-camera-photo/build/css/index.css';
@@ -45,7 +47,6 @@ import axios from "axios";
 import swal from 'sweetalert';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 
-import Camera from 'react-camera';
 
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -71,9 +72,6 @@ const client = {
 function getSteps() {
   return [<IntlMessages id="sidebar.PersonalData"/>, <IntlMessages id="sidebar.Relationship"/>, <IntlMessages id="sidebar.Photos"/>,<IntlMessages id="sidebar.VerifyMobileNo"/>,<IntlMessages id="sidebar.MembershipActivation"/>,<IntlMessages id="sidebar.choosePyaments"/>];
 }
-
-
-
 const style = {
   preview: {
     position: 'relative',
@@ -98,6 +96,9 @@ const style = {
     width: '100%',
   }
 };
+
+
+
 
 
 class Dashboard extends React.Component {
@@ -125,16 +126,17 @@ class Dashboard extends React.Component {
       VerifyOTP:'',
       MobileverifyStatus:'',
       flag:'',
+      stopcamra:false,
       ProfilePreviewUrl:'',
       open: false,
       img_id:'',
       PlanPrice:'',
       planName:''
     };
-         this.takePicture = this.takePicture.bind(this);
+        // this.onDrop = this.onDrop.bind(this);
+          this.takePicture = this.takePicture.bind(this);
   }
 
- 
    componentDidMount() {
       var user_id = localStorage.getItem('user_id');
       this.props.getuserprofilebyid({user_id});
@@ -174,7 +176,7 @@ class Dashboard extends React.Component {
   };
 
   handleRequestClose = () => {
-    this.setState({open: false});
+    this.setState({open: false,showCamra:false,stopcamra:true});
   };
   handleNext = () => {
     const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg,pictures} = this.state;
@@ -295,7 +297,8 @@ class Dashboard extends React.Component {
      this.setState({
          activeStep: activeStep + 1,
       });
-     localStorage.removeItem("redirect_");
+     localStorage.setItem('redirect_',false)
+     //localStorage.removeItem("redirect_");
     var user_id = localStorage.getItem('user_id');
     this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
     this.props.getuserprofilebyid({user_id});
@@ -308,6 +311,7 @@ class Dashboard extends React.Component {
     this.setState({
       activeStep: activeStep - 1,
     });
+    localStorage.setItem('redirect_',false)
   };
 
   handleReset = () => {
@@ -316,66 +320,93 @@ class Dashboard extends React.Component {
       activeStep: 0,
     });
   };
-
-  removeLocalS(e){
+   removeLocalS(e){
     localStorage.removeItem("redirect_");
   }
-
-  DOB = (date) => {
+   DOB = (date) => {
           this.setState({DOB: moment(date.target.value).format("MM-DD-YYYY")});
   };
 
   
 
-  componentWillReceiveProps(nextProps) {
+componentWillReceiveProps(nextProps) {
     var user_id = localStorage.getItem('user_id');
     var editPro = localStorage.getItem('redirect_');
-     if(editPro){
+    var redirect_1 = localStorage.getItem('redirect_1');
+     if(editPro!='false'){
        this.setState({activeStep :  parseInt(editPro)});
      }
     //this.props.getuserprofilebyid({ user_id})
     const {get_user_by_id } = nextProps;
 
     if(get_user_by_id){
-     this.setState({
-        address:get_user_by_id.data[0].address ? get_user_by_id.data[0].address : '',
-        child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
-        useremail:get_user_by_id.data[0].email ? get_user_by_id.data[0].email :'',
-        DOB:get_user_by_id.data[0].DOB ? moment(get_user_by_id.data[0].DOB).format("YYYY-MM-DD") :'',
-        fullName:get_user_by_id.data[0].fullName ? get_user_by_id.data[0].fullName :'',
-        gender:get_user_by_id.data[0].gender ? get_user_by_id.data[0].gender : '',
-        religion:get_user_by_id.data[0].religion ? get_user_by_id.data[0].religion : '',
-        status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
-        username:get_user_by_id.data[0].username? get_user_by_id.data[0].username :'',
-        wanna_find:get_user_by_id.data[0].wanna_find ? get_user_by_id.data[0].wanna_find :'',
-        status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
-        child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
-        VerifyMobile:get_user_by_id.data[0].mobileNumber ? get_user_by_id.data[0].mobileNumber :'',
-        MobileverifyStatus:get_user_by_id.data[0].mobile_verified_status ? get_user_by_id.data[0].mobile_verified_status :'',
+        this.setState({
+          address:get_user_by_id.data[0].address ? get_user_by_id.data[0].address : '',
+          child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
+          useremail:get_user_by_id.data[0].email ? get_user_by_id.data[0].email :'',
+          DOB:get_user_by_id.data[0].DOB ? moment(get_user_by_id.data[0].DOB).format("YYYY-MM-DD") :'',
+          fullName:get_user_by_id.data[0].fullName ? get_user_by_id.data[0].fullName :'',
+          gender:get_user_by_id.data[0].gender ? get_user_by_id.data[0].gender : '',
+          religion:get_user_by_id.data[0].religion ? get_user_by_id.data[0].religion : '',
+          status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
+          username:get_user_by_id.data[0].username? get_user_by_id.data[0].username :'',
+          wanna_find:get_user_by_id.data[0].wanna_find ? get_user_by_id.data[0].wanna_find :'',
+          status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
+          VerifyMobile:get_user_by_id.data[0].mobileNumber ? get_user_by_id.data[0].mobileNumber :'',
+          MobileverifyStatus:get_user_by_id.data[0].mobile_verified_status ? get_user_by_id.data[0].mobile_verified_status :'',
 
 
-    })
-  }
+        });
 
-    if(nextProps.verify_mobile==true){
-      this.setState({flag:1})
+    if(this.state.address != '' && this.state.child != '' && 
+      this.state.useremail != '' && this.state.DOB != '' &&
+      this.state.fullName != '' && this.state.gender != '' &&
+      this.state.religion != '' && this.state.status != '' &&
+      this.state.username != '' && this.state.wanna_find != '' && editPro == null
+     
+      ){
+
+        this.setState({activeStep:4})
+
     }
-    if(nextProps.OTP.message=="Verified"){
-      this.setState({flag:0})
+
+     /* if(  this.state.MobileverifyStatus == '' ){
+             this.setState({activeStep:3})
+    }*/
+
+  }
+
+  if(this.state.address != '' && this.state.child != '' && 
+      this.state.useremail != '' && this.state.DOB != '' &&
+      this.state.fullName != '' && this.state.gender != '' &&
+      this.state.religion != '' && this.state.status != '' &&
+      this.state.username != '' && this.state.wanna_find != '' 
+     
+      ){
+
+       this.setState({open: true})
+
     }
-  }
 
-  onTakePhoto (dataUri) {
-    // Do stuff with the dataUri photo...
-    var pictures = this.dataURLtoFile(dataUri,"CameraImg.png")
-    this.setState({ProfilePreviewUrl:dataUri})  
-    const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
-    var user_id = localStorage.getItem('user_id');
-    this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
-    this.props.getuserprofilebyid({user_id});
-
+  if(nextProps.verify_mobile==true){
+    this.setState({flag:1})
   }
- dataURLtoFile(dataurl, filename) {
+  if(nextProps.OTP.message=="Verified"){
+    this.setState({flag:0})
+  }
+}
+
+onTakePhoto (dataUri) {
+  // Do stuff with the dataUri photo...
+  var pictures = this.dataURLtoFile(dataUri,"CameraImg.png")
+  this.setState({ProfilePreviewUrl:dataUri})  
+  const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
+  var user_id = localStorage.getItem('user_id');
+  this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
+  this.props.getuserprofilebyid({user_id});
+}
+
+dataURLtoFile(dataurl, filename) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
     while(n--){
@@ -383,68 +414,69 @@ class Dashboard extends React.Component {
     }
     return new File([u8arr], filename, {type:mime});
 }
-   onCameraError (error) {
-    console.error('onCameraError', error);
-  }
- 
-  onCameraStart (stream) {
-    console.log('onCameraStart');
-  }
- 
-  onCameraStop () {
-    console.log('onCameraStop');
-  }
 
-  onDrop(e) {
-          e.preventDefault();
-          let reader = new FileReader();
-          let pictures = e.target.files[0];
-          //this.setState({pictures:e.target.files[0]})
+onDrop(e) {
+      e.preventDefault();
+      let reader = new FileReader();
+      let pictures = e.target.files[0];
+      //this.setState({pictures:e.target.files[0]})
 
-          reader.onloadend = () => {
-            this.setState({
-            ProfilePreviewUrl: reader.result
-            });
-          }
+      reader.onloadend = () => {
+      this.setState({
+      ProfilePreviewUrl: reader.result
+      });
+      }
 
-          reader.readAsDataURL(pictures,'')
-          var user_id = localStorage.getItem('user_id');
-           const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
-           this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
-          setTimeout(() => {
-            this.props.getuserprofilebyid({user_id});
-          }, 3000);
-          
-           /*var images = [];
-          for (let i = 0; i < picture.length; i++) {
-              images.push(picture[i]);
-          }
-          
-            this.setState({
-                pictures: images,
-            });*/
-  }
+      reader.readAsDataURL(pictures,'')
+      var user_id = localStorage.getItem('user_id');
+       const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
+       this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
+      setTimeout(() => {
+        this.props.getuserprofilebyid({user_id});
+      }, 3000);
+      
+       /*var images = [];
+      for (let i = 0; i < picture.length; i++) {
+          images.push(picture[i]);
+      }
+      
+        this.setState({
+            pictures: images,
+        });*/
+}
 
  takePicture() {
+
     this.camera.capture()
     .then(blob => {
           var reader = new FileReader();
           reader.readAsDataURL(blob); 
             reader.onloadend = () => {
-              console.log(reader.result)
-              const {ProfilePreviewUrl,username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
+                const {ProfilePreviewUrl,username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
 
               var pictures = this.dataURLtoFile(reader.result,"CameraImg.png")
               this.setState({ProfilePreviewUrl:pictures})  
               var user_id = localStorage.getItem('user_id');
               this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
-                
+              this.setState({showCamra:false,stopcamra:true})
+
+
            }
-         
+           navigator.getUserMedia({audio: false, video: true},
+            function(stream) {
+                 // can also use getAudioTracks() or getVideoTracks()
+                var track = stream.getTracks()[0];  // if only one media track
+                // ...
+                track.stop();
+            },
+            function(error){
+                console.log('getUserMedia() error', error);
+            });
 
            
 
        })
+     var user_id = localStorage.getItem('user_id');
     setTimeout(() => {
         this.props.getuserprofilebyid({user_id});
       }, 3000);
@@ -452,11 +484,10 @@ class Dashboard extends React.Component {
   }
 
 showCamra(e){
-          this.setState({showCamra:true,open:true})  
+  this.setState({showCamra:true})  
 };
 
 getImgId(img_id){
-    
     this.setState({img_id:img_id})
 }
 
@@ -495,8 +526,8 @@ DeleteImg(e){
  }else{
       swal("Please select image first");
  }
-   
 }
+
 SetAsPrimary(e){
 
    if(this.state.img_id){
@@ -532,7 +563,6 @@ SetAsPrimary(e){
       } else{
       swal("Please select image first");
      }
-
 }
 
 SelectPlanGoPlus(price){
@@ -565,7 +595,6 @@ onSuccess(payment){
             }
           });
 }
-
 onCancel(data){
   console.log('The payment was cancelled!', data);
 }
@@ -593,7 +622,7 @@ getStepContent(stepIndex) {
         return this.choosePyaments();
 
       default:
-        return 'Uknown stepIndex';
+        return '';
     }
 }
 
@@ -798,7 +827,7 @@ relationShip(){
                 <div className="col-md-4">
                   <div className="form-group">
                     <FormControl component="fieldset" required>
-                        <FormLabel component="legend"><IntlMessages id="sidebar.Status"/></FormLabel>
+                        <FormLabel component="legend"><IntlMessages id="sidebar.status"/></FormLabel>
                         <RadioGroup
                           aria-label="status"
                           name="status"
@@ -920,35 +949,22 @@ Photos(){
 
                      <div className="card_box_">
                             {/* Modal */}
-                            <div id="myModal" className="modal fade" role="dialog">
-                              <div className="modal-dialog">
-                                {/* Modal content*/}
-                                <div className="modal-content">
-                                  <div className="modal-header">
-                                    {/*<button type="button" className="close" data-dismiss="modal">×</button>
-                                                                        <h4 className="modal-title">Modal Header</h4>*/}
-                                  </div>
-                                  <div className="modal-body">
-                                    <div style={style.container}>
-                                            <Camera
-                                              style={style.preview}
-                                              ref={(cam) => {
-                                                this.camera = cam;
-                                              }}
-                                            >
-                                              <div style={style.captureContainer} onClick={this.takePicture}>
-                                                <div style={style.captureButton} />
-                                              </div>
-                                            </Camera>
-                                            
-                                          </div>
-                                  </div>
-                                  {/*<div className="modal-footer">
-                                    <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                                  </div>*/}
-                                </div>
-                              </div>
-                            </div>
+                              <Dialog open={this.state.showCamra} onClose={this.handleRequestClose} style={{width:"100"}}>
+                                   <DialogContent>
+                                    <Camera
+                                      style={style.preview}
+                                      ref={(cam) => {
+                                        this.camera = cam;
+                                      }}
+                                    >
+                                      <div style={style.captureContainer} onClick={this.takePicture}>
+                                        <div style={style.captureButton} />
+                                      </div>
+                                    </Camera>
+                                   </DialogContent> 
+                                </Dialog>   
+                                 
+                               
                        </div>   
 
          
@@ -1163,7 +1179,6 @@ sendOTP(e){
   this.props.verify_otp_no({otp:this.state.VerifyOTP,user_id:user_id});
   this.props.getuserprofilebyid({user_id});
   
-
 }
  
 
@@ -1174,14 +1189,12 @@ sendOTP(e){
   render() {
   
     const steps = getSteps();
-    const {activeStep,DOB,showMessage,alertMessage} = this.state;
+    const {activeStep,DOB,showMessage,alertMessage,stopcamra} = this.state;
     const {profile_update,verify_mobile , OTP} = this.props;
      var editPro = localStorage.getItem('redirect_');
  
         
- 
-        
-
+  
  
   return (
        <div className="app-wrapper">
@@ -1257,6 +1270,15 @@ sendOTP(e){
                   
 
              </div>
+             <Dialog open={this.state.open} onClose={this.handleRequestClose} style={{width:"100"}}>
+                 {/* <DialogTitle>test</DialogTitle>*/}
+                  <DialogContent>
+                     <Congratulation/>
+                
+                  </DialogContent>
+                 
+              </Dialog>
+              
        </div>
       
   );

@@ -19,6 +19,7 @@ class UserInfo extends React.Component {
   };
 
   handleRequestClose = () => {
+     localStorage.removeItem("redirect_");
     this.setState({open: false});
   };
   componentDidMount() {
