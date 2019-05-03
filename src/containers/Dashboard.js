@@ -85,12 +85,12 @@ const style = {
     width: '100%'
   },
   captureButton: {
-    backgroundColor: '#fff',
-    borderRadius: '50%',
-    height: 56,
-    width: 56,
-    color: '#000',
-    margin: 20
+      backgroundColor: '#fff',
+      borderRadius: '50%',
+      height: 56,
+      width: 56,
+      color: '#000',
+      margin: 20
   },
   captureImage: {
     width: '100%',
