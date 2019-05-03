@@ -3,9 +3,6 @@
   "version": "3.0.1",
   "main": "index.js",
   "license": "MIT",
-   "engines": { 
-      "node": "10.3.0" 
-   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.0.3",
     "@amcharts/amcharts4-geodata": "^4.0.27",
@@ -127,7 +124,7 @@
     ]
   },
   "engines": {
-    "node": ">=6.9.0",
-    "npm": ">= 3"
+    "node": "10.3.0",
+    "npm": "6.x"
   }
 }
