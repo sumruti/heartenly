@@ -92,6 +92,7 @@ const style = {
     color: '#000',
     margin: 20
   },
+
   captureImage: {
     width: '100%',
   }
@@ -424,7 +425,7 @@ onDrop(e) {
 
       reader.onloadend = () => {
       this.setState({
-      ProfilePreviewUrl: reader.result
+           ProfilePreviewUrl: reader.result
       });
       }
 
@@ -462,7 +463,7 @@ onDrop(e) {
               this.setState({showCamra:false,stopcamra:true})
 
              localStorage.setItem('redirect_',2)
-             window.location = "/app/dashboard";
+            
 
            }
            /*navigator.getUserMedia({audio: false, video: true},
@@ -481,7 +482,10 @@ onDrop(e) {
        })
      var user_id = localStorage.getItem('user_id');
     setTimeout(() => {
-        this.props.getuserprofilebyid({user_id});
+
+           this.props.getuserprofilebyid({user_id});
+           window.location = "/app/dashboard";
+
       }, 3000);
   
   }
