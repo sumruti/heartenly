@@ -104,10 +104,10 @@ function* createUserWithEmailPassword({payload}) {
     yield put(showAuthMessage("Please enter Username."));
     return false
   }
-  if(!status){
+ /* if(!status){
       yield put(showAuthMessage("Please enter Status."));
       return false
-  }
+  }*/
   var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   if(!regex.test(email)){
     yield put(showAuthMessage("The email address is badly formatted."));
