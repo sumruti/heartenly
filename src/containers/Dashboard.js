@@ -230,7 +230,7 @@ class Dashboard extends React.Component {
       this.setState({alertMessage:"", showMessage:''})
     }else{
        
-        this.setState({alertMessage:"D/O/B must be minimum 16 years", showMessage:'1'})
+        this.setState({alertMessage:"D/O/B must be maximum 16 years", showMessage:'1'})
        return false
     }
 
