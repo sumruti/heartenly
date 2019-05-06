@@ -484,9 +484,17 @@ onDrop(e) {
     setTimeout(() => {
 
            this.props.getuserprofilebyid({user_id});
-           window.location = "/app/dashboard";
+          // window.location = "/app/dashboard";
 
       }, 3000);
+
+    setTimeout(() => {
+
+           this.props.getuserprofilebyid({user_id});
+           window.location = "/app/dashboard";
+
+      }, 4000);
+
   
   }
 
