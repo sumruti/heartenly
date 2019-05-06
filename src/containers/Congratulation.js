@@ -4,6 +4,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from "react-router-dom";
 
 function getSteps() {
   return ['', 'Create an ad group', 'Create an ad'];
@@ -65,67 +66,67 @@ class HorizontalLinearStepper extends React.Component {
     return this.state.skipped.has(step);
   }
   getStepContent(step) {
-		  switch (step) {
-		    case 0:
-		      return this.Congratulation();
-		    case 1:
-		      return this.Youcanfindfriends() ;
-		    case 2:
-		      return this.Gettoknow();
-		    default:
-		      return 'Unknown step';
-		  }
+      switch (step) {
+        case 0:
+          return this.Congratulation();
+        case 1:
+          return this.Youcanfindfriends() ;
+        case 2:
+          return this.Gettoknow();
+        default:
+          return 'Unknown step';
+      }
 }
 
 Congratulation(){
-			return <div>
-			 <div className="row">
-			          <div className="col-md-12">
-			            <div className="Congratulation_content_">
-			            <center>
-			               <img className="size-90" alt="..." src={require('../assets/icons/clap.png')} className="user-avatar "/> 
-			               </center>
-			              <h2 style={{textAlign:"center"}}>Congratulation</h2>
-			              <p style={{textAlign:"center"}}>You have Completed the Registration</p>
-			            </div>
-			              
-			          </div>
-			     
-			</div> 
-			</div> 
+      return <div>
+       <div className="row">
+                <div className="col-md-12">
+                  <div className="Congratulation_content_">
+                  <center>
+                     <img className="size-90" alt="..." src={require('../assets/icons/clap.png')} className="user-avatar "/> 
+                     </center>
+                    <h2 style={{textAlign:"center"}}>Congratulation</h2>
+                    <p style={{textAlign:"center"}}>You have Completed the Registration</p>
+                  </div>
+                    
+                </div>
+           
+      </div> 
+      </div> 
 }
 
 Youcanfindfriends(){
-			return <div>
-			 <div className="row">
-			          <div className="col-md-12">
-			            <div className="Congratulation_content_" style={{textAlign:"center"}}>
-			            <center>
-			              <img className="size-90" alt="..." src={require('../assets/icons/support.png')} className="user-avatar "/> 
-			               </center>
-			              <p style={{textAlign:"center"}}>You can find friends or spouses according to your criteria. Determine yourself the criteria for a man or woman you like, who is pleasant and sincere faithfully loving you for who you are.</p>
-			            </div>
-			              
-			          </div>
-			     
-			</div> 
-			</div> 
+      return <div>
+       <div className="row">
+                <div className="col-md-12">
+                  <div className="Congratulation_content_" style={{textAlign:"center"}}>
+                  <center>
+                    <img className="size-90" alt="..." src={require('../assets/icons/support.png')} className="user-avatar "/> 
+                     </center>
+                    <p style={{textAlign:"center"}}>You can find friends or spouses according to your criteria. Determine yourself the criteria for a man or woman you like, who is pleasant and sincere faithfully loving you for who you are.</p>
+                  </div>
+                    
+                </div>
+           
+      </div> 
+      </div> 
 }
 Gettoknow(){
-			return <div>
-			 <div className="row">
-			          <div className="col-md-12">
-			            <div className="Congratulation_content_">
-			            <center>
-			              <img className="size-90" alt="..." src={require('../assets/icons/magnifier-tool.png')} className="user-avatar "/>
-			              </center>
-			              <p style={{textAlign:"center"}}>Get to know your friends or potential life partners more closely with the messaging feature. Privacy is maintained.</p>
-			            </div>
-			              
-			          </div>
-			     
-			</div> 
-			</div> 
+      return <div>
+       <div className="row">
+                <div className="col-md-12">
+                  <div className="Congratulation_content_">
+                  <center>
+                    <img className="size-90" alt="..." src={require('../assets/icons/magnifier-tool.png')} className="user-avatar "/>
+                    </center>
+                    <p style={{textAlign:"center"}}>Get to know your friends or potential life partners more closely with the messaging feature. Privacy is maintained.</p>
+                  </div>
+                    
+                </div>
+           
+      </div> 
+      </div> 
 }
 
   render() {
@@ -182,7 +183,9 @@ Gettoknow(){
                     Skip
                   </Button>
                 )}
-                 {activeStep === steps.length - 1 ? '' :
+                 {activeStep === steps.length - 1 ? 
+                  <Link to="/app/home" style={{color:"#fff",backgroundColor:"#3f51b5"}} variant="contained" color="primary" onClick={this.handleNext} className="jr-btn" >Next</Link>
+                 :
                 <Button variant="contained" color="primary" onClick={this.handleNext} className="jr-btn">
                   Next
                 </Button>
