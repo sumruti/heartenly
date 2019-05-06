@@ -85,12 +85,12 @@ const style = {
     width: '100%'
   },
   captureButton: {
-      backgroundColor: '#fff',
-      borderRadius: '50%',
-      height: 56,
-      width: 56,
-      color: '#000',
-      margin: 20
+    backgroundColor: '#fff',
+    borderRadius: '50%',
+    height: 56,
+    width: 56,
+    color: '#000',
+    margin: 20
   },
   captureImage: {
     width: '100%',
@@ -333,9 +333,10 @@ componentWillReceiveProps(nextProps) {
     var user_id = localStorage.getItem('user_id');
     var editPro = localStorage.getItem('redirect_');
     var redirect_1 = localStorage.getItem('redirect_1');
-     if(editPro!='false'){
+     if(editPro!='false' && editPro != null){
        this.setState({activeStep :  parseInt(editPro)});
      }
+     console.log(this.state.activeStep,'-')
     //this.props.getuserprofilebyid({ user_id})
     const {get_user_by_id } = nextProps;
 
@@ -380,11 +381,11 @@ componentWillReceiveProps(nextProps) {
       this.state.useremail != '' && this.state.DOB != '' &&
       this.state.fullName != '' && this.state.gender != '' &&
       this.state.religion != '' && this.state.status != '' &&
-      this.state.username != '' && this.state.wanna_find != '' 
+      this.state.username != '' && this.state.wanna_find != '' && editPro == null
      
       ){
-
-       this.setState({open: true})
+ 
+                 this.setState({open: true})
 
     }
 
@@ -460,9 +461,11 @@ onDrop(e) {
               this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
               this.setState({showCamra:false,stopcamra:true})
 
+             localStorage.setItem('redirect_',2)
+             window.location = "/app/dashboard";
 
            }
-           navigator.getUserMedia({audio: false, video: true},
+           /*navigator.getUserMedia({audio: false, video: true},
             function(stream) {
                  // can also use getAudioTracks() or getVideoTracks()
                 var track = stream.getTracks()[0];  // if only one media track
@@ -471,7 +474,7 @@ onDrop(e) {
             },
             function(error){
                 console.log('getUserMedia() error', error);
-            });
+            });*/
 
            
 
@@ -508,7 +511,6 @@ DeleteImg(e){
             img_id: this.state.img_id,
           })
           .then(res => {
-            console.log(res)
             if(res.data.status==true){
                  swal("Poof! Your imaginary file has been deleted!", {
                   icon: "success",
@@ -578,14 +580,12 @@ SelectPlanGoSilver(price){
 onSuccess(payment){
    var user_id = localStorage.getItem('user_id');
        // Congratulation, it came here means everything's fine!
-        console.log("The payment was succeeded!", payment);
          axios.post(`${config.ApiUrl}users/payments`, {
             payment: payment,
             plan:this.state.planName,
             user_id:user_id,
           })
           .then(res => {
-            console.log(res)
             if(res.data.status==true){
                  swal("Payment Successful", {
                   icon: "success",
@@ -1192,7 +1192,18 @@ sendOTP(e){
     const {activeStep,DOB,showMessage,alertMessage,stopcamra} = this.state;
     const {profile_update,verify_mobile , OTP} = this.props;
      var editPro = localStorage.getItem('redirect_');
- 
+
+
+ /*navigator.getUserMedia({audio: false, video: true},
+    function(stream) {
+         // can also use getAudioTracks() or getVideoTracks()
+        var track = stream.getTracks()[0];  // if only one media track
+        // ...
+        track.stop();
+    },
+    function(error){
+        console.log('getUserMedia() error', error);
+    });*/
         
   
  
