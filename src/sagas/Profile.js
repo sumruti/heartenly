@@ -49,13 +49,13 @@ function* edit_user_profile({payload}) {
 
 function* verify_mobile_no({payload}) {
 //  console.log(payload);
-  const {mobile,user_id} = payload;
+  const {otp,user_id} = payload;
   console.log(payload)
 
 
 
   try {
-     const profile_update = yield call(verfyMoNo, mobile,user_id);
+     const profile_update = yield call(verfyMoNo, otp,user_id);
       yield put(verify_mobile_no_success(profile_update.data.status));
       
    

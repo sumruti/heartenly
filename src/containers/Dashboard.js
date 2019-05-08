@@ -30,7 +30,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Camera from 'react-camera';
+import {
+  auth
 
+} from "../firebase/firebase";
 import {showAuthMessage} from "../actions/Auth";
 import Congratulation from "./Congratulation";
 //import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
@@ -46,6 +49,7 @@ import config from "../config.json";
 import axios from "axios";
 import swal from 'sweetalert';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
+import firebase from 'firebase'
 
 
 import PlacesAutocomplete, {
@@ -136,7 +140,9 @@ class Dashboard extends React.Component {
       open: false,
       img_id:'',
       PlanPrice:'',
-      planName:''
+      planName:'',
+      verificationId:'',
+      confirmationResult:''
     };
         // this.onDrop = this.onDrop.bind(this);
           this.takePicture = this.takePicture.bind(this);
@@ -997,7 +1003,7 @@ MobileNo(){
                                   <Button variant="contained" color="primary" className="jr-btn jr-btn-label right" fullWidth onClick={(e)=>this.sendOTP(e)}>
                                     <span>Send OTP</span>
                                   </Button>
-                                  <span className="resend_otp" onClick={(e)=>this.sendmobileNo(e)}>Resend </span>
+                                  {/*<span className="resend_otp" onClick={(e)=>this.sendmobileNo(e)}>Resend </span>*/}
                             </div>      
 
                               :
@@ -1016,7 +1022,9 @@ MobileNo(){
                                       }
                                   <Button variant="contained" color="primary" className="jr-btn jr-btn-label right" fullWidth onClick={(e)=>this.sendmobileNo(e)} disabled={this.state.MobileverifyStatus==1}>
                                     <span>Send</span>
+
                                   </Button>
+                                   <div id="recaptcha-container"></div>  
 
                                </div>   
                             }
@@ -1176,16 +1184,49 @@ choosePyaments(){
 }
 
 sendmobileNo(e){
-  var user_id = localStorage.getItem('user_id');
-  this.props.verify_mobile_no({mobile:this.state.VerifyMobile,user_id:user_id})
-  this.props.getuserprofilebyid({user_id});
+
+   var phoneNumber = '+919877640296';
+    
+      var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+      var testVerificationCode = "123456";
+
+      firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+          .then(confirmationResult => {
+               var user_id = localStorage.getItem('user_id');
+               console.log(confirmationResult)
+               if(confirmationResult.verificationId){
+                 this.setState({verificationId:confirmationResult.verificationId,confirmationResult:confirmationResult})
+                 this.props.verify_mobile_no({otp:this.state.verificationId,user_id:user_id})
+                 this.props.getuserprofilebyid({user_id});
+              }
+          }).catch(error => {
+              console.log(error)
+               this.setState({alertMessage:error.message,showMessage:'1',flag:'0'})
+          })
+
 }
 
 sendOTP(e){
  
-  var user_id = localStorage.getItem('user_id');
-  this.props.verify_otp_no({otp:this.state.VerifyOTP,user_id:user_id});
-  this.props.getuserprofilebyid({user_id});
+var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificationId, this.state.VerifyOTP);
+  console.log(credential)
+  this.state.confirmationResult.confirm(this.state.VerifyOTP).then(result => {
+      // User signed in successfully.
+      var user = result.user;
+      console.log(user,'--')
+       if(user){
+           var user_id = localStorage.getItem('user_id');
+          this.props.verify_otp_no({otp:this.state.verificationId,user_id:user_id});
+          this.props.getuserprofilebyid({user_id});
+        }
+      // ...
+    }).catch(error=> {
+      console.log(error.message,'-')
+      this.setState({alertMessage:error.message,showMessage:'1',flag:'0'})
+
+      // User couldn't sign in (bad verification code?)
+      // ...
+    });
   
 }
  
@@ -1197,11 +1238,11 @@ sendOTP(e){
   render() {
   
     const steps = getSteps();
-    const {activeStep,DOB,showMessage,alertMessage,stopcamra} = this.state;
+    const {activeStep,DOB,showMessage,alertMessage,stopcamra , verificationId} = this.state;
     const {profile_update,verify_mobile , OTP} = this.props;
      var editPro = localStorage.getItem('redirect_');
 
-
+//console.log(verificationId,'-----verificationId')
  /*navigator.getUserMedia({audio: false, video: true},
     function(stream) {
          // can also use getAudioTracks() or getVideoTracks()
