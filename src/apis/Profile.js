@@ -38,7 +38,7 @@ export function edituserprofile(user_id,username,useremail,fullName,gender,DOB,r
 
 
 export function verfyMoNo(otp,user_id) {
-  return axios.post(config.ApiUrl+'users/mobile',{otp:mobile,user_id:user_id});
+  return axios.post(config.ApiUrl+'users/mobile',{otp:otp,user_id:user_id});
 };
 
 export function verfyotp(otp,user_id) {
