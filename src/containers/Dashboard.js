@@ -60,6 +60,11 @@ edit_user_profile,
 verify_mobile_no,
 verify_otp_no
 } from '../actions/Profile';
+import {
+  showAuthLoader,
+
+} from '../actions/Auth';
+
 const client = {
             sandbox:    'ATA2wLy0lWaVAtUOy8CewhsR_foLHtbTPAfxYxSTMll3pCy2Zh4qmf1-RjDUJxQ10My9MW6oZJBXsnB0',
             production: 'ECeGB8nDV3nf1xNjA-nTYU2XDnFb3yCJ2Wl03my9a2C0bU8CgYcgv9SDiQ_WDv0VxiKK9OdWOtMvi7Aj',
@@ -92,7 +97,6 @@ const style = {
     color: '#000',
     margin: 20
   },
-
   captureImage: {
     width: '100%',
   }
@@ -303,6 +307,7 @@ class Dashboard extends React.Component {
     var user_id = localStorage.getItem('user_id');
     this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
     this.props.getuserprofilebyid({user_id});
+  
     
   };
 
@@ -340,6 +345,7 @@ componentWillReceiveProps(nextProps) {
      console.log(this.state.activeStep,'-')
     //this.props.getuserprofilebyid({ user_id})
     const {get_user_by_id } = nextProps;
+    console.log(get_user_by_id);
 
     if(get_user_by_id){
         this.setState({
@@ -425,7 +431,7 @@ onDrop(e) {
 
       reader.onloadend = () => {
       this.setState({
-           ProfilePreviewUrl: reader.result
+      ProfilePreviewUrl: reader.result
       });
       }
 
@@ -463,7 +469,8 @@ onDrop(e) {
               this.setState({showCamra:false,stopcamra:true})
 
              localStorage.setItem('redirect_',2)
-            
+               this.props.showAuthLoader();
+            // window.location = "/app/dashboard";
 
            }
            /*navigator.getUserMedia({audio: false, video: true},
@@ -481,20 +488,9 @@ onDrop(e) {
 
        })
      var user_id = localStorage.getItem('user_id');
-   setTimeout(() => {
-
-           this.props.getuserprofilebyid({user_id});
-          // window.location = "/app/dashboard";
-
-      }, 3000);
-
     setTimeout(() => {
-
-           this.props.getuserprofilebyid({user_id});
-           window.location = "/app/dashboard";
-
-      }, 9000);
-
+        this.props.getuserprofilebyid({user_id});
+      }, 3000);
   
   }
 
@@ -1320,6 +1316,7 @@ const mapStateToProps = ({Profile}) => {
 
 export default connect(mapStateToProps, {
   getuserprofilebyid,
+  showAuthLoader,
   edit_user_profile,
   verify_mobile_no,
   verify_otp_no,

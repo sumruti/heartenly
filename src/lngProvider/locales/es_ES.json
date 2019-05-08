@@ -1,17 +1,6 @@
 {
- "sidebar.Addmorephotos": "Tambah foto",
- "sidebar.upgradenow": "Menaiktaraf Sekarang!",
   "sidebar.main": "Main",
   "sidebar.dashboard": "Papan Pemuka",
-"sidebar.Whatisyourgender?": "Apa jenis kelaminmu?",
-"sidebar.Dateofbirth":"Tarikh lahir",
-"sidebar.Religion":"Agama",
-"sidebar.InRelationship":"Dalam hubungan",
-"sidebar.send":"hantar",
-
-   "sidebar.EditProfile": "Sunting Profil",
-  "sidebar.AboutMe": "Tentang Saya",
-"sidebar.Age": "Umur",
 
   "sidebar.Onboarding": "Onboarding",
   "sidebar.App": "Aplikasi",
@@ -31,14 +20,14 @@
   "sidebar.male": "Lelaki",
   "sidebar.female": "Perempuan",
   "sidebar.next": "Seterusnya",
-  "sidebar.back": "belakang",
-  "sidebar.wannFind": "Apa yang anda mahu cari? ",
+  "sidebar.back": "Kembali",
+  "sidebar.wannFind": "Apa yang awak nak cari? ",
   "sidebar.single": "Adakah anda bujang? ",
   "sidebar.child": "Adakah anda mempunyai anak?",
   "sidebar.Lovepartners": "Rakan kongsi cinta",
   "sidebar.Friends": "Rakan-rakan",
-  "sidebar.Single": "Lajang",
-  "sidebar.Status": "Status",
+  "sidebar.Single": "Single",
+  "sidebar.status": "Status",
   "sidebar.Relationship": "Hubungan",
   "sidebar.Engaged": "Terlibat",
   "sidebar.Married": "Berkahwin",
@@ -68,7 +57,8 @@
   "sidebar.Alfamart": "Bayar di outlet Alfamart di dekat Anda",
   "sidebar.Wire": "Transfer rekening",
   "sidebar.InternationalWire": "Transfer kawat internasional ke bank indonesia BCA, BNI, atau Mandiri",
-
+  "sidebar.editProfile": "Sunting profil",
+  "sidebar.Profile": "Profil",
   "sidebar.dashboard.misc": "Misc",
   "sidebar.dashboard.ecommerce": "eCommerce",
   "sidebar.dashboard.news": "Berita",
@@ -640,36 +630,5 @@
   "dashboard.traffic": "Traffic",
   "dashboard.browser": "Browser",
   "dashboard.application": "Application",
-  "dashboard.weekly": "Weekly",
-
-
-
-  
-  "sidebar.WhyJoinHeartenly":"Kenapa Bergabung dengan Heartenly?",
-  "sidebar.Findingalifepartneriscertainly":"Mencari pasangan hidup pastinya bukan perkara mudah. Keluarga yang bahagia ditentukan sejak mencari pasangan hidup yang betul. Banyak perkara yang perlu disediakan dan banyak perkara juga menjadi pertimbangan bagi seseorang dalam menentukan pasangan hidup mereka. Kedua-dua perkara ini adalah asas untuk mencari pasangan hidup yang kelihatan mudah tetapi sukar untuk sesetengah orang mencari pasangan hidup yang memenuhi ini. Mungkin anda adalah salah seorang daripada mereka.",
-  "sidebar.BenefitsforHeartenlyMembers":"Keuntungan untuk Ahli Heartenly",
-  "sidebar.AsperyourcriteriaDetermine":" Tentukan diri anda kriteria untuk seorang lelaki atau wanita yang anda suka, yang menyenangkan dan ikhlas setia mencintai anda untuk siapa anda.",
-  "sidebar.Asperyourcriteriatitle":"Mengikut kriteria anda",
-
-
-  "sidebar.SuccessStories":"Kisah Sukses",
-  "sidebar.Termsandconditions":"Terma dan Syarat",
-  "sidebar.Privacypolicy":"Dasar Privasi",
-  "sidebar.AboutUs":"Tentang Kami",
-  "sidebar.Newsletter":"Surat Berita",
- "sidebar.ADDRESS":"Alamat",
-"sidebar.Heartenlycanbeasolution":"Heartenly dapat menjadi solusi untuk anda mencari pasangan hidup. Kami adalah medium untuk anda yang bersedia untuk memiliki keluarga. Kami boleh membantu anda mencari pasangan hidup yang sesuai dengan anda. Ramai orang telah menyertai dan mencari rakan hidup mereka. Anda boleh jadi orang yang dicari oleh pasangan hidup anda.",
-"sidebar.Heartenlyisconnectedwiththousands":"Berhati-hati dihubungkan dengan ribuan pengguna dari beberapa negara termasuk Indonesia, Malaysia, Singapura dan Brunei. Kami boleh membantu anda mencari pasangan hidup anda bila-bila masa, di mana sahaja dan mengikut kehendak anda. Datang menyertai Heartenly dan mulakan mencari pasangan hidup anda di sini!" ,
-
-"sidebar.Relaxing":"Secara hati-hati selalu mencari pasangan yang tepat untuk anda, walaupun anda santai dan tidak membuka Heartenly.",
-"sidebar.Relaxingtitle":"Santai",
-"sidebar.Privacyismaintained":"  Data peribadi seperti nama sebenar atau nombor telefon tersembunyi, sebelum anda mengenali calon anda..",
-
-"sidebar.Privacyismaintainedtitle":" selamat dan selesa"
-
-
-
-
-
-
+  "dashboard.weekly": "Weekly"
 }

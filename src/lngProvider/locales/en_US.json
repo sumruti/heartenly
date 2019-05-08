@@ -1,11 +1,7 @@
 {
-   "sidebar.Addmorephotos": "Add more photos",
- "sidebar.upgradenow": "Upgrade Now!",
-   "sidebar.EditProfile": "Edit Profile",
-  "sidebar.Age": "Age",
   "sidebar.main": "Main",
   "sidebar.dashboard": "Dashboard",
-"sidebar.AboutMe": "About Me",
+
   "sidebar.Onboarding": "Onboarding",
   "sidebar.App": "App",
   "sidebar.PersonalData": "Personal Data",
@@ -25,9 +21,10 @@
   "sidebar.female": "Female",
   "sidebar.next": "Next",
   "sidebar.back": "Back",
-  "sidebar.wannFind": "What do you wanna find? *",
-  "sidebar.single": "Are you single? *",
-  "sidebar.child": "Do you have child *",
+  "sidebar.wannFind": "What do you wanna find?",
+  "sidebar.single": "Are you single?",
+  "sidebar.status": "Status",
+  "sidebar.child": "Do you have child?",
   "sidebar.Lovepartners": "Love partners",
   "sidebar.Friends": "Friends",
   "sidebar.Single": "Single",
@@ -52,7 +49,16 @@
   "sidebar.sgd": "SGD 30K",
   "sidebar.Skip": "Skip",
   "sidebar.international": "We accept international payments from all major credit cards",
-
+  "sidebar.SupportBCA": "Support BCA, BNI, Mandiri, BRI and all Indonesian banks with ATM Bersama",
+  "sidebar.DebitCredit": "Debit/Credit Card",
+  "sidebar.gopay": "Go-Pay",
+   "sidebar.Payeasily": "Pay easily and quickly with Go-Pay", 
+   "sidebar.alwaysIDR": "* always IDR no mattor chosen currency",
+   "sidebar.Alfamart": "Pay on any Alfamart outlet near you",
+   "sidebar.Wire": "Wire Transfer",
+   "sidebar.InternationalWire": "International wire transfer to indonesia bank BCA, BNI, or Mandiri",
+   "sidebar.editProfile": "Edit Profile",
+   "sidebar.Profile": "Profile",
   "sidebar.dashboard.misc": "Misc",
   "sidebar.dashboard.ecommerce": "eCommerce",
   "sidebar.dashboard.news": "News",
@@ -216,7 +222,7 @@
   "appModule.name": "Name",
   "appModule.phone": "Phone",
   "appModule.designation": "Designation",
-  "appModule.register": "Register",
+  "appModule.regsiter": "Regsiter",
   "appModule.hvAccount": "Have an account",
   "appModule.createAccount": "Create an account",
   "chart.area": "Area Graph",
@@ -231,7 +237,6 @@
   "chat.selectUserChat": "Select User to start Chat",
   "chat.selectContactChat": "Select contact to start Chat",
   "chat.chatUser": "Chats",
-  "sidebar.Status": "Status",
   "chat.contacts": "Contacts",
   "chat.searchStartNewChat": "Search or start new chat",
   "chat.typeMessage": "Type and hit enter to send message",
@@ -625,28 +630,5 @@
   "dashboard.traffic": "Traffic",
   "dashboard.browser": "Browser",
   "dashboard.application": "Application",
-  "dashboard.weekly": "Weekly",
-  
-
-  
-  "sidebar.WhyJoinHeartenly":"Why Join Heartenly?",
-  "sidebar.Findingalifepartneriscertainly":"Finding a life partner is certainly not an easy thing. Happy families are determined starting from finding the right life partner. Many things need to be prepared and many things also become considerations for someone in determining their life partner. These two things are fundamental in finding a life partner that looks easy but it is difficult for some people to find a life partner who fulfills this. Maybe you are one of them.",
-  "sidebar.BenefitsforHeartenlyMembers":"Benefits for Heartenly Members",
-  "sidebar.AsperyourcriteriaDetermine":" Determine yourself the criteria for a man or woman you like, who is pleasant and sincere faithfully loving you for who you are.",
-  "sidebar.Asperyourcriteriatitle":"As per your criteria",
-
-
-  "sidebar.SuccessStories":"Success Stories",
-  "sidebar.Termsandconditions":"Terms and conditions",
-  "sidebar.Privacypolicy":"Privacy policy",
-  "sidebar.AboutUs":"About Us",
-  "sidebar.Newsletter":"Newsletter",
- "sidebar.ADDRESS":"ADDRESS",
-"sidebar.Heartenlycanbeasolution":"Heartenly can be a solutionHeartenly can be a solution for you to find a life partner. We are a medium for those of you who are ready to have a family. We can help you find a life partner that suits you. Many people have joined and are looking for their life partners. You can be the person your life partner is looking for.",
-"sidebar.Heartenlyisconnectedwiththousands":"Heartenly is connected with thousands of users from a number of countries including Indonesia, Malaysia, Singapore and Brunei. We can help you find your life partner anytime, anywhere, and according to your wishes. Come join Heartenly and start looking for your life partner here!" ,
-"sidebar.Relaxing":"Heartenly always finds the right partner for you, even if you are relaxed and don't open Heartenly.",
-"sidebar.Relaxingtitle":"Relaxing",
-"sidebar.Privacyismaintained":" Personal data such as real names or phone numbers are hidden, before you get to know your candidate.",
-
-"sidebar.Privacyismaintainedtitle":"Privacy is maintained"
-} 
+  "dashboard.weekly": "Weekly"
+}
