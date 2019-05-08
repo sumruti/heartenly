@@ -299,12 +299,15 @@ class Dashboard extends React.Component {
          activeStep: activeStep + 1,
       });
     }
-    if(!this.state.VerifyMobile){
-      this.setState({alertMessage:"Please Enter mobile", showMessage:'1'})
+  
+    if(!this.state.MobileverifyStatus){
+      this.setState({alertMessage:"Please verify your mobile number", showMessage:'1'})
       return false
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
+
+  /**/
      this.setState({
          activeStep: activeStep + 1,
       });
@@ -376,7 +379,7 @@ componentWillReceiveProps(nextProps) {
       this.state.useremail != '' && this.state.DOB != '' &&
       this.state.fullName != '' && this.state.gender != '' &&
       this.state.religion != '' && this.state.status != '' &&
-      this.state.username != '' && this.state.wanna_find != '' && editPro == null
+      this.state.username != '' && this.state.wanna_find != '' && this.state.MobileverifyStatus != '' && editPro == null
      
       ){
 
@@ -394,7 +397,7 @@ componentWillReceiveProps(nextProps) {
       this.state.useremail != '' && this.state.DOB != '' &&
       this.state.fullName != '' && this.state.gender != '' &&
       this.state.religion != '' && this.state.status != '' &&
-      this.state.username != '' && this.state.wanna_find != '' && editPro == null
+      this.state.username != '' && this.state.wanna_find != '' && this.state.MobileverifyStatus != '' && editPro == null
      
       ){
  
@@ -1185,7 +1188,7 @@ choosePyaments(){
 
 sendmobileNo(e){
 
-   var phoneNumber = '+919877640296';
+   var phoneNumber = this.state.VerifyMobile;
     
       var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
       var testVerificationCode = "123456";
@@ -1242,17 +1245,6 @@ var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificat
     const {profile_update,verify_mobile , OTP} = this.props;
      var editPro = localStorage.getItem('redirect_');
 
-//console.log(verificationId,'-----verificationId')
- /*navigator.getUserMedia({audio: false, video: true},
-    function(stream) {
-         // can also use getAudioTracks() or getVideoTracks()
-        var track = stream.getTracks()[0];  // if only one media track
-        // ...
-        track.stop();
-    },
-    function(error){
-        console.log('getUserMedia() error', error);
-    });*/
         
   
  
@@ -1319,8 +1311,8 @@ var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificat
                     </div>
                     </div>
                     {showMessage && NotificationManager.error(alertMessage)}
-                    {this.props.OTP.status == false && NotificationManager.error(this.props.OTP.message)}
-                    {this.props.OTP.status == true && NotificationManager.success(this.props.OTP.message)}
+                    {/*{this.props.OTP.status == false && NotificationManager.error(this.props.OTP.message)}
+                                        {this.props.OTP.status == true && NotificationManager.success(this.props.OTP.message)}*/}
                     
                     <NotificationContainer/>
                
