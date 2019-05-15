@@ -37,7 +37,8 @@ function* edit_user_profile({payload}) {
 
   try {
      const profile_update = yield call(edituserprofile, user_id, username,useremail,fullName,gender,DOB,religion,status,wanna_find,child,address,pictures,CameraImg);
-      console.log(profile_update)
+     const getUserDetail = yield call(getuserbyid, user_id);
+      yield put(getuserprofilebyidsuccess(getUserDetail));
       yield put(edit_user_profile_success(profile_update.data.message));
       
    

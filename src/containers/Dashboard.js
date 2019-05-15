@@ -50,6 +50,7 @@ import axios from "axios";
 import swal from 'sweetalert';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import firebase from 'firebase'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 import PlacesAutocomplete, {
@@ -142,7 +143,9 @@ class Dashboard extends React.Component {
       PlanPrice:'',
       planName:'',
       verificationId:'',
-      confirmationResult:''
+      confirmationResult:'',
+      loader_ : false,
+      loader:false
     };
         // this.onDrop = this.onDrop.bind(this);
           this.takePicture = this.takePicture.bind(this);
@@ -170,7 +173,8 @@ class Dashboard extends React.Component {
    }
     componentDidUpdate() {
       setTimeout(() => {
-        this.setState({showMessage:''})
+        this.setState({showMessage:'',loader_:false})
+
       }, 3000);
        
   }
@@ -256,6 +260,8 @@ class Dashboard extends React.Component {
     }else{
        this.setState({alertMessage:"", showMessage:''})
     }
+
+     this.setState({loader_:true});
     
      if(activeStep < 1){
       this.setState({
@@ -370,6 +376,7 @@ componentWillReceiveProps(nextProps) {
           wanna_find:get_user_by_id.data[0].wanna_find ? get_user_by_id.data[0].wanna_find :'',
           status:get_user_by_id.data[0].status ? get_user_by_id.data[0].status :'',
           VerifyMobile:get_user_by_id.data[0].mobileNumber ? get_user_by_id.data[0].mobileNumber :'',
+          loader:false,
           MobileverifyStatus:get_user_by_id.data[0].mobile_verified_status ? get_user_by_id.data[0].mobile_verified_status :'',
 
 
@@ -448,9 +455,11 @@ onDrop(e) {
       var user_id = localStorage.getItem('user_id');
        const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg} = this.state;
        this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
-      setTimeout(() => {
+     /* setTimeout(() => {
         this.props.getuserprofilebyid({user_id});
-      }, 3000);
+      }, 3000);*/
+
+      this.setState({loader:true});
       
        /*var images = [];
       for (let i = 0; i < picture.length; i++) {
@@ -477,8 +486,9 @@ onDrop(e) {
               this.props.edit_user_profile({user_id,username,useremail,fullName,gender,DOB,religion,address,wanna_find,status,child,pictures,CameraImg});
               this.setState({showCamra:false,stopcamra:true})
 
-             localStorage.setItem('redirect_',2)
+              localStorage.setItem('redirect_',2)
                this.props.showAuthLoader();
+               this.setState({loader:true});
             // window.location = "/app/dashboard";
 
            }
@@ -498,8 +508,8 @@ onDrop(e) {
        })
      var user_id = localStorage.getItem('user_id');
     setTimeout(() => {
-        this.props.getuserprofilebyid({user_id});
-      }, 3000);
+       //window.location = "/app/dashboard";
+      }, 4000);
   
   }
 
@@ -1211,7 +1221,7 @@ sendmobileNo(e){
 
 sendOTP(e){
  
-var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificationId, this.state.VerifyOTP);
+      var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificationId, this.state.VerifyOTP);
   console.log(credential)
   this.state.confirmationResult.confirm(this.state.VerifyOTP).then(result => {
       // User signed in successfully.
@@ -1241,11 +1251,10 @@ var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificat
   render() {
   
     const steps = getSteps();
-    const {activeStep,DOB,showMessage,alertMessage,stopcamra , verificationId} = this.state;
-    const {profile_update,verify_mobile , OTP} = this.props;
-     var editPro = localStorage.getItem('redirect_');
-
-        
+    const {activeStep,DOB,showMessage,alertMessage,stopcamra , verificationId , loader_,loader} = this.state;
+    const {profile_update,verify_mobile , OTP } = this.props;
+    var editPro = localStorage.getItem('redirect_');
+    console.log(loader)
   
  
   return (
@@ -1293,7 +1302,7 @@ var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificat
                                 <IntlMessages id="sidebar.back"/>
                               </Button>
                               {activeStep === 4  || activeStep === 5 ?  '' :
-                              <Button variant="contained" color="primary" onClick={this.handleNext}>
+                              <Button variant="contained" color="primary" onClick={this.handleNext} disabled={loader}>
                                 {activeStep === steps.length - 1 ? '' : <IntlMessages id="sidebar.next"/>}
                               </Button>
                             }
@@ -1315,6 +1324,17 @@ var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificat
                                         {this.props.OTP.status == true && NotificationManager.success(this.props.OTP.message)}*/}
                     
                     <NotificationContainer/>
+                    {loader_ &&
+                      <div className="loader-view_">
+                        <CircularProgress/>
+                      </div>
+                    }
+                    {loader &&
+                      <div className="loader-view_">
+                        <CircularProgress/>
+                      </div>
+                    }
+                   
                
          
        
@@ -1343,8 +1363,8 @@ var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificat
 
 
 const mapStateToProps = ({Profile}) => {
-  const {get_user_by_id,edit_user_profile,verify_mobile , OTP} = Profile;
-  return {get_user_by_id,edit_user_profile , verify_mobile , OTP}
+  const {get_user_by_id,edit_user_profile,verify_mobile , OTP,loader } = Profile;
+  return {get_user_by_id,edit_user_profile , verify_mobile , OTP ,loader}
 };
 
 export default connect(mapStateToProps, {

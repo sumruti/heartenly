@@ -39,7 +39,6 @@ export default (state = INIT_STATE, action) => {
      
       }
     }case VERIFY_MOBILE_NO_SUCCESS: {
-      console.log(action.payload,'action.payload.status')
       return {
         ...state,
         loader: false,
@@ -48,7 +47,6 @@ export default (state = INIT_STATE, action) => {
       }
     }
     case VERIFY_OTP_SUCCESS: {
-     console.log(action.payload,'00000')
    
       return {
         ...state,
