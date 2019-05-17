@@ -29,7 +29,6 @@ class UserInfo extends React.Component {
 
   render() {
     const {get_user_by_id } = this.props;
-    console.log(get_user_by_id,'---get_user_by_idget_user_by_id')
     return (
       <div className="user-profile d-flex flex-row align-items-center">
      
@@ -39,7 +38,7 @@ class UserInfo extends React.Component {
           }
         
         <div className="user-detail">
-          <h4 className="user-name" onClick={this.handleClick}>{get_user_by_id!='' ? get_user_by_id.data[0].username :''}<i
+          <h4 className="user-name" onClick={this.handleClick}>{get_user_by_id  ? get_user_by_id.data[0].username :''}<i
             className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/>
           </h4>
         </div>

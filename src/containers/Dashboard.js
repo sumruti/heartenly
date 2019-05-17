@@ -357,12 +357,10 @@ componentWillReceiveProps(nextProps) {
      if(editPro!='false' && editPro != null){
        this.setState({activeStep :  parseInt(editPro)});
      }
-     console.log(this.state.activeStep,'-')
     //this.props.getuserprofilebyid({ user_id})
     const {get_user_by_id } = nextProps;
-    console.log(get_user_by_id);
 
-    if(get_user_by_id){
+    if(get_user_by_id.data != undefined && get_user_by_id.data !='' && get_user_by_id.data.length !=0){
         this.setState({
           address:get_user_by_id.data[0].address ? get_user_by_id.data[0].address : '',
           child:get_user_by_id.data[0].child ? get_user_by_id.data[0].child :'',
@@ -1206,14 +1204,12 @@ sendmobileNo(e){
       firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
           .then(confirmationResult => {
                var user_id = localStorage.getItem('user_id');
-               console.log(confirmationResult)
                if(confirmationResult.verificationId){
                  this.setState({verificationId:confirmationResult.verificationId,confirmationResult:confirmationResult})
                  this.props.verify_mobile_no({otp:this.state.verificationId,user_id:user_id})
                  this.props.getuserprofilebyid({user_id});
               }
           }).catch(error => {
-              console.log(error)
                this.setState({alertMessage:error.message,showMessage:'1',flag:'0'})
           })
 
@@ -1222,11 +1218,9 @@ sendmobileNo(e){
 sendOTP(e){
  
       var credential = firebase.auth.PhoneAuthProvider.credential(this.state.verificationId, this.state.VerifyOTP);
-  console.log(credential)
   this.state.confirmationResult.confirm(this.state.VerifyOTP).then(result => {
       // User signed in successfully.
       var user = result.user;
-      console.log(user,'--')
        if(user){
            var user_id = localStorage.getItem('user_id');
           this.props.verify_otp_no({otp:this.state.verificationId,user_id:user_id});
@@ -1234,7 +1228,6 @@ sendOTP(e){
         }
       // ...
     }).catch(error=> {
-      console.log(error.message,'-')
       this.setState({alertMessage:error.message,showMessage:'1',flag:'0'})
 
       // User couldn't sign in (bad verification code?)
@@ -1254,7 +1247,9 @@ sendOTP(e){
     const {activeStep,DOB,showMessage,alertMessage,stopcamra , verificationId , loader_,loader} = this.state;
     const {profile_update,verify_mobile , OTP } = this.props;
     var editPro = localStorage.getItem('redirect_');
-    console.log(loader)
+    if(loader){
+      window.location = "/"
+    }
   
  
   return (
