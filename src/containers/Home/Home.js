@@ -42,44 +42,8 @@ class home extends React.Component {
   
     const {get_user_by_id } = this.props;
     const {users } = this.state;
-    console.log(users,'users')
-    const userImageList = [
-          {
-            id: 1,
-            image: require('../../assets/images/userAvatar/avator5.jpg'),
-            name: 'Chelsea Johns',
-            rating: '5.0',
-            deals: '27 Deals'
-          },
-          {
-            id: 2,
-            image: require('../../assets/images/userAvatar/avator2.jpg'),
-            name: 'Ken Ramirez',
-            rating: '4.5',
-            deals: '21 Deals'
-          },
-          {
-            id: 3,
-            image: require('../../assets/images/userAvatar/avator4.jpg'),
-            name: 'Ken Ramirez',
-            rating: '5.0',
-            deals: '27 Deals'
-          },
-          {
-            id: 4,
-            image: require('../../assets/images/userAvatar/avator10.jpg'),
-            name: 'Chelsea Johns',
-            rating: '5.0',
-            deals: '27 Deals'
-          },
-          {
-            id: 5,
-            image: require('../../assets/images/userAvatar/guptil-2.jpg'),
-            name: 'Chelsea Johns',
-            rating: '5.0',
-            deals: '27 Deals'
-          },
-        ]
+
+   
 
     
  
@@ -121,9 +85,9 @@ class home extends React.Component {
                                       <div className="jr-profileon">
                                         <div className="jr-profileon-thumb" style={{maxHeight: "199px"}}><img alt="..." src={user.user.image}/></div>
                                         <div className="jr-profileon-content">
-                                          <h5 className="mb-0 text-truncate">{ user.user.user_id.username}</h5>
+                                          <h5 className="mb-0 text-truncate">{ user.user.user_id != null ? user.user.user_id.username :''}</h5>
                                           <p className="mb-0 jr-fs-sm text-truncate"><i className={`zmdi zmdi-star text-orange`}/> {user.rating}
-                                            <span>|</span> {user.user.user_id.status}
+                                            <span>|</span> {user.user.user_id != null ? user.user.user_id.status :''}
                                           </p>
                                         </div>
                                       </div>

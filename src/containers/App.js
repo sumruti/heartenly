@@ -141,7 +141,6 @@ class App extends Component {
 
   render() {
     const {match, location, themeColor, isDarkTheme, locale, authUser, initURL, isDirectionRTL} = this.props;
-    console.log(locale)
     let applyTheme = createMuiTheme(indigoTheme);
     if (isDarkTheme) {
       document.body.classList.add('dark-theme');
