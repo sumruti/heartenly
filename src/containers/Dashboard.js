@@ -191,7 +191,7 @@ class Dashboard extends React.Component {
   };
 
   handleRequestClose = () => {
-    this.setState({open: false,showCamra:false,stopcamra:true});
+    this.setState({open: false,showCamra:false,});
   };
   handleNext = () => {
     const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg,pictures} = this.state;
@@ -1247,9 +1247,9 @@ sendOTP(e){
     const {activeStep,DOB,showMessage,alertMessage,stopcamra , verificationId , loader_,loader} = this.state;
     const {profile_update,verify_mobile , OTP } = this.props;
     var editPro = localStorage.getItem('redirect_');
-    if(stopcamra){
+    /*if(stopcamra){
       window.location = "/"
-    }
+    }*/
   
  
   return (
