@@ -1247,7 +1247,7 @@ sendOTP(e){
     const {activeStep,DOB,showMessage,alertMessage,stopcamra , verificationId , loader_,loader} = this.state;
     const {profile_update,verify_mobile , OTP } = this.props;
     var editPro = localStorage.getItem('redirect_');
-    if(loader){
+    if(stopcamra){
       window.location = "/"
     }
   
