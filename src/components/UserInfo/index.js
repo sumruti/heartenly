@@ -34,7 +34,7 @@ class UserInfo extends React.Component {
      
 
           { this.props.get_user_by_id.primaryimg != ''  ?
-                      <Avatar className="size-90" alt="..." src={require(this.props.get_user_by_id.primaryimg)} className="user-avatar "/> : <Avatar className="size-90" alt="..." src={require('../../assets/images/user_img.png')} className="user-avatar "/> 
+                      <Avatar className="size-90" alt="..." src={this.props.get_user_by_id.primaryimg} className="user-avatar "/> : <Avatar className="size-90" alt="..." src={require('../../assets/images/user_img.png')} className="user-avatar "/> 
           }
         
         <div className="user-detail">
