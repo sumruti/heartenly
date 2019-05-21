@@ -191,7 +191,7 @@ class Dashboard extends React.Component {
   };
 
   handleRequestClose = () => {
-    this.setState({open: false,showCamra:false,});
+    this.setState({open: false,showCamra:false});
   };
   handleNext = () => {
     const {username,useremail,fullName,gender,address,DOB,religion,wanna_find,status,child,activeStep,CameraImg,pictures} = this.state;
@@ -397,12 +397,12 @@ componentWillReceiveProps(nextProps) {
     }*/
 
   }
-
+   console.log(this.state.activeStep,'------');
   if(this.state.address != '' && this.state.child != '' && 
       this.state.useremail != '' && this.state.DOB != '' &&
       this.state.fullName != '' && this.state.gender != '' &&
       this.state.religion != '' && this.state.status != '' &&
-      this.state.username != '' && this.state.wanna_find != '' && this.state.MobileverifyStatus != '' && editPro == null
+      this.state.username != '' && this.state.wanna_find != '' && this.state.MobileverifyStatus != ''&& this.state.activeStep == 5  && editPro == null
      
       ){
  
@@ -594,12 +594,12 @@ SetAsPrimary(e){
 
 SelectPlanGoPlus(price){
    const {activeStep} = this.state;
-   this.setState({PlanPrice:price,activeStep: activeStep + 1,planName:"Plus"})
+   this.setState({PlanPrice:price,activeStep: activeStep + 1,open: true,planName:"Plus"})
 }
 
 SelectPlanGoSilver(price){
    const {activeStep} = this.state;
-   this.setState({PlanPrice:price,activeStep: activeStep + 1,planName:"Silver"})
+   this.setState({PlanPrice:price,activeStep: activeStep + 1,open: true,planName:"Silver"})
 }
 
 onSuccess(payment){
@@ -1247,7 +1247,7 @@ sendOTP(e){
     const {activeStep,DOB,showMessage,alertMessage,stopcamra , verificationId , loader_,loader} = this.state;
     const {profile_update,verify_mobile , OTP } = this.props;
     var editPro = localStorage.getItem('redirect_');
-    /*if(stopcamra){
+   /* if(stopcamra){
       window.location = "/"
     }*/
   

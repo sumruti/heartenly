@@ -164,7 +164,7 @@ Gettoknow(){
             </div>
           ) : (
             <div>
-              <Typography className="my-2">{this.getStepContent(activeStep)}</Typography>
+              <div className="my-2">{this.getStepContent(activeStep)}</div>
               <div>
                 <Button
                   disabled={activeStep === 0}
