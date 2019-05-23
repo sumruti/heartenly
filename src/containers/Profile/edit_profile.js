@@ -113,6 +113,11 @@ class editProfile extends React.Component {
       Departement:'',
       Work:'',
       income:'',
+      fullName:'',
+      DOB:'',
+      email:'',
+      phone:'',
+       
     }
         // this.onDrop = this.onDrop.bind(this);
   }
@@ -307,7 +312,64 @@ componentWillReceiveProps(nextProps) {
                                       </FormControl>
                                   </div> 
 
-                                 <div className="form-group cc-selector-2">
+                                 
+
+                                   <div className="form-group">
+                                    <FormControl component="fieldset" required>
+                                        <FormLabel component="legend">Life Style</FormLabel>
+                                        <RadioGroup
+                                          aria-label="Lifestyle"
+                                          name="Lifestyle"
+                                          value={this.state.Lifestyle}
+
+                                          className="d-flex flex-row"
+                                          onChange={(event) => this.setState({Lifestyle: event.target.value})}
+                                        >
+                                          <FormControlLabel value="accept alcohol drinkers" control={<Radio color="primary"/>} label='accept alcohol drinkers'/>
+                                          <FormControlLabel value="accept the piercing" control={<Radio color="primary"/>} label='Accept the piercing'/>
+                                          <FormControlLabel value="accept the tattoed" control={<Radio color="primary"/>} label='Accept the tattoed'/>
+                                         
+                                        </RadioGroup>
+                                      </FormControl>
+                                  </div>  
+
+
+                                 <div className="form-group">
+                                      <TextField
+                                        id="userName"
+                                        label='Minimum Income'
+                                        margin="normal"
+                                        value={this.state.minimumincome}
+                                        onChange={(event) => this.setState({minimumincome: event.target.value})}
+                                        fullWidth
+                                      />
+                                  </div> 
+
+                                  <div className="form-group">
+                                      <TextField
+                                        id="userName"
+                                        label='Criteria couple'
+                                        margin="normal"
+                                        value={this.state.criteriacouple}
+                                        onChange={(event) => this.setState({criteriacouple: event.target.value})}
+                                        fullWidth
+                                      />
+                                  </div>   
+
+                                   <h2 className="title" style={{marginBottom:"18px"}}>About  Me  </h2>
+
+                                     <div className="form-group">
+                                      <TextField
+                                        id="userName"
+                                        label='tribe'
+                                        margin="normal"
+                                        value={this.state.tribe}
+                                        onChange={(event) => this.setState({tribe: event.target.value})}
+                                        fullWidth
+                                      />
+                                  </div>   
+
+                                  <div className="form-group cc-selector-2">
                                    <FormControl component="fieldset" required>
                                        <FormLabel component="legend">Physical</FormLabel>
                                        <RadioGroup
@@ -326,6 +388,27 @@ componentWillReceiveProps(nextProps) {
                                                              
 
                                   </div> 
+                                  <div className="form-group">
+                                    <FormControl component="fieldset" required>
+                                        <FormLabel component="legend">Skin Color</FormLabel>
+                                        <RadioGroup
+                                          aria-label="skin_Color"
+                                          name="skin_Color"
+                                          value={this.state.skin_Color}
+
+                                          className="d-flex flex-row"
+                                          onChange={(event) => this.setState({skin_Color: event.target.value})}
+                                        >
+                                          <FormControlLabel value="Black" control={<Radio color="primary"/>} label='Black'/>
+                                          <FormControlLabel value="White" control={<Radio color="primary"/>} label='White'/>
+                                          <FormControlLabel value="Dark Brown" control={<Radio color="primary"/>} label='Dark Brown'/>
+                                          <FormControlLabel value="Light Yellow" control={<Radio color="primary"/>} label='Light Yellow'/>
+                                          <FormControlLabel value="Light Brown" control={<Radio color="primary"/>} label='Light Brown'/>
+                                        </RadioGroup>
+                                      </FormControl>
+                                  </div> 
+
+
 
                                       <div className="form-group">
                                          <FormControl component="fieldset" required>
@@ -347,32 +430,23 @@ componentWillReceiveProps(nextProps) {
                                                              
 
                                   </div> 
-
                                    <div className="form-group">
-                                    <FormControl component="fieldset" required>
-                                        <FormLabel component="legend">Life Style</FormLabel>
-                                        <RadioGroup
-                                          aria-label="skin_Color"
-                                          name="Lifestyle"
-                                          value={this.state.Lifestyle}
-
-                                          className="d-flex flex-row"
-                                          onChange={(event) => this.setState({Lifestyle: event.target.value})}
-                                        >
-                                          <FormControlLabel value="accept alcohol drinkers" control={<Radio color="primary"/>} label='accept alcohol drinkers'/>
-                                          <FormControlLabel value="accept the piercing" control={<Radio color="primary"/>} label='Accept the piercing'/>
-                                          <FormControlLabel value="accept the tattoed" control={<Radio color="primary"/>} label='Accept the tattoed'/>
-                                         
-                                        </RadioGroup>
-                                      </FormControl>
-                                  </div>  
+                                      <TextField
+                                        id="userName"
+                                        label='Veli'
+                                        margin="normal"
+                                        value={this.state.Veli}
+                                        onChange={(event) => this.setState({Veli: event.target.value})}
+                                        fullWidth
+                                      />
+                                  </div> 
 
                                     <div className="form-group">
                                     <FormControl component="fieldset" required>
                                         <FormLabel component="legend">Smoke</FormLabel>
                                         <RadioGroup
                                           aria-label="Smoke"
-                                          name="Lifestyle"
+                                          name="Smoke"
                                           value={this.state.Smoke}
 
                                           className="d-flex flex-row"
@@ -392,7 +466,7 @@ componentWillReceiveProps(nextProps) {
                                         <FormLabel component="legend">Alcohol</FormLabel>
                                         <RadioGroup
                                           aria-label="Alcohol"
-                                          name="Lifestyle"
+                                          name="Alcohol"
                                           value={this.state.Alcohol}
 
                                           className="d-flex flex-row"
@@ -456,37 +530,9 @@ componentWillReceiveProps(nextProps) {
                                       />
                                   </div> 
 
-                                 <div className="form-group">
-                                      <TextField
-                                        id="userName"
-                                        label='Minimum Income'
-                                        margin="normal"
-                                        value={this.state.minimumincome}
-                                        onChange={(event) => this.setState({minimumincome: event.target.value})}
-                                        fullWidth
-                                      />
-                                  </div> 
 
-                                  <div className="form-group">
-                                      <TextField
-                                        id="userName"
-                                        label='Veli'
-                                        margin="normal"
-                                        value={this.state.Veli}
-                                        onChange={(event) => this.setState({Veli: event.target.value})}
-                                        fullWidth
-                                      />
-                                  </div> 
-                                <div className="form-group">
-                                      <TextField
-                                        id="userName"
-                                        label='Criteria couple'
-                                        margin="normal"
-                                        value={this.state.criteriacouple}
-                                        onChange={(event) => this.setState({criteriacouple: event.target.value})}
-                                        fullWidth
-                                      />
-                                  </div>      
+                                 
+                               
 
                            </div>
                           <div className="col-sm-6 col-xs-6">
@@ -582,6 +628,62 @@ componentWillReceiveProps(nextProps) {
                                           style={{width:'100%',outline:'none'}}
                                         />
                                   </div>  
+
+                                <h2 className="title" style={{marginBottom:"18px"}}>Personal Data</h2> 
+
+                                  <div className="form-group">
+                                    <TextField
+                                      id="fullName"
+                                      value={this.state.fullName}
+                                      label={<IntlMessages id="sidebar.Fullname"/>}
+                                      onChange={(event) => this.setState({fullName: event.target.value})}
+                                      margin="normal"
+                                      fullWidth
+                                    />
+                                  </div> 
+
+                                  <div className="form-group">
+                                        <TextField
+                                            id="date"
+                                            label={<IntlMessages id="sidebar.dob"/>}
+                                            type="date"
+                                            margin="normal"
+                                            onChange={this.DOB}
+                                            defaultValue={this.state.DOB}
+                                            InputLabelProps={{
+                                              shrink: true,
+                                            }}
+                                            fullWidth
+                                          />
+
+                                     </div>
+
+                                      <div className="form-group">
+                                          <TextField
+                                            id="email"
+                                            value={this.state.email}
+                                            label="email"
+                                            onChange={(event) => this.setState({email: event.target.value})}
+                                            margin="normal"
+                                            fullWidth
+                                          />
+                                        </div> 
+
+                                          <div className="form-group">
+                                              <TextField
+                                                id="email"
+                                                value={this.state.phone}
+                                                label="email"
+                                                onChange={(event) => this.setState({phone: event.target.value})}
+                                                margin="normal"
+                                                fullWidth
+                                              />
+                                            </div> 
+
+
+                                
+
+
 
                                   <h2 className="title" style={{marginBottom:"18px"}}>Domicile  </h2>   
                                     <div className="form-group">

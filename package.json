@@ -73,6 +73,7 @@
     "react-phone-number-input": "^2.3.10",
     "react-placeholder": "^3.0.1",
     "react-places-autocomplete": "^7.2.1",
+    "react-rangeslider": "^2.2.0",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
