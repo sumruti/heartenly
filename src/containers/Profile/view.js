@@ -274,7 +274,7 @@ timeDifference(current, previous) {
                       </div>
                       <span className="jr-link jr-profile-setting">
                         <i className="zmdi zmdi-settings mr-2"/>
-                        <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0" onClick={(e)=>this.RedirectToImgGallery("0")}><Link to="/app/dashboard" style={{color:"#fff"}}>Edit Profile</Link></span>
+                        <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0" ><Link to="edit-profile" style={{color:"#fff"}}>Edit Profile</Link></span>
 
                       </span>
                     </div>

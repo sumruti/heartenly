@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="">
     <meta name="keywords"
           content="Responsive, HTML5, admin theme, business, professional, React, web design, CSS3, sass">
@@ -17,7 +19,59 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css" type="text/css" media="screen"/>
     <style type="text/css">
-        
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.visa{background-image:url('https://cdn.clipart.email/7a364bc0e78687e0f61b1dbc53656177_celebrity-silhouette-png-png-image_2000-2000.png');}
+.mastercard{background-image:url(https://images.vexels.com/media/users/3/144846/isolated/preview/b628e13f7268fe56a9cde4a9a4701b54-bodybuilder-dumbbells-silhouette-by-vexels.png);}
+
+.cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+.cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+
+
+      .read_more{
+        display: none;
+      }
+        button#myBtn {
+    background: inherit;
+    border: none;
+}
         .react-phone-number-input__icon {
             width: 2.24em!important;
             height: -0.07em!important;
@@ -41,6 +95,13 @@
             display: flex;
             align-items: center;
             margin: 10px 0px!important;
+}
+.loader-view_ {
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 50%;
+    right: 0;
 }
 
 .nopad {
@@ -110,13 +171,6 @@
 background: #3f51b5!important;
 color: #fff;
 }
-.loader-view_ {
-    position: absolute;
-    top: 50%;
-    bottom: 0;
-    left: 50%;
-    right: 0;
-}
 
 
 ul.social-buttons li a {
@@ -140,12 +194,13 @@ ul.social-buttons li a:hover {
     background-position: -361px -148px!important;
     border: 1px solid #e90c0c!important;
     height: 17px!important;
-}@media screen and (max-width: 575px){
+}
+
+@media screen and (max-width: 575px){
   .MuiStep-horizontal-428 {
          padding-left: 0px!important; 
          padding-right: 0px!important; 
-      }
-      .jr-btn:not(:last-child), .jr-fab-btn:not(:last-child), .btn:not(:last-child) {
+      } .jr-btn:not(:last-child), .jr-fab-btn:not(:last-child), .btn:not(:last-child) {
           margin-right: 15px;
           margin-top: 13px;
       }.gallery_ li {
@@ -162,6 +217,12 @@ ul.social-buttons li a:hover {
           width: 317px;
       }
 }
+/*@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) { 
+      
+
+}*/
+
+
 
     </style>
 
