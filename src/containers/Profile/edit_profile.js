@@ -116,7 +116,7 @@ class editProfile extends React.Component {
       Work:'',
       income:'',
       fullName:'',
-      DOB:'',
+      DOB:moment().format("YYYY-MM-DD"),
       email:'',
       phone:'',
       user_id:localStorage.getItem('user_id'),
@@ -272,7 +272,7 @@ componentWillReceiveProps(nextProps) {
                      phone: res.data.data[0].mobileNumber,
                      email: res.data.data[0].email,
                      fullName: res.data.data[0].fullName,
-                     DOB: res.data.data[0].DOB,
+                     DOB: moment(res.data.data[0].DOB).format("YYYY-MM-DD"),
                   })
                }
           });
@@ -331,7 +331,7 @@ componentWillReceiveProps(nextProps) {
   
     const {criteria} = this.props;
 
- 
+  console.log(DOB,'--')
   return (
        <div className="app-wrapper">
             <div className="dashboard animated slideInUpTiny animation-duration-3">
