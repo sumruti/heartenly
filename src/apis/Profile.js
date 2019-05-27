@@ -20,20 +20,11 @@ export function edituserprofile(user_id,username,useremail,fullName,gender,DOB,r
 		formData.append('wanna_find', wanna_find);
 		formData.append('child', child);
 		formData.append('address', address);
-		//formData.append('pictures', pictures);
-		//formData.append('pictures', pictures);
-			formData.append('pictures', pictures);
+	    formData.append('pictures', pictures);
 		
-		/*$.each(pictures, function(i, file) {
-	    formData.append('pictures', file);
-	   });*/
-	//var file = dataURLtoFile(CameraImg, 'stat.png');
-	//console.log(file)
-	//var file = dataURLtoFile(CameraImg, 'CameraImg.png');
-	//console.log(file,'-------------------------------------------------');
-	//return false;
+	
 
-  return axios.post(config.ApiUrl+'users/edit_user_profile',formData);
+       return axios.post(config.ApiUrl+'users/edit_user_profile',formData);
 };
 
 
@@ -43,6 +34,79 @@ export function verfyMoNo(otp,user_id) {
 
 export function verfyotp(otp,user_id) {
   return axios.post(config.ApiUrl+'users/verifyotp',{otp:otp,user_id:user_id});
+};
+
+export function criteria(user_id,Until,Years,Minimaleducation,tribe,skin_Color,height,Width,Daily,Lifestyle,
+	minimumincome,criteriacouple,physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby) {
+  return axios.post(config.ApiUrl+'user/Criteria',{
+  		user_id:user_id,
+	  	Until:Until,
+	  	Years:Years,
+	  	Minimaleducation:Minimaleducation,
+	  	tribe:tribe,
+	  	skin_Color:skin_Color,
+	  	height:height,
+	  	Width:Width,
+	  	Daily:Daily,
+	  	Lifestyle:Lifestyle,
+	  	minimumincome:minimumincome,
+	  	criteriacouple:criteriacouple,
+	  	physical:physical,
+	  	Eyeglasses:Eyeglasses,
+	  	Veli:Veli,
+	  	Smoke:Smoke,
+	  	Alcohol:Alcohol,
+	  	Tattoo:Tattoo,
+	  	Piercing:Piercing,
+	  	hobby:hobby,
+  });
+};
+
+export function usereducationdetails(user_id,Lasteducation,Departement) {
+  return axios.post(config.ApiUrl+'User/education',{
+  		user_id:user_id,
+	  	Lasteducation:Lasteducation,
+	  	Departement:Departement,
+	  
+	  
+  });
+};
+
+export function userworkdetails(user_id,Work,income) {
+  return axios.post(config.ApiUrl+'User/Work',{
+  		user_id:user_id,
+	  	Work:Work,
+	  	income:income,
+	  
+	  
+  });
+};
+
+export function userDomiciles(user_id,currentcity,Homestatus,Hometown) {
+  return axios.post(config.ApiUrl+'User/Domiciles',{
+  		user_id:user_id,
+	  	currentcity:currentcity,
+	  	Homestatus:Homestatus,
+	  	Hometown:Hometown,
+	  
+	  
+  });
+};
+
+export function basicInfo(user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB) {
+  return axios.post(config.ApiUrl+'user/editBasicInfo',{
+  		user_id:user_id,
+	  	status:status,
+	  	religion:religion,
+	  	interestedIn:interestedIn,
+	  	nickName:nickName,
+	  	fullName:fullName,
+	  	email:email,
+	  	phone:phone,
+	  	DOB:DOB,
+	  
+	  
+  });
 };
 
 function dataURLtoFile(dataurl, filename) {
