@@ -32,6 +32,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Camera from 'react-camera';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormGroup from '@material-ui/core/FormGroup';
 
 import {
   auth
@@ -311,7 +313,9 @@ componentWillReceiveProps(nextProps) {
   };
 
 
-
+handleChange = name => (event, checked) => {
+    this.setState({[name]: checked});
+  };
 
 
 
@@ -451,7 +455,7 @@ componentWillReceiveProps(nextProps) {
                                           </div>
                                       </div>
 
-                                          <div className="form-group">
+                                         {/* <div className="form-group">
                                             <TextField
                                               id="userName"
                                               label='Minimal education'
@@ -460,8 +464,37 @@ componentWillReceiveProps(nextProps) {
                                               onChange={(event) => this.setState({Minimaleducation: event.target.value})}
                                               fullWidth
                                             />
-                                        </div>  
+                                        </div>  */}
 
+                                        <div className="form-group">
+
+                                          <FormControl className="w-100 mb-2">
+                                            <InputLabel htmlFor="age-simple">Minimal education</InputLabel>
+
+                                               <Select
+                                           value={this.state.Minimaleducation}
+                                           onChange={(event) => this.setState({Minimaleducation: event.target.value})}
+                                                        >
+                                                         
+                                                          <MenuItem value="Anything">Anything</MenuItem>
+                                                          <MenuItem value="SMP / MTs">SMP / MTs</MenuItem>
+                                                          <MenuItem value="SMA / MA / SMK'i">SMA / MA / SMK'i</MenuItem>
+                                                          <MenuItem value="D1">D1</MenuItem>
+                                                          <MenuItem value="D3">D3</MenuItem>
+                                                          <MenuItem value="D4 / S1 / Professional">D4 / S1 / Professional</MenuItem>
+                                                          <MenuItem value="S2 / Sp1">S2 / Sp1</MenuItem>
+                                                          <MenuItem value="S3 / Sp2">S3 / Sp2</MenuItem>
+                                                        </Select>
+                                        </FormControl>
+
+                                          </div>
+
+
+
+
+
+
+                                       {/*
                                          <div className="form-group">
                                             <TextField
                                               id="userName"
@@ -470,9 +503,207 @@ componentWillReceiveProps(nextProps) {
                                               value={this.state.tribe}
                                               onChange={(event) => this.setState({tribe: event.target.value})}
                                               fullWidth
-                                            />
-                                        </div>  
-                                        <div className="form-group">
+                                             />
+
+
+                                        </div> */}
+
+<div className="form-group">
+<FormHelperText className="text-grey">tribe</FormHelperText>
+            <FormGroup className="d-flex flex-row">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={this.state.checkedA}
+                        value={this.state.tribe}
+                      onChange={(event) => this.setState({tribe: event.target.value})}
+                  />
+                }
+                label="Jawa"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedB}
+                            onChange={this.handleChange('checkedB')}
+                            value="checkedB"
+                  />
+                }
+                label="Minangkabau"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Hispanic/Latino"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Sunda"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Betawi"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="India"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Tionghoa"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Bugis"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Timur Tengah"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Melayu"
+              />
+
+
+            <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Banten"
+              />
+
+               
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Amerika Asli"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Madura"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Banjar"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Pacific Islander"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Batak"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Afrika"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedC}
+                            onChange={this.handleChange('checkedC')}
+                            value="checkedC"
+                  />
+                }
+                label="Kaukaisa"
+              />
+            </FormGroup>
+
+
+
+
+</div>
+
+
+                                        {/*<div className="form-group">
                                           <FormControl component="fieldset" required>
                                               <FormLabel component="legend">Skin Color</FormLabel>
                                               <RadioGroup
@@ -490,7 +721,68 @@ componentWillReceiveProps(nextProps) {
                                                 <FormControlLabel value="Light Brown" control={<Radio color="primary"/>} label='Light Brown'/>
                                               </RadioGroup>
                                             </FormControl>
-                                        </div> 
+                                        </div> */}
+
+
+
+<div className="form-group">
+<FormHelperText className="text-grey">Skin Color</FormHelperText>
+            <FormGroup className="d-flex flex-row">
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedG}
+                            onChange={this.handleChange('checkedG')}
+
+                  />
+                }
+                label="Black"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedH}
+                            onChange={this.handleChange('checkedH')}
+                            value="checkedH"
+                  />
+                }
+                label="White"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedI}
+                            onChange={this.handleChange('checkedI')}
+                            value="checkedI"
+                  />
+                }
+                label="Dark Brown"
+              />
+
+                <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedI}
+                            onChange={this.handleChange('checkedI')}
+                            value="checkedI"
+                  />
+                }
+                label="Light Yellow"
+              />
+               <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedI}
+                            onChange={this.handleChange('checkedI')}
+                            value="checkedI"
+                  />
+                }
+                label="Light Brown"
+              />
+            </FormGroup>
+</div>
+
+{/*
                                         <div className="form-group">
                                           <FormControl component="fieldset" required>
                                               <FormLabel component="legend">Life Style</FormLabel>
@@ -510,16 +802,55 @@ componentWillReceiveProps(nextProps) {
                                             </FormControl>
                                         </div>  
                                         </div> 
+*/}
+
+<div className="form-group">
+<FormHelperText className="text-grey">Life Style</FormHelperText>
+            <FormGroup className="d-flex flex-row">
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedG}
+                            onChange={this.handleChange('checkedG')}
+
+                  />
+                }
+                label="accept alcohol drinkers"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedH}
+                            onChange={this.handleChange('checkedH')}
+                            value="checkedH"
+                  />
+                }
+                label="accept the piercing"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedI}
+                            onChange={this.handleChange('checkedI')}
+                            value="checkedI"
+                  />
+                }
+                label="accept the tattoed"
+              />
+
+                
+            </FormGroup>
+</div></div> 
                                         <div className="col-sm-6 col-xs-6">
 
 
                                          <div className="form-group">
                                           <FormControl component="fieldset" required>
-                                              <FormLabel component="legend">Height(100-170 cm)</FormLabel>
+                                              <FormLabel component="legend">Height(100-200 cm)</FormLabel>
 
                                                  <Slider
                                                     min={100}
-                                                    max={170}
+                                                    max={200}
                                                     value={this.state.height}
                                                     onChangeStart={this.handleChangeStart}
                                                     onChange={(event) => this.setState({height: event})}
@@ -529,7 +860,7 @@ componentWillReceiveProps(nextProps) {
                                         </div>  
                                         <div className="form-group">
                                           <FormControl component="fieldset" required>
-                                              <FormLabel component="legend">Width(40-80 kg)</FormLabel>
+                                              <FormLabel component="legend">weight (40-80 kg)</FormLabel>
 
                                                  <Slider
                                                     min={0}
@@ -541,7 +872,7 @@ componentWillReceiveProps(nextProps) {
                                                   />
                                              </FormControl>
                                         </div>  
-                                         <div className="form-group">
+                                     {   /* <div className="form-group">
                                           <FormControl component="fieldset" required>
                                               <FormLabel component="legend">Daily</FormLabel>
                                               <RadioGroup
@@ -559,8 +890,44 @@ componentWillReceiveProps(nextProps) {
                                               </RadioGroup>
                                             </FormControl>
                                         </div> 
+*/}
+                                       <div className="form-group">
+<FormHelperText className="text-grey">Daily</FormHelperText>
+            <FormGroup className="d-flex flex-row">
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedG}
+                            onChange={this.handleChange('checkedG')}
 
-                                       
+                  />
+                }
+                label="want those who don’t use glasses"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedH}
+                            onChange={this.handleChange('checkedH')}
+                            value="checkedH"
+                  />
+                }
+                label="want those who wear a headscraf"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedI}
+                            onChange={this.handleChange('checkedI')}
+                            value="checkedI"
+                  />
+                }
+                label="accept smokers"
+              />
+
+                
+            </FormGroup>
+</div>
 
                                          
 
@@ -720,7 +1087,7 @@ componentWillReceiveProps(nextProps) {
                                       />
                                   </div>   
 
-                                  <div className="form-group cc-selector-2">
+                                 {/* <div className="form-group cc-selector-2">
                                    <FormControl component="fieldset" required>
                                        <FormLabel component="legend">Physical</FormLabel>
                                        <RadioGroup
@@ -738,7 +1105,10 @@ componentWillReceiveProps(nextProps) {
                                      </FormControl>
                                                              
 
-                                  </div> 
+                                  </div> */}
+
+
+
                                   <div className="form-group">
                                     <FormControl component="fieldset" required>
                                         <FormLabel component="legend">Skin Color</FormLabel>
@@ -758,6 +1128,16 @@ componentWillReceiveProps(nextProps) {
                                         </RadioGroup>
                                       </FormControl>
                                   </div> 
+
+
+
+
+
+
+
+
+
+
 
 
 
