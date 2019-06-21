@@ -66,7 +66,7 @@ class SignIn extends React.Component {
               <form>
                 <fieldset>
                   <TextField
-                    label="Your Username/Email/Mobile No"
+                    label="Your Email"
                     fullWidth
                     onChange={(event) => this.setState({UserEmailMobile: event.target.value})}
                     defaultValue={UserEmailMobile}

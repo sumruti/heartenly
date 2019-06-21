@@ -6,6 +6,7 @@ import Sidebar from '../containers/SideNav/index';
 import Footer from '../components/Footer';
 import ProfileView from '../containers/Profile/view';
 import editProfile from '../containers/Profile/edit_profile';
+
 import Dashboard from '../containers/Dashboard';
 import Home from '../containers/Home/Home';
 import landingpage from '../containers/LandingPage';

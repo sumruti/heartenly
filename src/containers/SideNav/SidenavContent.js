@@ -97,7 +97,7 @@ class SidenavContent extends Component {
           </li>
 
           <li className="menu collapse-box">
-            <Button className="mr-2">
+            <Button>
               <i className="zmdi zmdi-view-dashboard zmdi-hc-fw"/>
               <span className="nav-text">
                 <IntlMessages id="sidebar.dashboard"/>
