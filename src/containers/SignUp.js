@@ -158,7 +158,7 @@ class SignUp extends React.Component {
                     this.props.userSignUp({username,status,email,mobileNo, password});
                   }} color="primary">
                     <IntlMessages
-                      id="appModule.signup"/>
+                      id="appModule.regsiter"/>
                   </Button>
                   <Link to="/signin">
                     <IntlMessages id="signUp.alreadyMember"/>

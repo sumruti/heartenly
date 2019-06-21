@@ -37,7 +37,7 @@ export function verfyotp(otp,user_id) {
 };
 
 export function criteria(user_id,Until,Years,Minimaleducation,tribe,skin_Color,height,Width,Daily,Lifestyle,
-	minimumincome,criteriacouple,physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby) {
+	minimumincome,criteriacouple,physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby,Privacy,gender) {
   return axios.post(config.ApiUrl+'user/Criteria',{
   		user_id:user_id,
 	  	Until:Until,
@@ -59,54 +59,66 @@ export function criteria(user_id,Until,Years,Minimaleducation,tribe,skin_Color,h
 	  	Tattoo:Tattoo,
 	  	Piercing:Piercing,
 	  	hobby:hobby,
+	  	Privacy:Privacy,
+	  	gender:gender,
   });
 };
 
-export function usereducationdetails(user_id,Lasteducation,Departement) {
+export function usereducationdetails(user_id,Lasteducation,Departement,Privacy) {
   return axios.post(config.ApiUrl+'User/education',{
   		user_id:user_id,
 	  	Lasteducation:Lasteducation,
 	  	Departement:Departement,
-	  
+	    Privacy:Privacy,
 	  
   });
 };
 
-export function userworkdetails(user_id,Work,income) {
+export function userworkdetails(user_id,Work,income,Privacy) {
   return axios.post(config.ApiUrl+'User/Work',{
   		user_id:user_id,
 	  	Work:Work,
 	  	income:income,
-	  
+	  	Privacy:Privacy,
+
 	  
   });
 };
 
-export function userDomiciles(user_id,currentcity,Homestatus,Hometown) {
+export function userDomiciles(user_id,currentcity,Homestatus,Hometown,Privacy) {
   return axios.post(config.ApiUrl+'User/Domiciles',{
   		user_id:user_id,
 	  	currentcity:currentcity,
 	  	Homestatus:Homestatus,
 	  	Hometown:Hometown,
-	  
+	  	Privacy:Privacy,
+
 	  
   });
 };
 
-export function basicInfo(user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB) {
-  return axios.post(config.ApiUrl+'user/editBasicInfo',{
-  		user_id:user_id,
-	  	status:status,
-	  	religion:religion,
-	  	interestedIn:interestedIn,
-	  	nickName:nickName,
-	  	fullName:fullName,
-	  	email:email,
-	  	phone:phone,
-	  	DOB:DOB,
-	  
-	  
-  });
+export function basicInfo(user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB,uploadcard,Privacy,banner,profilepic) {
+
+	 var formData = new FormData();    //formdata object
+		formData.append('user_id', user_id);   //append the values with key, value pair
+		formData.append('status', status);
+		formData.append('religion', religion);
+		formData.append('interestedIn', interestedIn);
+		formData.append('nickName', nickName);
+		formData.append('fullName', fullName);
+		formData.append('email', email);
+		formData.append('phone', phone);
+		formData.append('DOB', DOB);
+	
+	    formData.append('uploadcard', uploadcard);
+ 	    formData.append('Privacy', Privacy);
+ 	    formData.append('banner', banner);
+ 	    formData.append('profilepic', profilepic);
+
+
+
+	  //formdata object
+    return axios.post(config.ApiUrl+'user/editBasicInfo',formData);
 };
 
 function dataURLtoFile(dataurl, filename) {

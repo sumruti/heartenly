@@ -13,16 +13,6 @@ let render = () => {
   );
 };
 
-
-
-
-
-
-
-
-
-
-
 if (module.hot) {
   module.hot.accept('./MainApp', () => {
     const MainApp = require('./MainApp').default;

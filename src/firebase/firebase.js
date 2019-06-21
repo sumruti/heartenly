@@ -2,12 +2,12 @@ import firebase from 'firebase'
 
 // Initialize Firebase
 const config = {
-  apiKey: 'AIzaSyBkuU8Vl22BQgPfrMdu9IK5Y8cGzOE6mvo',
-  authDomain: 'voltaic-charter-228318.firebaseapp.com',
-  databaseURL: 'https://voltaic-charter-228318.firebaseio.com',
-  projectId: 'voltaic-charter-228318"',
+  apiKey: 'AIzaSyCYaTKjfam_qMXDnGfcdnBxScEq89VQtLk',
+  authDomain: 'curious-sandbox-196209.firebaseapp.com',
+  databaseURL: 'https://curious-sandbox-196209.firebaseio.com',
+  projectId: 'curious-sandbox-196209',
   storageBucket: '',
-  messagingSenderId: '50423982952'
+  messagingSenderId: '1034032747860'
 };
 
 firebase.initializeApp(config);

@@ -98,13 +98,13 @@ function* forgotPassword({payload}) {
 }    
 
 function* createUserWithEmailPassword({payload}) {
-  const {username,status, email, mobileNo, password} = payload;
+  const {username, status, email, mobileNo, password} = payload;
   
   if(!username.trim()){
     yield put(showAuthMessage("Please enter Username."));
     return false
   }
- /* if(!status){
+  /*if(!status){
       yield put(showAuthMessage("Please enter Status."));
       return false
   }*/
@@ -142,8 +142,9 @@ function* createUserWithEmailPassword({payload}) {
 function* signInUserWithGoogle() {
   try {
     const signUpUser = yield call(signInUserWithGoogleRequest);
-
+    console.log(signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName)
     const signInUser = yield call(loginUser, signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName,'GOOGLE');
+   console.log(signInUser,'signInUser');
 
     if (signUpUser.message) {
       yield put(showAuthMessage(signUpUser.message));
@@ -159,9 +160,7 @@ function* signInUserWithGoogle() {
 
 function* signInUserWithFacebook() {
   try {
-    const signUpUser = yield call(signInUserWithFacebookRequest);
-    console.log(signUpUser,'signUpUsersignUpUser');
-
+         const signUpUser = yield call(signInUserWithFacebookRequest);
         const signInUser = yield call(loginUser, signUpUser.user.email, '',signUpUser.user.uid,signUpUser.user.displayName,'FACEBOOK');
 
     console.log(signUpUser)

@@ -95,15 +95,15 @@ function* verify_otp_no({payload}) {
 
 function* edit_criteria({payload}) {
   const {user_id,Until,Years,Minimaleducation,tribe,skin_Color,height,Width,Daily,Lifestyle,minimumincome,
-    criteriacouple,physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby} = payload;
+    criteriacouple,physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby,Privacy,gender} = payload;
 
 
   try {
      const user_criteria = yield call(criteria, user_id,Until,Years,Minimaleducation,tribe,skin_Color,height,Width,Daily,Lifestyle,minimumincome,criteriacouple
-      ,physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby);
+      ,physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby,Privacy,gender);
       yield put(your_criteria_success(user_criteria.data.message));
       swal(user_criteria.data.message);
-      
+      console.log(Privacy.req.body,'---------------')
    
   } catch (error) {
     yield put(showAuthMessage(error));
@@ -111,11 +111,11 @@ function* edit_criteria({payload}) {
 }
 
 function* edit_work({payload}) {
-  const {user_id,Work,income} = payload;
+  const {user_id,Work,income,Privacy} = payload;
   
 
   try {
-      const user_works = yield call(userworkdetails, user_id,Work,income);
+      const user_works = yield call(userworkdetails, user_id,Work,income,Privacy);
       yield put(user_work_success(user_works.data.message));
       swal(user_works.data.message);
       
@@ -126,11 +126,11 @@ function* edit_work({payload}) {
 }
 
 function* edit_user_education({payload}) {
-  const {user_id ,  Lasteducation, Departement} = payload;
+  const {user_id ,  Lasteducation, Departement,Privacy} = payload;
   
 
   try {
-      const user_educations= yield call(usereducationdetails, user_id, Lasteducation,Departement);
+      const user_educations= yield call(usereducationdetails, user_id, Lasteducation,Departement,Privacy);
       yield put(user_education_success(user_educations.data.message));
       swal(user_educations.data.message);
       
@@ -142,10 +142,10 @@ function* edit_user_education({payload}) {
 
 
 function* edit_user_Domicile({payload}) {
-  const {user_id,currentcity,Homestatus,Hometown} = payload;
+  const {user_id,currentcity,Homestatus,Hometown,Privacy} = payload;
   
   try {
-      const user_Domicile= yield call(userDomiciles, user_id, currentcity,Homestatus,Hometown);
+      const user_Domicile= yield call(userDomiciles, user_id, currentcity,Homestatus,Hometown,Privacy);
       yield put(user_domicile_success(user_Domicile.data.message));
        swal(user_Domicile.data.message);
       
@@ -156,9 +156,10 @@ function* edit_user_Domicile({payload}) {
 }
 
 function* edit_basic_info({payload}) {
-  const {user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB} = payload;
+  const {user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB,uploadcard,Privacy,cover,profilepic} = payload;
+  console.log(payload)
   try {
-      const user_basic_info= yield call(basicInfo, user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB);
+      const user_basic_info= yield call(basicInfo, user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB,uploadcard,Privacy,cover,profilepic);
       yield put(udate_basic_info_success(user_basic_info.data.message));
       swal(user_basic_info.data.message);
    

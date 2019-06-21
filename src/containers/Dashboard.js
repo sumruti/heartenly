@@ -283,10 +283,6 @@ class Dashboard extends React.Component {
        this.setState({alertMessage:"", showMessage:''})
     }
 
-
-
-    
-
     if(!child){
        this.setState({alertMessage:"Do you have child cannot be left blank", showMessage:'1'})
        return false

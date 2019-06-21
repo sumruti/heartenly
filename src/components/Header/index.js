@@ -217,14 +217,15 @@ class Header extends React.Component {
                 isOpen={this.state.langSwitcher}
                 toggle={this.onLangSwitcherSelect.bind(this)}>
 
-                <DropdownToggle
-                  className="d-inline-block"
-                  tag="span"
-                  data-toggle="dropdown">
-                  <IconButton className="icon-btn">
-                    <i className={`flag flag-24 flag-${locale.icon}`}/>
-                  </IconButton>
-                </DropdownToggle>
+                  <DropdownToggle
+                    className="d-inline-block"
+                    tag="span"
+                    data-toggle="dropdown">
+                    <IconButton className="icon-btn">
+                      <i className={`flag flag-24 flag-${locale.icon}`}/>
+                      
+                    </IconButton>
+                  </DropdownToggle>
 
                 <DropdownMenu right className="w-50">
                   <LanguageSwitcher switchLanguage={this.props.switchLanguage}

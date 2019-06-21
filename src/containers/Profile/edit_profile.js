@@ -100,7 +100,8 @@ class editProfile extends React.Component {
       religion:'',
       interestedIn:'',
       nickName:'',
-
+      uploadcard:'',
+      
       physical:'',
       Eyeglasses:'',
       Veli:'',
@@ -125,7 +126,11 @@ class editProfile extends React.Component {
       activeTab: '1',
       loader: false,
       flag:true,
-       
+      perviewURL:'',
+      Privacy:''     ,  
+      gender:'' ,
+      cover:'',      
+      profilepic:'',
     }
         // this.onDrop = this.onDrop.bind(this);
   }
@@ -133,6 +138,7 @@ class editProfile extends React.Component {
    componentDidMount() {
       var user_id = localStorage.getItem('user_id');
       this.getUserCriteria(user_id);
+      this.getuserBasicInfo(user_id);
       
       
    }
@@ -202,6 +208,8 @@ componentWillReceiveProps(nextProps) {
                    Tattoo: res.data.data[0].Tattoo,
                    Piercing: res.data.data[0].Piercing,
                    hobby: res.data.data[0].hobby,
+                   Privacy: res.data.data[0].Privacy,
+
                  
                   })
 
@@ -222,6 +230,8 @@ componentWillReceiveProps(nextProps) {
                   this.setState({
                    Work: res.data.data[0].Work,
                    income: res.data.data[0].income,
+                   Privacy: res.data.data[0].Privacy,
+
                
                   })
 
@@ -240,6 +250,8 @@ componentWillReceiveProps(nextProps) {
                   this.setState({
                    Lasteducation: res.data.data[0].Lasteducation,
                    Departement: res.data.data[0].Departement,
+                  Privacy: res.data.data[0].Privacy,
+
                   })
                }
           });
@@ -255,6 +267,8 @@ componentWillReceiveProps(nextProps) {
                      currentcity: res.data.data[0].currentcity,
                      Homestatus: res.data.data[0].Homestatus,
                      Hometown: res.data.data[0].Hometown,
+                     Privacy: res.data.data[0].Privacy,
+
                   })
                }
           });
@@ -265,6 +279,7 @@ componentWillReceiveProps(nextProps) {
             user_id: user_id,
           })
           .then(res => {
+             
                if(res.status==201){
                   this.setState({
                      status: res.data.data[0].status,
@@ -273,9 +288,22 @@ componentWillReceiveProps(nextProps) {
                      interestedIn: res.data.data[0].interestedIn,
                      phone: res.data.data[0].mobileNumber,
                      email: res.data.data[0].email,
+                     gender: res.data.data[0].gender,
                      fullName: res.data.data[0].fullName,
                      DOB: moment(res.data.data[0].DOB).format("YYYY-MM-DD"),
-                  })
+                     uploadcard: res.data.data[0].uploadcard,
+                     Privacy: res.data.data[0].Privacy,
+                     cover: res.data.data[0].cover,
+                     profilepic: res.data.data[0].profilepic,
+
+
+
+                  });
+                   $('#blah') .attr('src', res.data.data[0].uploadcard ? res.data.data[0].uploadcard :"");
+                   $('#blaha') .attr('src', res.data.data[0].cover ? res.data.data[0].cover :"");
+                  //s console.log(res.data.data,'----------------------')
+                   $('#blahaa') .attr('src', res.data.data[0].profilepic ? res.data.data[0].profilepic :"");
+
                }
           });
   }
@@ -318,6 +346,57 @@ handleChange = name => (event, checked) => {
   };
 
 
+ readURL(input) {
+            if (input.target.files && input.target.files[0]) {
+                var reader = new FileReader();
+             this.setState({uploadcard:input.target.files[0]})
+                reader.onload = function (e) {
+                    $('#blah') .attr('src', e.target.result);
+                       //this.setState({perviewURL:e.target.result});
+
+                       //console.log(e.target.result)
+                };
+
+                reader.readAsDataURL(input.target.files[0]);
+            }
+        }
+/*getChckeboxValue(event) {
+    const value = event.target.value;
+}*/
+
+ cover(input) {
+            if (input.target.files && input.target.files[0]) {
+                var reader = new FileReader();
+             this.setState({cover:input.target.files[0]})
+                reader.onload = function (e) {
+                    $('#blaha') .attr('src', e.target.result);
+                       //this.setState({perviewURL:e.target.result});
+
+                       //console.log(e.target.result)
+                };
+
+                reader.readAsDataURL(input.target.files[0]);
+            }
+        }
+
+         profilepic(input) {
+            if (input.target.files && input.target.files[0]) {
+                var reader = new FileReader();
+             this.setState({profilepic:input.target.files[0]})
+                reader.onload = function (e) {
+                    $('#blahaa') .attr('src', e.target.result);
+                       //this.setState({perviewURL:e.target.result});
+
+                       //console.log(e.target.result)
+                };
+
+                reader.readAsDataURL(input.target.files[0]);
+            }
+        }
+
+
+
+
 
   render() {
   
@@ -327,15 +406,19 @@ handleChange = name => (event, checked) => {
             Work,income,
             Lasteducation,Departement,
             currentcity,Homestatus,Hometown,
-            status,religion,interestedIn,nickName,fullName,email,phone,DOB,
-           flag
+            status,religion,interestedIn,nickName,fullName,email,phone,DOB,uploadcard,Privacy,
+           flag ,gender,cover,profilepic,
 
         } = this.state;
 
   
     const {criteria} = this.props;
+     var age = [];
+    for(let i = 1; i <61; i++){
+       age.push({age:i})
+    }
 
-  console.log(DOB,'--')
+ {/* console.log(age,'--')*/}
   return (
        <div className="app-wrapper">
             <div className="dashboard animated slideInUpTiny animation-duration-3">
@@ -418,15 +501,44 @@ handleChange = name => (event, checked) => {
                                Your work
                               </NavLink>
                             </NavItem>
+                            <NavItem>
+                              <NavLink
+                                className={classnames({active: this.state.activeTab === '8'})}
+                                onClick={() => {
+                                  this.toggle('8');
+                                }}>
+                                Profile/CoverPhoto
+
+                              </NavLink>
+                            </NavItem>
                           </Nav>
                     
 
                         <TabContent className="jr-tabs-content" activeTab={this.state.activeTab}>
                           <TabPane tabId="1">
-                            <h2 className="title" style={{marginBottom:"18px"}}>Your Criteria  </h2>
+                            <h2 className="title" style={{marginBottom:"18px"}}>  </h2>
                               <div className="row">
-                                <div className="col-sm-6 col-xs-6">
-                                  
+                                  <div className="col-sm-12 pull-right">
+                                        <div className="form-group" style={{float:"right"}}>
+                                            <FormLabel component="legend">Privacy</FormLabel>
+                                                      <RadioGroup
+                                                      aria-label="Privacy"
+                                                      name="Privacy"
+                                                      value={this.state.Privacy}
+
+                                                      className="d-flex flex-row"
+                                                      onChange={(event) => this.setState({Privacy: event.target.value})}
+                                                    >
+                                                      <FormControlLabel value="Public" control={<Radio color="primary"/>} label=<IntlMessages id="Public"/>/>
+                                                      <FormControlLabel value="Private" control={<Radio color="primary"/>} label=<IntlMessages id="Private"/>/>
+                                                     
+                                                    </RadioGroup>                   
+
+                                                          </div>
+                                  </div>
+                              </div>
+                              <div className="row">                             
+                                <div className="col-sm-6 col-xs-6">                                
                                       <FormLabel component="legend">Age</FormLabel>
                                         <div className="row">
                                            <div className="col-sm-6 col-xs-6">
@@ -443,14 +555,27 @@ handleChange = name => (event, checked) => {
                                            </div>
                                        <div className="col-sm-6 col-xs-6">
                                          <div className="form-group">
-                                              <TextField
+                                             {/* <TextField
                                                 id="userName"
                                                 label='Years'
                                                 margin="normal"
                                                 value={this.state.Years}
                                                 onChange={(event) => this.setState({Years: event.target.value})}
                                                 fullWidth
-                                              />
+                                              />*/}
+                                             <FormControl className="w-100 mb-2">
+                                            <InputLabel htmlFor="age-simple">Years</InputLabel>
+                                               <Select
+                                                   value={this.state.Years}
+                                                   onChange={(event) => this.setState({Years: event.target.value})}
+                                                        >
+                                                         <MenuItem value="">Years</MenuItem>
+                                                          {age && age.length > 0 && 
+                                                          age.map((item,index)=>(                                                      
+                                                         <MenuItem value={item.age}>{item.age}</MenuItem>
+                                                          ))}                                                                                                                
+                                                        </Select>
+                                        </FormControl>
                                             </div>
                                           </div>
                                       </div>
@@ -858,6 +983,12 @@ handleChange = name => (event, checked) => {
                                                   />
                                              </FormControl>
                                         </div>  
+
+                        
+            
+
+
+
                                         <div className="form-group">
                                           <FormControl component="fieldset" required>
                                               <FormLabel component="legend">weight (40-80 kg)</FormLabel>
@@ -872,25 +1003,7 @@ handleChange = name => (event, checked) => {
                                                   />
                                              </FormControl>
                                         </div>  
-                                     {   /* <div className="form-group">
-                                          <FormControl component="fieldset" required>
-                                              <FormLabel component="legend">Daily</FormLabel>
-                                              <RadioGroup
-                                                aria-label="skin_Color"
-                                                name="Daily"
-                                                value={this.state.Daily}
-
-                                                className="d-flex flex-row"
-                                                onChange={(event) => this.setState({Daily: event.target.value})}
-                                              >
-                                                <FormControlLabel value="want those who don’t use glasses" control={<Radio color="primary"/>} label='Want those who don’t use glasses'/>
-                                                <FormControlLabel value="want those who wear a headscraf" control={<Radio color="primary"/>} label='Want those who wear a headscraf'/>
-                                                <FormControlLabel value="accept smokers" control={<Radio color="primary"/>} label='Accept smokers'/>
-                
-                                              </RadioGroup>
-                                            </FormControl>
-                                        </div> 
-*/}
+                                    
                                        <div className="form-group">
 <FormHelperText className="text-grey">Daily</FormHelperText>
             <FormGroup className="d-flex flex-row">
@@ -958,7 +1071,7 @@ handleChange = name => (event, checked) => {
                                                   this.setState({flag: true})
                                                   this.props.showAuthLoader();
                                                    this.props.your_criteria({user_id,Until,Years,Minimaleducation,tribe,skin_Color,height,Width,Daily,Lifestyle,minimumincome,criteriacouple,
-                                                      physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby })
+                                                      physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby,Privacy})
                                                 }} variant="contained" color="primary">
                                                  Save
                                                 </Button>
@@ -969,7 +1082,26 @@ handleChange = name => (event, checked) => {
                           </TabPane>
 
                           <TabPane tabId="2">
+                                <div className="row">
+                                  <div className="col-sm-12 pull-right">
+                                        <div className="form-group" style={{float:"right"}}>
+                                            <FormLabel component="legend">Privacy</FormLabel>
+                                                      <RadioGroup
+                                                      aria-label="Privacy"
+                                                      name="Privacy"
+                                                      value={this.state.Privacy}
 
+                                                      className="d-flex flex-row"
+                                                      onChange={(event) => this.setState({Privacy: event.target.value})}
+                                                    >
+                                                      <FormControlLabel value="Public" control={<Radio color="primary"/>} label=<IntlMessages id="Public"/>/>
+                                                      <FormControlLabel value="Private" control={<Radio color="primary"/>} label=<IntlMessages id="Private"/>/>
+                                                     
+                                                    </RadioGroup>                   
+
+                                                          </div>
+                                  </div>
+                              </div>
                             <div className="row">
                               <div className="col-sm-6">
                                 <div className="form-group">
@@ -1029,7 +1161,7 @@ handleChange = name => (event, checked) => {
                                 </FormControl>
                                </div> 
 
-                               
+                                 
                                
 
                               </div>
@@ -1059,7 +1191,7 @@ handleChange = name => (event, checked) => {
                                     <div className="mb-3 d-flex align-items-center justify-content-between">
                                           <Button onClick={() => {
                                             this.props.showAuthLoader();
-                                             this.props.udate_basic_info({user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB})
+                                             this.props.udate_basic_info({user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB,Privacy})
                                           }} variant="contained" color="primary">
                                            Save
                                           </Button>
@@ -1073,6 +1205,26 @@ handleChange = name => (event, checked) => {
                           </TabPane>
                          
                           <TabPane tabId="3">
+                                <div className="row">
+                                  <div className="col-sm-12 pull-right">
+                                        <div className="form-group" style={{float:"right"}}>
+                                            <FormLabel component="legend">Privacy</FormLabel>
+                                                      <RadioGroup
+                                                      aria-label="Privacy"
+                                                      name="Privacy"
+                                                      value={this.state.Privacy}
+
+                                                      className="d-flex flex-row"
+                                                      onChange={(event) => this.setState({Privacy: event.target.value})}
+                                                    >
+                                                      <FormControlLabel value="Public" control={<Radio color="primary"/>} label=<IntlMessages id="Public"/>/>
+                                                      <FormControlLabel value="Private" control={<Radio color="primary"/>} label=<IntlMessages id="Private"/>/>
+                                                     
+                                                    </RadioGroup>                   
+
+                                                          </div>
+                                  </div>
+                              </div>
 
                             <div className="row">
                               <div className="col-sm-6">
@@ -1087,9 +1239,13 @@ handleChange = name => (event, checked) => {
                                       />
                                   </div>   
 
-                                 {/* <div className="form-group cc-selector-2">
+                                 
+
+                                 <div className="form-group" >
+                                
                                    <FormControl component="fieldset" required>
-                                       <FormLabel component="legend">Physical</FormLabel>
+                                       <FormLabel component="legend">Physical </FormLabel>
+                                      {gender ==1 ?
                                        <RadioGroup
                                          aria-label="physical"
                                          name="Lifestyle"
@@ -1098,18 +1254,70 @@ handleChange = name => (event, checked) => {
                                          className="d-flex flex-row"
                                          onChange={(event) => this.setState({physical: event.target.value})}
                                        >
-                                         <FormControlLabel className="drinkcard-cc visa" value="1" control={<Radio color="primary"/>} />
-                                         <FormControlLabel  className="drinkcard-cc mastercard" value="2" control={<Radio color="primary"/>} />
-                                        
+
+                                         <FormControlLabel  value="male1" control={<Radio color="primary"/>} />
+                                          <img  src={require('../../assets/Physical/body1.png')} style={{height: "100px"}}/>
+                                          
+                                         <FormControlLabel  value="male2" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/body2.png')} style={{height: "100px"}}/>
+                                      
+                                       <FormControlLabel  value="3" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/body3.png')} style={{height: "100px"}}/>
+
+                                      <FormControlLabel  value="4" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/body4.png')} style={{height: "100px"}}/>
+
+                                       <FormControlLabel  value="5" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/body5.png')} style={{height: "100px"}}/>
+
+
+                                       
                                        </RadioGroup>
+                                       : 
+                                       <RadioGroup
+                                         aria-label="physical"
+                                         name="Lifestyle"
+                                         value={this.state.physical}
+
+                                         className="d-flex flex-row"
+                                         onChange={(event) => this.setState({physical: event.target.value})}
+                                       >
+
+                                        
+                                       
+
+                                          <FormControlLabel  value="6" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/Female/fbody1.png')} style={{height: "80px"}}/>
+
+                                          <FormControlLabel  value="7" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/Female/fbody2.png')} style={{height: "80px"}}/>
+                                          <FormControlLabel  value="8" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/Female/fbody3.png')} style={{height: "80px"}}/>
+                                          <FormControlLabel  value="9" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/Female/fbody4.png')} style={{height: "80px"}}/>
+                                          <FormControlLabel  value="10" control={<Radio color="primary"/>}
+                                          />
+                                          <img  src={require('../../assets/Physical/Female/fbody5.png')} style={{height: "80px"}}/>
+
+
+                                       </RadioGroup>
+
+                                     }
                                      </FormControl>
-                                                             
+                                                         
 
-                                  </div> */}
+                                  </div> 
 
 
-
-                                  <div className="form-group">
+                                 {/* <div className="form-group">
                                     <FormControl component="fieldset" required>
                                         <FormLabel component="legend">Skin Color</FormLabel>
                                         <RadioGroup
@@ -1127,18 +1335,66 @@ handleChange = name => (event, checked) => {
                                           <FormControlLabel value="Light Brown" control={<Radio color="primary"/>} label='Light Brown'/>
                                         </RadioGroup>
                                       </FormControl>
-                                  </div> 
+                                  </div>*/}
 
 
 
+<div className="form-group">
+<FormHelperText className="text-grey">Skin Color</FormHelperText>
+            <FormGroup className="d-flex flex-row">
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedG}
+                            onChange={this.handleChange('checkedG')}
 
+                  />
+                }
+                label="Black"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedH}
+                            onChange={this.handleChange('checkedH')}
+                            value="checkedH"
+                  />
+                }
+                label="White"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedI}
+                            onChange={this.handleChange('checkedI')}
+                            value="checkedI"
+                  />
+                }
+                label="Dark Brown"
+              />
 
-
-
-
-
-
-
+                <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedI}
+                            onChange={this.handleChange('checkedI')}
+                            value="checkedI"
+                  />
+                }
+                label="Light Yellow"
+              />
+               <FormControlLabel
+                control={
+                  <Checkbox color="primary"
+                            checked={this.state.checkedI}
+                            onChange={this.handleChange('checkedI')}
+                            value="checkedI"
+                  />
+                }
+                label="Light Brown"
+              />
+            </FormGroup>
+</div>
 
 
                                       <div className="form-group">
@@ -1157,10 +1413,8 @@ handleChange = name => (event, checked) => {
                                                 <FormControlLabel value="Contact lenses " control={<Radio color="primary"/>} label='Contact lenses '/>
                                               
                                              </RadioGroup>
-                                           </FormControl>
-                                                             
-
-                                  </div> 
+                                           </FormControl>                                       
+                                        </div> 
                                   
 
                                     <div className="form-group">
@@ -1232,7 +1486,10 @@ handleChange = name => (event, checked) => {
                                         fullWidth
                                       />
                                    </div> 
-                                    <div className="form-group">
+
+
+
+                                   <div className="form-group">
                                           <FormControl component="fieldset" required>
                                               <FormLabel component="legend">Height(100-170 cm)</FormLabel>
 
@@ -1246,6 +1503,10 @@ handleChange = name => (event, checked) => {
                                                   />
                                              </FormControl>
                                         </div>  
+
+
+
+
                                         <div className="form-group">
                                           <FormControl component="fieldset" required>
                                               <FormLabel component="legend">Width(40-80 kg)</FormLabel>
@@ -1296,7 +1557,7 @@ handleChange = name => (event, checked) => {
                                     <Button onClick={() => {
                                       this.props.showAuthLoader();
                                        this.props.your_criteria({user_id,Until,Years,Minimaleducation,tribe,skin_Color,height,Width,Daily,Lifestyle,minimumincome,criteriacouple,
-                                          physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby })
+                                          physical,Eyeglasses,Veli,Smoke,Alcohol,Tattoo,Piercing,hobby,Privacy })
                                     }} variant="contained" color="primary">
                                      Save
                                     </Button>
@@ -1306,7 +1567,26 @@ handleChange = name => (event, checked) => {
                            
                           </TabPane>
                           <TabPane tabId="4">
+ <div className="row">
+                                  <div className="col-sm-12 pull-right">
+                                        <div className="form-group" style={{float:"right"}}>
+                                            <FormLabel component="legend">Privacy</FormLabel>
+                                                      <RadioGroup
+                                                      aria-label="Privacy"
+                                                      name="Privacy"
+                                                      value={this.state.Privacy}
 
+                                                      className="d-flex flex-row"
+                                                      onChange={(event) => this.setState({Privacy: event.target.value})}
+                                                    >
+                                                      <FormControlLabel value="Public" control={<Radio color="primary"/>} label=<IntlMessages id="Public"/>/>
+                                                      <FormControlLabel value="Private" control={<Radio color="primary"/>} label=<IntlMessages id="Private"/>/>
+                                                     
+                                                    </RadioGroup>                   
+
+                                                          </div>
+                                  </div>
+                              </div>
                             <div className="row">
                                <div className="col-sm-6">
                                   <div className="form-group">
@@ -1319,6 +1599,9 @@ handleChange = name => (event, checked) => {
                                       fullWidth
                                     />
                                   </div> 
+                                   
+
+                    
 
                                   <div className="form-group">
                                         <TextField
@@ -1335,7 +1618,13 @@ handleChange = name => (event, checked) => {
                                           />
 
                                      </div>
-                                     </div>
+                                       
+                          
+                  
+                    </div>
+                         
+
+
                                       <div className="col-sm-6">
 
                                       <div className="form-group">
@@ -1359,20 +1648,65 @@ handleChange = name => (event, checked) => {
                                                 fullWidth
                                               />
                                             </div> 
-                                             <div className="mb-3 d-flex align-items-center justify-content-between">
+
+                                         
+                               </div>
+
+                            </div>
+
+                           
+                            <div className="row">
+                                <div className="col-sm-12">
+                                        <div className="form-group">
+                                      <div className="upload-btn-wrapper">Upload ID Cards<br/>
+                                        <Button variant="contained" color="primary"  className="btn jr-btn jr-btn-label right">
+                                         <i className="zmdi zmdi-image-o zmdi-hc-fw "/>
+                                        <span><IntlMessages id="sidebar.Gallery"/></span></Button>
+                                      <input type="file" name="myfile" onChange={(event)=>this.readURL(event)}
+                                     
+                                      />
+                                      <img id="blah" style={{height: "50px"}} />
+
+                                      </div>
+                                      </div>
+                                </div>
+                            </div> 
+                            <div className="row">
+                                <div className="col-sm-12 ">
+                                      <div className="mb-3 d-flex align-items-center justify-content-between">
                                                   <Button onClick={() => {
                                                     this.props.showAuthLoader();
-                                                     this.props.udate_basic_info({user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB})
+                                                     this.props.udate_basic_info({user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB,uploadcard,Privacy,cover,profilepic})
                                                   }} variant="contained" color="primary">
                                                    Save
                                                   </Button>
                                            </div> 
-                               </div>
+                                </div>
                             </div>
 
                            </TabPane>
 
                             <TabPane tabId="5">
+                             <div className="row">
+                                  <div className="col-sm-12 pull-right">
+                                        <div className="form-group" style={{float:"right"}}>
+                                            <FormLabel component="legend">Privacy</FormLabel>
+                                                      <RadioGroup
+                                                      aria-label="Privacy"
+                                                      name="Privacy"
+                                                      value={this.state.Privacy}
+
+                                                      className="d-flex flex-row"
+                                                      onChange={(event) => this.setState({Privacy: event.target.value})}
+                                                    >
+                                                      <FormControlLabel value="Public" control={<Radio color="primary"/>} label=<IntlMessages id="Public"/>/>
+                                                      <FormControlLabel value="Private" control={<Radio color="primary"/>} label=<IntlMessages id="Private"/>/>
+                                                     
+                                                    </RadioGroup>                   
+
+                                                          </div>
+                                  </div>
+                              </div>
                              <div className="row">
                                 <div className="col-sm-6">
                                    <div className="form-group">
@@ -1398,30 +1732,55 @@ handleChange = name => (event, checked) => {
                                    </div>  
                                   </div>  
 
-                                  <div className="col-sm-6">
 
-                                   <div className="form-group">
-                                      <TextField
-                                        id="Hometown"
-                                        label='Home Town'
-                                        margin="normal"
-                                        value={this.state.Hometown}
-                                        onChange={(event) => this.setState({Hometown: event.target.value})}
-                                        fullWidth
-                                      />
-                                  </div>  
-                                  <div className="mb-3 d-flex align-items-center justify-content-between">
+
+                                  <div className="col-sm-6">
+                                     <div className="form-group">
+                                        <TextField
+                                          id="Hometown"
+                                          label='Home Town'
+                                          margin="normal"
+                                          value={this.state.Hometown}
+                                          onChange={(event) => this.setState({Hometown: event.target.value})}
+                                          fullWidth
+                                        />
+                                    </div>  
+                                   
+                                </div>
+
+                                <div className="mb-3 d-flex align-items-center justify-content-between">
                                           <Button onClick={() => {
-                                            this.props.showAuthLoader();
-                                             this.props.user_domicile({user_id,currentcity,Homestatus,Hometown})
+                                             this.props.showAuthLoader();
+                                             this.props.user_domicile({user_id,currentcity,Homestatus,Hometown,Privacy})
                                           }} variant="contained" color="primary">
                                            Save
                                           </Button>
-                                   </div>  
-                                </div>
+                                   </div> 
                              </div>
+
                             </TabPane>
+                         
                             <TabPane tabId="6">
+                            <div className="row">
+                                  <div className="col-sm-12 pull-right">
+                                        <div className="form-group" style={{float:"right"}}>
+                                            <FormLabel component="legend">Privacy</FormLabel>
+                                                      <RadioGroup
+                                                      aria-label="Privacy"
+                                                      name="Privacy"
+                                                      value={this.state.Privacy}
+
+                                                      className="d-flex flex-row"
+                                                      onChange={(event) => this.setState({Privacy: event.target.value})}
+                                                    >
+                                                      <FormControlLabel value="Public" control={<Radio color="primary"/>} label=<IntlMessages id="Public"/>/>
+                                                      <FormControlLabel value="Private" control={<Radio color="primary"/>} label=<IntlMessages id="Private"/>/>
+                                                     
+                                                    </RadioGroup>                   
+
+                                                          </div>
+                                  </div>
+                              </div>
                              <div className="row">
                                <div className="col-sm-6">
                                 <div className="form-group">
@@ -1434,8 +1793,7 @@ handleChange = name => (event, checked) => {
                                         fullWidth
                                       />
                                   </div> 
-
-                                  
+                              
                                    </div> 
                                     <div className="col-sm-6">
                                          <div className="form-group">
@@ -1452,7 +1810,7 @@ handleChange = name => (event, checked) => {
                                         <div className="mb-3 d-flex align-items-center justify-content-between">
                                               <Button onClick={() => {
                                                 this.props.showAuthLoader();
-                                                 this.props.user_education({user_id, Lasteducation,Departement})
+                                                 this.props.user_education({user_id, Lasteducation,Departement,Privacy})
                                               }} variant="contained" color="primary">
                                                Save
                                               </Button>
@@ -1462,6 +1820,26 @@ handleChange = name => (event, checked) => {
                              </div>
                             </TabPane>
                             <TabPane tabId="7">
+                            <div className="row">
+                                  <div className="col-sm-12 pull-right">
+                                        <div className="form-group" style={{float:"right"}}>
+                                            <FormLabel component="legend">Privacy</FormLabel>
+                                                      <RadioGroup
+                                                      aria-label="Privacy"
+                                                      name="Privacy"
+                                                      value={this.state.Privacy}
+
+                                                      className="d-flex flex-row"
+                                                      onChange={(event) => this.setState({Privacy: event.target.value})}
+                                                    >
+                                                      <FormControlLabel value="Public" control={<Radio color="primary"/>} label=<IntlMessages id="Public"/>/>
+                                                      <FormControlLabel value="Private" control={<Radio color="primary"/>} label=<IntlMessages id="Private"/>/>
+                                                     
+                                                    </RadioGroup>                   
+
+                                                          </div>
+                                  </div>
+                              </div>
                               <div className="row">
                                 <div className="col-sm-6">
                                   <div className="form-group">
@@ -1488,17 +1866,141 @@ handleChange = name => (event, checked) => {
                                         fullWidth
                                       />
                                   </div>   
-
+                                    
                                   <div className="mb-3 d-flex align-items-center justify-content-between">
                                           <Button onClick={() => {
                                             this.props.showAuthLoader();
-                                             this.props.user_work({user_id,Work,income})
+                                             this.props.user_work({user_id,Work,income,Privacy})
                                           }} variant="contained" color="primary">
                                            Save
                                           </Button>
                                    </div>  
                                 </div> 
                               </div>
+                            </TabPane>
+
+
+                            <TabPane tabId="8">
+                               <div className="row">
+                                  <div className="col-sm-12 pull-right">
+                                        <div className="form-group" style={{float:"right"}}>
+                                            <FormLabel component="legend">Privacy</FormLabel>
+                                                      <RadioGroup
+                                                      aria-label="Privacy"
+                                                      name="Privacy"
+                                                      value={this.state.Privacy}
+
+                                                      className="d-flex flex-row"
+                                                      onChange={(event) => this.setState({Privacy: event.target.value})}
+                                                    >
+                                                      <FormControlLabel value="Public" control={<Radio color="primary"/>} label=<IntlMessages id="Public"/>/>
+                                                      <FormControlLabel value="Private" control={<Radio color="primary"/>} label=<IntlMessages id="Private"/>/>
+                                                     
+                                                    </RadioGroup>                   
+
+                                                          </div>
+                                  </div>
+                              </div>
+                              <div className="row">
+                              <div className="col-sm-6">
+                              <div className="form-group">
+                             
+                           <div className="div2">
+                          <div className="upload-btn-wrapper">
+                            <Button variant="contained" color="primary"  className="btn jr-btn jr-btn-label right"
+                           
+                            style={{ margin: "281px 22px -208px -134px",
+                                padding: "0 4px 0px 0px",
+                                float: "right",
+                                padding: "0px 91px 45px 27px"
+
+
+                            }}
+                      >
+                            
+                             <i className="zmdi zmdi-image-o zmdi-hc-fw "/>
+                            <span><IntlMessages id="Edit"/><i className="fa fa-camera"style={{ position: "absolute",margin:" 287px 0 0 858px",opacity:" 0"}}></i> </span></Button>
+                          <input type="file" name="myfile" style={{fontSize: "8px",position: "absolute",margin: "294px 0 0px 857px",opacity: "0"}}
+                           onChange={(event)=>this.cover(event)}/>
+                          <img id="blaha" style={{height: "337px",width:" 973px",margin: "0px 0px 0px 2px", padding: "-2px 7px 0px 0px"}} />
+                           </div>
+                          </div>                                         
+                        <div className="div3">                         
+                       <img  src={require('../../assets/Physical/images.jpg')} style={{height: "155px",borderRadius: "55%" ,width:" 160px", margin: "-1px 0px 0px 25px",position: "relative"}}/>
+                              
+                                     
+                         {/* <div className="icon"
+                          style={{    margin:" -168px 0px 0px 137px"}}
+                          onClick={() => {
+                          this.props.showAuthLoader();
+                          this.props.udate_basic_info({})
+                          }}>
+                         <span><i className="fa fa-camera"style={{fontSize:"35px"}}></i></span> </div>
+                     
+                          <img  src={require('../../assets/Physical/hd-desktop-wallpaper-2O5.jpg')} style={{height: "215px",width:"500px",margin: "-204px 0px 0px -377px"}}/>
+                            */}
+
+                              </div>     
+                          <div className="div4">
+                          {/* onClick={() => {
+                              this.props.showAuthLoader();
+                              this.props.udate_basic_info({profilepic})
+                              }}>*/}</div>
+
+                          <input type="file" name="profilepic" onChange={(event)=>this.profilepic(event)}/>
+                          <img id="blahaa"style={{height: "50px",height: "154px",margin: "-176px 0px 0px 349px",width: "161px",borderRadius:"57%",border:"none", position: "relative"}}/>
+
+                          </div>
+                          <div className="div5"> <i className="fa fa-camera"style={{fontSize:"35px",color: "#0e0e0e"}}></i></div>
+                          </div>
+                          </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                 <div className="row">
+                                <div className="col-sm-12 ">
+                                      <div className="mb-3 d-flex align-items-center justify-content-between">
+                                                  <Button onClick={() => {
+                                                    this.props.showAuthLoader();
+                                                     this.props.udate_basic_info({user_id,status,religion,interestedIn,nickName,fullName,email,phone,DOB,uploadcard,Privacy,cover,profilepic})
+                                                  }} variant="contained" color="primary">
+                                                   Save
+                                                  </Button>
+                                           </div> 
+                                </div>
+                            </div>
+
+
+
+
+                        { /* <div className="row">
+                                <div className="col-sm-6 ">
+                                      <div className="mb-3 d-flex align-items-center justify-content-between">
+                                                  <Button onClick={() => {
+                                                    this.props.showAuthLoader();
+                                                     this.props.udate_basic_info({banner})
+                                                  }} variant="contained" color="primary">
+                                                   Save
+                                                  </Button>
+                                           </div> 
+                                </div>
+                               </div>*/}
+
+
                             </TabPane>
                         </TabContent>
                       </div>

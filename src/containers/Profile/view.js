@@ -35,6 +35,7 @@ class ProfileView extends React.Component {
       open: false,
       aboutMe:'',
       flag:'',
+      seeAllPhotos:'0'
     }
   }
 
@@ -46,7 +47,7 @@ componentDidMount() {
  componentDidUpdate() {
      const {get_user_by_id } = this.props;
      var timeDifference = "";
-     if(get_user_by_id){
+   /*  if(get_user_by_id){
          if(get_user_by_id.userPost){
 
 
@@ -59,7 +60,7 @@ componentDidMount() {
               this.setState({time:timeDifference ? timeDifference :''})
           }, 3000);
         
-     }
+     }*/
         
   }
 handleClickOpen = (flag) => {
@@ -184,6 +185,22 @@ timeDifference(current, previous) {
        }
     }
 }
+
+seeAllImages(e){
+
+  var moreText = document.getElementById("read_more");
+  var btnText = document.getElementById("myBtn");
+   moreText.style.display = "inline";
+
+  /*if (dots.style.display === "none") {
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }*/
+
+}
   render() {
   
     const {get_user_by_id } = this.props;
@@ -274,7 +291,7 @@ timeDifference(current, previous) {
                       </div>
                       <span className="jr-link jr-profile-setting">
                         <i className="zmdi zmdi-settings mr-2"/>
-                        <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0" ><Link to="edit-profile" style={{color:"#fff"}}>Edit Profile</Link></span>
+                        <span className="d-inline-flex align-middle ml-1 jr-ml-sm-0" ><Link to="/app/edit-profile" style={{color:"#fff"}}>Edit Profile</Link></span>
 
                       </span>
                     </div>
@@ -295,17 +312,17 @@ timeDifference(current, previous) {
                       <div className="col-md-12">
                               <ul className="jr-agents-list">
                                   {get_user_by_id.user_img && get_user_by_id.user_img.map((img, index) =>
-                                     expanded < index ?
+                                      5 > index ?
                                       <li key={index}>
-                                        <div className="jr-profileon ">
+                                        <div className="jr-profileon read_more_">
                                           <div className="jr-profileon-thumb" style={{maxHeight: "199px"}}><img alt="..." src={img.image}/> </div>
                                           <div className="jr-profileon-content">
-                                           
+                                            
                                           </div>
                                         </div>
                                       </li>
                                       : <li key={index}>
-                                        <div className="jr-profileon">
+                                        <div className="jr-profileon read_more" id="read_more">
                                           <div className="jr-profileon-thumb" style={{maxHeight: "199px"}}><img alt="..." src={img.image}/></div>
                                           <div className="jr-profileon-content">
                                     
@@ -315,6 +332,7 @@ timeDifference(current, previous) {
                                   )
                                   }
                                 </ul>
+                                <h4 className="card-title mb-0  pull-right" style={{float:"right",cursor:"pointer"}} ><button type="button" onClick={(e)=>this.seeAllImages(e)} id="myBtn" >See All Photos</button></h4>
 
                            </div>
 

@@ -85,10 +85,9 @@ class ForgotPassword extends React.Component {
 
   render() {
     const {email,errorMessage,succesMessage} = this.state;
-    console.log(NotificationManager.error);
     const {showMessage, loader, alertMessage,alertSuccessMessage,forgot} = this.props;
 
-    console.log(succesMessage,'--------------');
+    console.log(forgot,'--------------');
  
   return (
     <div
@@ -186,7 +185,7 @@ class ForgotPassword extends React.Component {
           </div>
         }
         
-        {forgot.message !='success' ? showMessage && NotificationManager.error(alertMessage) : ''}
+        {forgot != 'success' ? showMessage && NotificationManager.error(alertMessage) : ''}
         {errorMessage ? errorMessage && NotificationManager.error(errorMessage) :succesMessage && NotificationManager.success(succesMessage) }
         <NotificationContainer/>
     </div>

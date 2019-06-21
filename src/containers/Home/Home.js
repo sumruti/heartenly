@@ -43,7 +43,44 @@ class home extends React.Component {
     const {get_user_by_id } = this.props;
     const {users } = this.state;
 
-   
+    console.log(users);
+    const userImageList = [
+          {
+            id: 1,
+            image: require('../../assets/images/userAvatar/avator5.jpg'),
+            name: 'Chelsea Johns',
+            rating: '5.0',
+            deals: '27 Deals'
+          },
+          {
+            id: 2,
+            image: require('../../assets/images/userAvatar/avator2.jpg'),
+            name: 'Ken Ramirez',
+            rating: '4.5',
+            deals: '21 Deals'
+          },
+          {
+            id: 3,
+            image: require('../../assets/images/userAvatar/avator4.jpg'),
+            name: 'Ken Ramirez',
+            rating: '5.0',
+            deals: '27 Deals'
+          },
+          {
+            id: 4,
+            image: require('../../assets/images/userAvatar/avator10.jpg'),
+            name: 'Chelsea Johns',
+            rating: '5.0',
+            deals: '27 Deals'
+          },
+          {
+            id: 5,
+            image: require('../../assets/images/userAvatar/guptil-2.jpg'),
+            name: 'Chelsea Johns',
+            rating: '5.0',
+            deals: '27 Deals'
+          },
+        ]
 
     
  
